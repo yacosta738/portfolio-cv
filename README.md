@@ -14,10 +14,10 @@ The design is inspired by Bartosz Jarocki's CV template.
 ## Badges
 
 ![Astro Badge](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=fff&style=flat)
-![GitHub stars](https://img.shields.io/github/stars/midudev/minimalist-portfolio-json)
-![GitHub issues](https://img.shields.io/github/issues/midudev/minimalist-portfolio-json)
-![GitHub forks](https://img.shields.io/github/forks/midudev/minimalist-portfolio-json)
-![GitHub PRs](https://img.shields.io/github/issues-pr/midudev/minimalist-portfolio-json)
+![GitHub stars](https://img.shields.io/github/stars/yacosta738/portfolio-cv?style=social)
+![GitHub issues](https://img.shields.io/github/issues/yacosta738/portfolio-cv?style=social)
+![GitHub forks](https://img.shields.io/github/forks/yacosta738/portfolio-cv?style=social)
+![GitHub PRs](https://img.shields.io/github/issues-pr/yacosta738/portfolio-cv?style=social)
 
 ![cover](docs/portada.png)
 
