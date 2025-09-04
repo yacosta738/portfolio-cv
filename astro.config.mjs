@@ -11,15 +11,51 @@ export default defineConfig({
 
 	env: {
 		schema: {
-			BRAND_NAME: envField.string({ context: "client", access: "public", default: "Yuniel Acosta - Full Stack Developer" }),
-			SITE_TITLE: envField.string({ context: "client", access: "public", default: "Yuniel Acosta - Full Stack Developer" }),
-			SITE_DESCRIPTION_EN: envField.string({ context: "client", access: "public", default: "Portfolio of Yuniel Acosta, Full Stack Developer" }),
-			SITE_DESCRIPTION_ES: envField.string({ context: "client", access: "public", default: "Portafolio de Yuniel Acosta, Desarrollador Full Stack" }),
-			X_ACCOUNT: envField.string({ context: "client", access: "public", default: "@yacosta738" }),
-			NOT_TRANSLATED_CAUTION_EN: envField.string({ context: "client", access: "public", default: "This page is not available in your language." }),
-			NOT_TRANSLATED_CAUTION_ES: envField.string({ context: "client", access: "public", default: "Esta página no está disponible en tu idioma." }),
-			BASE_URL_LOCAL: envField.string({ context: "client", access: "public", default: "http://localhost:4321" }),
-			BASE_URL_PROD: envField.string({ context: "client", access: "public", default: "https://your-production-url.com" }),
+			BRAND_NAME: envField.string({
+				context: "client",
+				access: "public",
+				default: "Yuniel Acosta - Full Stack Developer",
+			}),
+			SITE_TITLE: envField.string({
+				context: "client",
+				access: "public",
+				default: "Yuniel Acosta - Full Stack Developer",
+			}),
+			SITE_DESCRIPTION_EN: envField.string({
+				context: "client",
+				access: "public",
+				default: "Portfolio of Yuniel Acosta, Full Stack Developer",
+			}),
+			SITE_DESCRIPTION_ES: envField.string({
+				context: "client",
+				access: "public",
+				default: "Portafolio de Yuniel Acosta, Desarrollador Full Stack",
+			}),
+			X_ACCOUNT: envField.string({
+				context: "client",
+				access: "public",
+				default: "@yacosta738",
+			}),
+			NOT_TRANSLATED_CAUTION_EN: envField.string({
+				context: "client",
+				access: "public",
+				default: "This page is not available in your language.",
+			}),
+			NOT_TRANSLATED_CAUTION_ES: envField.string({
+				context: "client",
+				access: "public",
+				default: "Esta página no está disponible en tu idioma.",
+			}),
+			BASE_URL_LOCAL: envField.string({
+				context: "client",
+				access: "public",
+				default: "http://localhost:4321",
+			}),
+			BASE_URL_PROD: envField.string({
+				context: "client",
+				access: "public",
+				default: "https://your-production-url.com",
+			}),
 		},
 		validateSecrets: false,
 	},

@@ -17,24 +17,19 @@ export const SITE_TITLE: string | Multilingual =
 	SITE_TITLE || "Yuniel Acosta - Full Stack Developer";
 
 export const SITE_DESCRIPTION: string | Multilingual = {
-	en:
-		SITE_DESCRIPTION_EN ||
-		"Portfolio of Yuniel Acosta, Full Stack Developer",
+	en: SITE_DESCRIPTION_EN || "Portfolio of Yuniel Acosta, Full Stack Developer",
 	es:
 		SITE_DESCRIPTION_ES ||
 		"Portafolio de Yuniel Acosta, Desarrollador Full Stack",
 };
 
-export const X_ACCOUNT: string | Multilingual =
-	X_ACCOUNT || "@yacosta738";
+export const X_ACCOUNT: string | Multilingual = X_ACCOUNT || "@yacosta738";
 
 export const NOT_TRANSLATED_CAUTION: string | Multilingual = {
 	en:
-		NOT_TRANSLATED_CAUTION_EN ||
-		"This page is not available in your language.",
+		NOT_TRANSLATED_CAUTION_EN || "This page is not available in your language.",
 	es:
-		NOT_TRANSLATED_CAUTION_ES ||
-		"Esta página no está disponible en tu idioma.",
+		NOT_TRANSLATED_CAUTION_ES || "Esta página no está disponible en tu idioma.",
 };
 
 // Base URLs
