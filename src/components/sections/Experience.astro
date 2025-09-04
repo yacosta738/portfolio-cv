@@ -14,7 +14,7 @@ const t = useTranslations(currentLocale);
 ---
 
 <Section title={t('experience')}>
-  <ul>
+  <ul class="flex flex-col gap-8">
     {
       work.map(
         (workItem) => {
@@ -30,30 +30,32 @@ const t = useTranslations(currentLocale);
           return (
             <li>
               <article>
-                <header>
+                <header class="flex justify-between items-start mb-1">
                   <div>
-                    <h3>
+                    <h3 class="font-medium text-gray-900">
                       {url ? (
-                        <a href={url} title={`Ver ${name}`} target="_blank" rel="noopener noreferrer">
+                        <a href={url} title={`Ver ${name}`} target="_blank" rel="noopener noreferrer" class="text-gray-900 hover:underline focus:underline hover:text-gray-700">
                           {name}
                         </a>
                       ) : (
                         <span>{name}</span>
                       )}
                     </h3>
-                    <h4>{position}</h4>
+                    <h4 class="text-gray-700 font-normal">{position}</h4>
                   </div>
 
                   <div>
                     <time 
                       datetime={startDateStr}
-                      data-title={startDateStr}>
+                      data-title={startDateStr}
+                      class="text-gray-600 text-sm min-w-[102px] cursor-default sm:text-right relative">
                         {startYear}
                     </time>
                     {" - "}
                     <time 
                       datetime={endDateStr}
-                      data-title={endDateStr}>
+                      data-title={endDateStr}
+                      class="text-gray-600 text-sm min-w-[102px] cursor-default sm:text-right relative">
                         {endYear}
                     </time>
                   </div>
@@ -72,46 +74,6 @@ const t = useTranslations(currentLocale);
 </Section>
 
 <style>
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  article h3 {
-    font-weight: 500;
-    color: #1a202c;
-  }
-
-  article a {
-    color: #1a202c;
-  }
-
-  article a:hover,
-  article a:focus {
-    text-decoration: underline;
-    color: #2d3748;
-  }
-
-  article h4 {
-    color: #2d3748;
-    font-weight: 400;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
-  }
-
-  time {
-    color: #4a5568;
-    font-size: 0.85rem;
-    min-width: 102px;
-    cursor: default;
-  }
-
   [data-title]:hover:after {
     opacity: 1;
     transition: all 0.1s ease-in-out 0.5s;
@@ -123,7 +85,7 @@ const t = useTranslations(currentLocale);
     background-color: #333;
     color: #fff;
     font-size: .75rem;
-    font-family: Menlo, Monaco, Lucida Console, "Courier New", monospace;;
+    font-family: Menlo, Monaco, Lucida Console, "Courier New", monospace;
     position: absolute;
     padding: .2rem .5rem;
     bottom: -1.4rem;
@@ -135,15 +97,5 @@ const t = useTranslations(currentLocale);
     z-index: 99999;
     visibility: hidden;
     border-radius: 6px;
-  }
-
-  [data-title] {
-    position: relative;
-  }
-
-  @media (width <= 700px) {
-    time {
-      text-align: right;
-    }
   }
 </style>

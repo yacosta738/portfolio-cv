@@ -18,12 +18,12 @@ const allSkills = await getSkills();
 
 {skills.length > 0 && (
   <Section title={t('skills')}>
-    <ul>
+    <ul class="inline-flex gap-2 flex-wrap">
       {
         skills.map(({ name }) => {
           const found = allSkills.find(skill => skill.name.toLowerCase() === name.toLowerCase())
           return (
-            <li>
+            <li class="flex items-center bg-gray-50 border border-gray-200 rounded-md text-gray-700 text-sm font-medium gap-1 px-2.5 py-0.5">
               {found && <Icon name={found?.icon || 'mdi:code-tags'} class="size-4" />}
               <span>{name}</span>
             </li>
@@ -33,24 +33,3 @@ const allSkills = await getSkills();
     </ul>
   </Section>
 )}
-
-<style>
-  ul {
-    display: inline-flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  li {
-    align-items: center;
-    background: #f7fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    color: #2d3748;
-    display: flex;
-    font-size: 0.8rem;
-    font-weight: 500;
-    gap: 4px;
-    padding: 0.2rem 0.6rem;
-  }
-</style>

@@ -8,27 +8,7 @@ interface Props extends HTMLAttributes<"section"> {
 const { title } = Astro.props;
 ---
 
-<section>
-  {title && <h2>{title}</h2>}
+<section class="max-w-[700px] mx-auto mb-12 sm:mb-[38px]">
+  {title && <h2 class="mb-2 font-bold leading-normal text-2xl">{title}</h2>}
   <slot />
 </section>
-
-<style>
-  section {
-    max-width: 700px;
-    margin: 0 auto 48px;
-  }
-
-  h2 {
-    margin-bottom: 8px;
-    font-weight: 700;
-    line-height: 1.5;
-    font-size: 1.5rem;
-  }
-
-  @media (width <= 700px) {
-    section {
-      margin-bottom: 38px;
-    }
-  }
-</style>
