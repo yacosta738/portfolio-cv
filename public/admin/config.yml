@@ -1,0 +1,229 @@
+local_backend: true
+
+logo_url: /favicon.svg
+
+backend:
+  name: github
+  repo: yacosta738/portfolio-cv
+  branch: main
+  base_url: https://sveltia-cms-auth.yunielacosta738.workers.dev/
+
+publish_mode: editorial_workflow
+
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+  sanitize_replacement: '-'
+
+
+media_folder: "src/assets/images" # Location where files will be stored in the repo
+public_folder: "src/assets/images" # The src attribute for uploaded media
+
+i18n:
+  structure: 'multiple_folders'
+  locales: ['en', 'es']
+  default_locale: 'en'
+
+collections:
+  # Skills Library Collection
+  - name: "skillsLibrary"
+    label: "Skills Library"
+    label_singular: "Skill"
+    description: "System skills library (icons, metadata, etc.)"
+    folder: "src/data/skills"
+    extension: "json"
+    create: true
+    fields:
+      - { label: "ID", name: "id", widget: "string" }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Icon", name: "icon", widget: "string", required: false }
+
+  # Languages Library Collection
+  - name: "languagesLibrary"
+    label: "Languages Library"
+    label_singular: "Language"
+    description: "Language names, mappings, and metadata"
+    folder: "src/data/languages"
+    extension: "json"
+    create: true
+    fields:
+      - { label: "Code", name: "code", widget: "string" }
+      - { label: "Native Name", name: "nativeName", widget: "string" }
+      - { label: "Names", name: "names", widget: "object", fields: [
+          { label: "English", name: "en", widget: "string", required: false },
+          { label: "Spanish", name: "es", widget: "string", required: false }
+          # Add more languages as needed
+        ] }
+      - { label: "Flag", name: "flag", widget: "string", required: false }
+      - { label: "Direction", name: "direction", widget: "select", options: ["ltr", "rtl"], default: "ltr" }
+
+  # Main Resume Collection (Multiple Languages)
+  - name: "resume"
+    label: "Resume"
+    description: "Multi-language resume data"
+    folder: "src/data/resume"
+    extension: "json"
+    create: true
+    fields:
+      # Basics Section
+      - label: "Basics"
+        name: "basics"
+        widget: "object"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Summary", name: "summary", widget: "text" }
+          
+          # Location
+          - label: "Location"
+            name: "location"
+            widget: "object"
+            fields:
+              - { label: "Address", name: "address", widget: "string", required: false }
+              - { label: "Postal Code", name: "postalCode", widget: "string", required: false }
+              - { label: "City", name: "city", widget: "string" }
+              - { label: "Country Code", name: "countryCode", widget: "string" }
+              - { label: "Region", name: "region", widget: "string" }
+          
+          # Profiles
+          - label: "Profiles"
+            name: "profiles"
+            widget: "list"
+            fields:
+              - { label: "Network", name: "network", widget: "string" }
+              - { label: "Username", name: "username", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+      # Work Experience
+      - label: "Work Experience"
+        name: "work"
+        widget: "list"
+        fields:
+          - { label: "Company Name", name: "name", widget: "string" }
+          - { label: "Position", name: "position", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Start Date", name: "startDate", widget: "datetime" }
+          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false }
+          - { label: "Highlights", name: "highlights", widget: "list", required: false }
+
+      # Volunteer Experience
+      - label: "Volunteer Experience"
+        name: "volunteer"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Organization", name: "organization", widget: "string" }
+          - { label: "Position", name: "position", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Start Date", name: "startDate", widget: "datetime" }
+          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false }
+          - { label: "Highlights", name: "highlights", widget: "list", required: false }
+
+      # Education
+      - label: "Education"
+        name: "education"
+        widget: "list"
+        fields:
+          - { label: "Institution", name: "institution", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Area of Study", name: "area", widget: "string" }
+          - { label: "Study Type", name: "studyType", widget: "string" }
+          - { label: "Start Date", name: "startDate", widget: "datetime" }
+          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - { label: "Score", name: "score", widget: "string", required: false }
+          - { label: "Courses", name: "courses", widget: "list", required: false }
+
+      # Awards
+      - label: "Awards"
+        name: "awards"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "Awarder", name: "awarder", widget: "string" }
+          - { label: "Summary", name: "summary", widget: "text", required: false }
+
+      # Certificates
+      - label: "Certificates"
+        name: "certificates"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "Issuer", name: "issuer", widget: "string" }
+          - { label: "URL", name: "url", widget: "string", required: false }
+
+      # Publications
+      - label: "Publications"
+        name: "publications"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Publisher", name: "publisher", widget: "string" }
+          - { label: "Release Date", name: "releaseDate", widget: "datetime" }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false }
+
+      # Skills
+      - label: "Skills"
+        name: "skills"
+        widget: "list"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Level", name: "level", widget: "string", required: false }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false }
+
+      # Languages
+      - label: "Languages"
+        name: "languages"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Language", name: "language", widget: "string" }
+          - { label: "Fluency", name: "fluency", widget: "string" }
+
+      # Interests
+      - label: "Interests"
+        name: "interests"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false }
+
+      # References
+      - label: "References"
+        name: "references"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Reference", name: "reference", widget: "text" }
+
+      # Projects
+      - label: "Projects"
+        name: "projects"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Highlights", name: "highlights", widget: "list", required: false }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false }
+          - { label: "Start Date", name: "startDate", widget: "datetime", required: false }
+          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - { label: "URL", name: "url", widget: "string", required: false }
+          - { label: "Roles", name: "roles", widget: "list", required: false }
+          - { label: "Entity", name: "entity", widget: "string", required: false }
+          - { label: "Type", name: "type", widget: "string", required: false }
+          - { label: "GitHub", name: "github", widget: "string", required: false }
+          - { label: "Is Active", name: "isActive", widget: "boolean", required: false }
