@@ -1,0 +1,76 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+import type Education from "@/resume/education/education.model";
+
+// Props interface
+interface Props {
+	education: Education[];
+}
+
+const { education } = Astro.props as Props;
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+---
+
+<Section title={t('education')}>
+  <ul>
+    {
+      education.map(({ institution, startDate, endDate, area }) => {
+        const startYear = startDate.getFullYear()
+        const endYear = endDate ? endDate.getFullYear() : "Actual"
+        const years = `${startYear} - ${endYear}`
+
+        return (
+          <li>
+            <article>
+              <header>
+                <div>
+                  <h3>{institution}</h3>
+                </div>
+
+                <time>{years}</time>
+              </header>
+
+              <footer>
+                <p>{area}</p>
+              </footer>
+            </article>
+          </li>
+        )
+      })
+    }
+  </ul>
+</Section>
+
+<style>
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  article h3 {
+    font-weight: 500;
+    color: #1a202c;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  time {
+    color: #4a5568;
+    font-size: 0.85rem;
+    min-width: 102px;
+  }
+
+  @media (width <= 700px) {
+    time {
+      text-align: right;
+    }
+  }
+</style>

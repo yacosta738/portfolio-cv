@@ -1,0 +1,39 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+import type Publication from "@/resume/publication/publication.model";
+
+interface Props {
+	publications?: Publication[];
+}
+
+const { publications = [] } = Astro.props as Props;
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+---
+
+{publications.length > 0 && (
+  <Section title={t('publications')}>
+    <ul>
+      {publications.map((p) => (
+        <li>
+          <article>
+            <header>
+              <h3>{p.url ? <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a> : <span>{p.name}</span>}</h3>
+              <time datetime={p.releaseDate.toISOString().split('T')[0]}>{p.releaseDate.getFullYear()}</time>
+            </header>
+            <footer>
+              <p>{p.publisher}</p>
+              {p.summary && <p>{p.summary}</p>}
+            </footer>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </Section>
+)}
+
+<style>
+  ul { display:flex; flex-direction:column; gap:12px }
+  article { padding:8px }
+</style>

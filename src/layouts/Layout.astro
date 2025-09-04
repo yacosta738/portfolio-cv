@@ -1,0 +1,217 @@
+---
+
+import { getLocalePaths, type Lang, LOCALES, useTranslations } from "@/i18n";
+import LocaleHtmlHead from "@/i18n/components/LocaleHtmlHead.astro";
+import LocaleSuggest from "@/i18n/components/LocaleSuggest.astro";
+import { getMainResumeWithData } from "@/resume/resume/resume.service";
+import { SITE_TITLE } from "@/site.consts";
+import "@/styles/global.css";
+
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+const locale = Astro.currentLocale as Lang;
+const t = useTranslations(locale);
+
+// Obtener los datos del resume desde las colecciones de Astro
+const resume = await getMainResumeWithData();
+if (!resume) {
+	throw new Error("No se pudo obtener el resume principal");
+}
+
+const localeTitle = title ? `${title} - ${t(SITE_TITLE)}` : t(SITE_TITLE);
+const { image, summary, url } = resume.basics;
+---
+
+<!doctype html>
+<html lang={LOCALES[locale].lang || locale} dir={LOCALES[locale].dir || null}>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{localeTitle}</title>
+    <meta name="description" content={summary} />
+    <meta name="viewport" content="width=device-width" /> 
+    <!-- <meta name="color-scheme" content="light dark" /> -->
+    
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" sizes="512x512" href="/icon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
+   
+    <link rel="preload" as="image" href={image} />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {
+      getLocalePaths(Astro.url).map((props) => (
+        <link
+          rel="alternate"
+          hreflang={LOCALES[props.lang].lang || props.lang}
+          href={Astro.site?.origin + props.path}
+        />
+      ))
+    }
+
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={summary} />
+    <meta
+      property="og:image"
+      content={image ? new URL(image, Astro.url).href : ""}
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content={url?.split("//")[1] ?? ""} />
+    <meta property="twitter:url" content={url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={summary} />
+    <meta
+      name="twitter:image"
+      content={image ? new URL(image, Astro.url).href : ""}
+    />
+
+    <LocaleHtmlHead />
+  </head>
+  <body>
+    <LocaleSuggest />
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">{t({
+      es: "Saltar al contenido principal",
+      en: "Skip to main content",
+    })}</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      "Courier New",
+      Courier,
+      monospace;
+    background: #fff;
+    letter-spacing: -0.025rem;
+  }
+
+  body,
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+  }
+
+  p {
+    color: #4a5568;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* Skip link styles */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #2d3748;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+    font-weight: bold;
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* Enhanced focus styles */
+  *:focus {
+    outline: 2px solid #4299e1;
+    outline-offset: 2px;
+  }
+
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #4299e1;
+    outline-offset: 2px;
+  }
+
+  /* Ensure links have visible focus and hover states */
+  a:focus,
+  a:hover {
+    text-decoration: underline;
+  }
+
+  button:focus,
+  [role="button"]:focus {
+    outline: 2px solid #4299e1;
+    outline-offset: 2px;
+  }
+
+  .print {
+    display: none !important;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    .print {
+      display: block !important;
+    }
+
+    astro-dev-toolbar {
+      display: none !important;
+    }
+
+    article {
+      break-inside: avoid;
+    }
+  }
+</style>

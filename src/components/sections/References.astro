@@ -1,0 +1,37 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+import type Reference from "@/resume/reference/reference.model";
+
+interface Props {
+	references?: Reference[];
+}
+
+const { references = [] } = Astro.props as Props;
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+---
+
+{references.length > 0 && (
+  <Section title={t('references')}>
+    <ul>
+      {references.map((r) => (
+        <li>
+          <article>
+            <header>
+              <h3>{r.name}</h3>
+            </header>
+            <footer>
+              <p>{r.reference}</p>
+            </footer>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </Section>
+)}
+
+<style>
+  ul { display:flex; flex-direction:column; gap:12px }
+  article { padding:8px }
+</style>

@@ -1,0 +1,21 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+
+interface Props {
+	basics: {
+		summary: string;
+	};
+}
+
+const { basics } = Astro.props as Props;
+const { summary } = basics;
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+---
+
+<Section title={t('about')}>
+  <p>
+    {summary}
+  </p>
+</Section>

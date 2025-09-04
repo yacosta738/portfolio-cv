@@ -1,0 +1,37 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+import type Interest from "@/resume/interest/interest.model";
+
+interface Props {
+	interests?: Interest[];
+}
+
+const { interests = [] } = Astro.props as Props;
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+---
+
+{interests.length > 0 && (
+  <Section title={t('interests')}>
+    <ul>
+      {interests.map((i) => (
+        <li>
+          <article>
+            <header>
+              <h3>{i.name}</h3>
+            </header>
+            <footer>
+              {i.keywords?.map(k => <span>{k}</span>)}
+            </footer>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </Section>
+)}
+
+<style>
+  ul { display:flex; flex-direction:column; gap:12px }
+  footer span { margin-right:6px; font-size:0.8rem }
+</style>

@@ -1,0 +1,17 @@
+---
+
+# Ignore specific files (regex). Exclude lock files and generated files from linting.
+ignore: |
+  pnpm-lock.yaml
+  *.generated.yaml
+  *.generated.yml
+  **/node_modules/**
+  **/vendor/**
+  .git/**
+
+
+yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
+  - '.yamllint.yaml'

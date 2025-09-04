@@ -1,0 +1,39 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+import type Award from "@/resume/award/award.model";
+
+interface Props {
+	awards?: Award[];
+}
+
+const { awards = [] } = Astro.props as Props;
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+---
+
+{awards.length > 0 && (
+  <Section title={t('awards')}>
+    <ul>
+      {awards.map((a) => (
+        <li>
+          <article>
+            <header>
+              <h3>{a.title}</h3>
+              <time datetime={a.date.toISOString().split('T')[0]}>{a.date.getFullYear()}</time>
+            </header>
+            <footer>
+              <p>{a.awarder}</p>
+              {a.summary && <p>{a.summary}</p>}
+            </footer>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </Section>
+)}
+
+<style>
+  ul { display:flex; flex-direction:column; gap:12px }
+  article { padding:8px }
+</style>

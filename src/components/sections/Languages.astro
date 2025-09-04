@@ -1,0 +1,76 @@
+---
+import Section from "@atoms/Section.astro";
+import { type Lang, useTranslations } from "@/i18n";
+import { languageMapper } from "@/lib/language-mapper";
+import type Language from "@/resume/language/language.model";
+
+interface Props {
+	languages?: Language[];
+}
+
+const { languages = [] } = Astro.props as Props;
+
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+
+// Initialize the language mapper
+await languageMapper.initialize();
+---
+
+{languages.length > 0 && (
+  <Section title={t('languages')} class="section">
+    <ul class="languages-list">
+      {languages.map((l) => {
+      const key = languageMapper.findLocaleCode(l.language);
+      return (
+        <li class="language-item">
+          {key ? (
+            <a href={`/${key}/`} onclick={`localStorage.selectedLang = "${key}"`}>
+              <strong>{l.language}</strong>
+              {l.fluency ? <span class="language-fluency"> — {l.fluency}</span> : null}
+            </a>
+          ) : (
+            <>
+              <strong>{l.language}</strong>
+              {l.fluency ? <span class="language-fluency"> — {l.fluency}</span> : null}
+            </>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+  </Section>
+)}
+
+<style>
+  .section {
+    margin-top: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .languages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .language-item {
+    background: #f7fafc;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+
+  .language-fluency {
+    color: #4a5568;
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+</style>

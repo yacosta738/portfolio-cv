@@ -1,0 +1,289 @@
+{
+	"basics": {
+		"name": "Yuniel Acosta",
+		"label": "Ingeniero de software con experiencia en tecnologías front-end y back-end. Dominio de los principios de diseño de software, patrones de diseño y arquitecturas limpias.",
+		"image": "/me.webp",
+		"email": "yuniel.acosta@email.com",
+		"phone": "(+34) 600-000-000",
+		"url": "https://yunielacosta.com",
+		"summary": "Ingeniero de software con aproximadamente 7 años de experiencia en desarrollo de software. Dominio de tecnologías frontend y backend. Apasionado por la tecnología y la ciencia. Experiencia en arquitectura de aplicaciones web, principios y patrones de diseño de software. Interesado en programación orientada a objetos, patrones de diseño, programación funcional, diseño guiado por el dominio y microservicios. Persona versátil con habilidades multidisciplinarias, con ganas de aprender y afrontar nuevos y difíciles retos dentro o fuera de mi país.",
+		"location": {
+			"address": "Valencia",
+			"postalCode": "08001",
+			"city": "Valencia",
+			"countryCode": "ES",
+			"region": "Valencia"
+		},
+		"profiles": [
+			{
+				"network": "GitHub",
+				"username": "yacosta738",
+				"url": "https://github.com/yacosta738"
+			},
+			{
+				"network": "LinkedIn",
+				"username": "yacosta738",
+				"url": "https://linkedin.com/in/yacosta738"
+			},
+			{
+				"network": "X",
+				"username": "yacosta738",
+				"url": "https://x.com/yacosta738"
+			}
+		]
+	},
+	"work": [
+		{
+			"name": "GFT",
+			"position": "Analista de Sistemas | Ingeniero de Software Senior",
+			"url": "https://gft.com",
+			"location": "Valencia, España",
+			"startDate": "2023-03-01",
+			"endDate": null,
+			"summary": "Traducción de requisitos de negocio en soluciones escalables alineadas con los estándares de codificación y mejores prácticas. Liderazgo en pruebas y guía técnica para cumplir requisitos funcionales y de rendimiento. Coordinación con stakeholders sobre cronogramas, estado, riesgos y entregas.",
+			"highlights": [
+				"Traducción de requisitos de negocio en soluciones escalables alineadas con los estándares de codificación y mejores prácticas.",
+				"Liderazgo en pruebas y guía técnica para cumplir requisitos funcionales y de rendimiento.",
+				"Coordinación con stakeholders sobre cronogramas, estado, riesgos y entregas.",
+				"Tecnologías: Java, Spring Boot, Kafka, Oracle DB, Git, Docker"
+			]
+		},
+		{
+			"name": "Mercado Libre",
+			"position": "Ingeniero de Software",
+			"url": "https://mercadolibre.com",
+			"location": "Montevideo, Uruguay",
+			"startDate": "2022-11-01",
+			"endDate": "2023-03-01",
+			"summary": "Desarrollo y mantenimiento de APIs internas para la detección de comportamientos maliciosos y fortalecimiento de la seguridad de la plataforma. Implementación de políticas de riesgo y sistemas de scoring para robustecer el registro y login en MercadoLibre.com y MercadoPago.com. Colaboración transversal para diseñar y entregar servicios de seguridad escalables y eficientes. Realización de pruebas y análisis exhaustivos para mejorar la fiabilidad y experiencia de usuario.",
+			"highlights": [
+				"Desarrollo y mantenimiento de APIs internas para la detección de comportamientos maliciosos y fortalecimiento de la seguridad de la plataforma.",
+				"Implementación de políticas de riesgo y sistemas de scoring para robustecer el registro y login en MercadoLibre.com y MercadoPago.com.",
+				"Colaboración transversal para diseñar y entregar servicios de seguridad escalables y eficientes.",
+				"Realización de pruebas y análisis exhaustivos para mejorar la fiabilidad y experiencia de usuario.",
+				"Tecnologías: Java, Kotlin, Spring Boot, Vert.x, BigQuery, Git, Docker"
+			]
+		},
+		{
+			"name": "Scanntech",
+			"position": "Ingeniero de Software Senior",
+			"url": "https://scanntech.com",
+			"location": "Montevideo, Uruguay",
+			"startDate": "2021-09-01",
+			"endDate": "2022-11-01",
+			"summary": "Reducción del tiempo de sincronización de la API con MMC de ~40 minutos a 6 minutos. Mejora de la calidad del código mediante pruebas automatizadas y prácticas SOLID. Diseño de un patrón de configuración centralizada para todos los microservicios de la plataforma. Implementación de CI con GitLab CI para entregas más rápidas y fiables.",
+			"highlights": [
+				"Reducción del tiempo de sincronización de la API con MMC de ~40 minutos a 6 minutos.",
+				"Mejora de la calidad del código mediante pruebas automatizadas y prácticas SOLID.",
+				"Diseño de un patrón de configuración centralizada para todos los microservicios de la plataforma.",
+				"Implementación de CI con GitLab CI para entregas más rápidas y fiables.",
+				"Tecnologías: Java, Spring Boot, Kafka, Zookeeper, PostgreSQL, Git, Docker"
+			]
+		},
+		{
+			"name": "Desoft",
+			"position": "Ingeniero de Software Senior | Arquitecto de Software",
+			"url": "https://www.desoft.cu",
+			"location": "Ciego de Ávila, Cuba",
+			"startDate": "2017-09-01",
+			"endDate": "2021-09-01",
+			"summary": "Diseño y desarrollo de un sistema de gestión de reputación online basado en microservicios. Liderazgo técnico y mentoría a lo largo del ciclo de vida de entrega. Desarrollo de interfaces web (Angular/Vue) y APIs REST internas. Corrección de defectos críticos y mejoras que optimizaron el rendimiento web.",
+			"highlights": [
+				"Diseño y desarrollo de un sistema de gestión de reputación online basado en microservicios.",
+				"Liderazgo técnico y mentoría a lo largo del ciclo de vida de entrega.",
+				"Desarrollo de interfaces web (Angular/Vue) y APIs REST internas.",
+				"Corrección de defectos críticos y mejoras que optimizaron el rendimiento web.",
+				"Tecnologías: HTML, CSS, TypeScript, Angular, Vue.js, Java, Spring Boot, JUnit, REST, SQL, PostgreSQL, PHP (Laravel), Python (Flask), Kubernetes, Istio, Docker, JHipster, Linux"
+			]
+		}
+	],
+	"volunteer": [
+		{
+			"organization": "Various Projects",
+			"position": "Open Source Contributor",
+			"url": "https://codeforamerica.org",
+			"startDate": "2017-01-01",
+			"endDate": "2023-12-01",
+			"summary": "Contributed to open source automation tools and libraries supporting cloud-native applications.",
+			"highlights": [
+				"Implemented new features and bug fixes for automation frameworks",
+				"Collaborated with global community to improve documentation and usability",
+				"Reviewed pull requests and mentored new contributors"
+			]
+		}
+	],
+	"education": [
+		{
+			"institution": "Universidad Central 'Marta Abreu' de Las Villas",
+			"url": "https://www.uclv.edu.cu",
+			"area": "Ciencias de la Computación",
+			"studyType": "Licenciatura",
+			"startDate": "2012-09-01",
+			"endDate": "2017-07-01",
+			"score": "",
+			"courses": [
+				"Programación en Java",
+				"Ingeniería de Software",
+				"Sistemas Operativos",
+				"Inteligencia Artificial",
+				"Programación Web",
+				"Compiladores",
+				"Bases de Datos"
+			],
+			"thesis": "Manipulación de series de datos espaciotemporales usando formatos científicos y geográficos en R"
+		}
+	],
+	"awards": [
+		{
+			"title": "Mejor Proyecto de Ingeniería de Software",
+			"date": "2015-06-01",
+			"awarder": "Universidad de La Habana",
+			"summary": "Premio al proyecto destacado en ingeniería de software por innovación y excelencia técnica."
+		}
+	],
+	"certificates": [
+		{
+			"name": "Desarrollador Certificado AWS",
+			"date": "2022-03-15",
+			"issuer": "Amazon Web Services",
+			"url": "https://aws.amazon.com/certification/"
+		},
+		{
+			"name": "Scrum Master",
+			"date": "2021-08-20",
+			"issuer": "Scrum Alliance",
+			"url": "https://www.scrumalliance.org/certifications"
+		}
+	],
+	"publications": [
+		{
+			"name": "Construyendo Plataformas de Automatización Escalables",
+			"publisher": "Blog de Yuniel Acosta",
+			"releaseDate": "2023-01-15",
+			"url": "https://yunielacosta.dev/blog/scalable-automation",
+			"summary": "Ideas y mejores prácticas para diseñar e implementar plataformas de automatización escalables usando tecnologías modernas cloud-native."
+		}
+	],
+	"skills": [
+		{
+			"name": "Desarrollo Backend",
+			"level": "Experto",
+			"keywords": [
+				"Java",
+				"Kotlin",
+				"Spring Boot",
+				"Vert.x",
+				"APIs REST",
+				"Microservicios",
+				"Principios SOLID"
+			]
+		},
+		{
+			"name": "Desarrollo Frontend",
+			"level": "Avanzado",
+			"keywords": ["HTML", "CSS", "TypeScript", "Angular", "Vue.js"]
+		},
+		{
+			"name": "Sistemas de Bases de Datos",
+			"level": "Experto",
+			"keywords": [
+				"PostgreSQL",
+				"Oracle DB",
+				"BigQuery",
+				"MySQL",
+				"MongoDB",
+				"Optimización de Consultas",
+				"SQL"
+			]
+		},
+		{
+			"name": "Cloud y DevOps",
+			"level": "Experto",
+			"keywords": [
+				"AWS",
+				"Docker",
+				"Kubernetes",
+				"Terraform",
+				"CI/CD",
+				"GitLab CI",
+				"Serverless",
+				"Infraestructura como Código"
+			]
+		},
+		{
+			"name": "Arquitectura de Sistemas",
+			"level": "Experto",
+			"keywords": [
+				"Microservicios",
+				"Arquitectura Orientada a Eventos",
+				"Arquitectura Limpia",
+				"Alta Disponibilidad",
+				"Configuración Centralizada",
+				"Diseño de APIs"
+			]
+		},
+		{
+			"name": "Seguridad y Gestión de Riesgos",
+			"level": "Avanzado",
+			"keywords": [
+				"Seguridad en APIs",
+				"Políticas de Riesgo",
+				"Sistemas de Scoring"
+			]
+		},
+		{
+			"name": "Testing y Aseguramiento de la Calidad",
+			"level": "Avanzado",
+			"keywords": ["JUnit", "Pruebas Automatizadas", "Revisión de Código"]
+		},
+		{
+			"name": "Herramientas y Plataformas",
+			"level": "Avanzado",
+			"keywords": ["Git", "Docker", "Linux", "JHipster", "Istio", "Zookeeper"]
+		}
+	],
+	"languages": [
+		{
+			"language": "Español",
+			"fluency": "Nativo"
+		},
+		{
+			"language": "Inglés",
+			"fluency": "Intermedio B1"
+		}
+	],
+	"interests": [
+		{
+			"name": "Tendencias Tecnológicas",
+			"keywords": ["Startups", "Automatización", "Herramientas de IA"]
+		},
+		{
+			"name": "Actividades al Aire Libre",
+			"keywords": ["Ciclismo", "Fotografía", "Ciclismo de Montaña"]
+		}
+	],
+	"references": [
+		{
+			"name": "Referencia disponible a solicitud",
+			"reference": ""
+		},
+		{
+			"name": "Referencia disponible a solicitud",
+			"reference": ""
+		}
+	],
+	"projects": [
+		{
+			"name": "Hatchgrid",
+			"startDate": "2022-01-01",
+			"endDate": "2023-12-01",
+			"description": "Plataforma de automatización y distribución de contenido enfocada en servicios backend escalables y arquitectura cloud-native.",
+			"highlights": [
+				"Diseño e implementación de APIs REST escalables para gestión de contenido",
+				"Automatización de pipelines de despliegue usando Kubernetes y Docker",
+				"Mejora de la fiabilidad del sistema y reducción del downtime en un 30%"
+			],
+			"url": "https://hatchgrid.io"
+		}
+	]
+}
