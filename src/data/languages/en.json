@@ -1,11 +1,11 @@
 {
-  "code": "en",
-  "direction": "ltr",
-  "flag": "openmoji:flag-united-states",
-  "names": {
-    "en": "English",
-    "es": "Inglés",
-    "fr": "Anglais"
-  },
-  "nativeName": "English"
+	"code": "en",
+	"direction": "ltr",
+	"flag": "openmoji:flag-united-states",
+	"names": {
+		"en": "English",
+		"es": "Inglés",
+		"fr": "Anglais"
+	},
+	"nativeName": "English"
 }
