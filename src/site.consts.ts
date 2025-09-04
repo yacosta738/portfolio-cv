@@ -12,7 +12,8 @@ export const SITE_DESCRIPTION: string | Multilingual = {
 	es: "Portafolio de Yuniel Acosta, Desarrollador Full Stack",
 };
 
-export const X_ACCOUNT: string | Multilingual = import.meta.env.X_ACCOUNT || "@yacosta738";
+export const X_ACCOUNT: string | Multilingual =
+	import.meta.env.X_ACCOUNT || "@yacosta738";
 
 export const NOT_TRANSLATED_CAUTION: string | Multilingual = {
 	en:
@@ -24,6 +25,8 @@ export const NOT_TRANSLATED_CAUTION: string | Multilingual = {
 };
 
 // Base URLs
-const BASE_URL_LOCAL = import.meta.env.BASE_URL_LOCAL || "http://localhost:4321";
-const BASE_URL_PROD = import.meta.env.BASE_URL_PROD || "https://your-production-url.com";
+const BASE_URL_LOCAL =
+	import.meta.env.BASE_URL_LOCAL || "http://localhost:4321";
+const BASE_URL_PROD =
+	import.meta.env.BASE_URL_PROD || "https://your-production-url.com";
 export const BASE_URL = import.meta.env.DEV ? BASE_URL_LOCAL : BASE_URL_PROD;
