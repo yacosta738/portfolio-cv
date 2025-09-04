@@ -1,34 +1,43 @@
+import {
+	BASE_URL_LOCAL,
+	BASE_URL_PROD,
+	BRAND_NAME,
+	NOT_TRANSLATED_CAUTION_EN,
+	NOT_TRANSLATED_CAUTION_ES,
+	SITE_DESCRIPTION_EN,
+	SITE_DESCRIPTION_ES,
+	SITE_TITLE,
+	X_ACCOUNT,
+} from "astro:env/client";
 import type { Multilingual } from "@/i18n";
 
 export const BRAND_NAME: string | Multilingual =
-	import.meta.env.BRAND_NAME || "Yuniel Acosta - Full Stack Developer";
+	BRAND_NAME || "Yuniel Acosta - Full Stack Developer";
 export const SITE_TITLE: string | Multilingual =
-	import.meta.env.SITE_TITLE || "Yuniel Acosta - Full Stack Developer";
+	SITE_TITLE || "Yuniel Acosta - Full Stack Developer";
 
 export const SITE_DESCRIPTION: string | Multilingual = {
-	es:
-		import.meta.env.SITE_DESCRIPTION_ES ||
-		"Portafolio de Yuniel Acosta, Desarrollador Full Stack",
 	en:
-		import.meta.env.SITE_DESCRIPTION_EN ||
+		SITE_DESCRIPTION_EN ||
 		"Portfolio of Yuniel Acosta, Full Stack Developer",
+	es:
+		SITE_DESCRIPTION_ES ||
+		"Portafolio de Yuniel Acosta, Desarrollador Full Stack",
 };
 
 export const X_ACCOUNT: string | Multilingual =
-	import.meta.env.X_ACCOUNT || "@yacosta738";
+	X_ACCOUNT || "@yacosta738";
 
 export const NOT_TRANSLATED_CAUTION: string | Multilingual = {
 	en:
-		import.meta.env.NOT_TRANSLATED_CAUTION_EN ||
+		NOT_TRANSLATED_CAUTION_EN ||
 		"This page is not available in your language.",
 	es:
-		import.meta.env.NOT_TRANSLATED_CAUTION_ES ||
+		NOT_TRANSLATED_CAUTION_ES ||
 		"Esta página no está disponible en tu idioma.",
 };
 
 // Base URLs
-const BASE_URL_LOCAL =
-	import.meta.env.BASE_URL_LOCAL || "http://localhost:4321";
-const BASE_URL_PROD =
-	import.meta.env.BASE_URL_PROD || "https://your-production-url.com";
+const BASE_URL_LOCAL = BASE_URL_LOCAL || "http://localhost:4321";
+const BASE_URL_PROD = BASE_URL_PROD || "https://your-production-url.com";
 export const BASE_URL = import.meta.env.DEV ? BASE_URL_LOCAL : BASE_URL_PROD;
