@@ -1,5 +1,6 @@
 ---
 import Section from "@atoms/Section.astro";
+import Typography from "@atoms/Typography.astro";
 import { type Lang, useTranslations } from "@/i18n";
 
 interface Props {
@@ -15,7 +16,7 @@ const t = useTranslations(currentLocale);
 ---
 
 <Section title={t('about')}>
-  <p>
-    {summary}
-  </p>
+	<Typography variant="body" class="text-pretty">
+		{summary}
+	</Typography>
 </Section>

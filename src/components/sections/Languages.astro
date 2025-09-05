@@ -1,4 +1,5 @@
 ---
+import Link from "@atoms/Link.astro";
 import Section from "@atoms/Section.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import { languageMapper } from "@/lib/language-mapper";
@@ -18,28 +19,41 @@ await languageMapper.initialize();
 ---
 
 {languages.length > 0 && (
-  <Section title={t('languages')} class="mt-8">
-    <ul class="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2 m-0 p-0 list-none">
-      {languages.map((l) => {
-      const key = languageMapper.findLocaleCode(l.language);
-      return (
-        <li class="bg-gray-50 p-2 rounded-md text-sm">
-          {key ? (
-            <a href={`/${key}/`} onclick={`localStorage.selectedLang = "${key}"`}>
-              <strong>{l.language}</strong>
-              {l.fluency ? <span class="text-gray-600 font-normal text-sm"> — {l.fluency}</span> : null}
-            </a>
-          ) : (
-            <>
-              <strong>{l.language}</strong>
-              {l.fluency ? <span class="text-gray-600 font-normal text-sm"> — {l.fluency}</span> : null}
-            </>
-          )}
-        </li>
-      );
-    })}
-  </ul>
-  </Section>
+	<Section title={t('languages')}>
+		<ul class="grid grid-cols-2 gap-2 m-0 p-0 list-none sm:grid-cols-3">
+			{languages.map((l) => {
+				const key = languageMapper.findLocaleCode(l.language);
+				const content = (
+					<>
+						<strong>{l.language}</strong>
+						{l.fluency && (
+							<span class="text-gray-600 font-normal text-sm">
+								{' '}— {l.fluency}
+							</span>
+						)}
+					</>
+				);
+				
+				return (
+					<li class="bg-gray-50 p-2 rounded-md text-sm">
+						{key ? (
+							<Link 
+								href={`/${key}/`} 
+								variant="subtle"
+								class="block"
+							>
+								{content}
+							</Link>
+						) : (
+							<span>
+								{content}
+							</span>
+						)}
+					</li>
+				);
+			})}
+		</ul>
+	</Section>
 )}
 
 

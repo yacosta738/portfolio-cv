@@ -1,0 +1,75 @@
+---
+import { cn } from "@/lib/utils";
+import Link from "./Link.astro";
+import Typography from "./Typography.astro";
+
+export interface ItemDetail {
+	title: string;
+	content?: string;
+	date?: string;
+	organization?: string;
+	url?: string;
+}
+
+export interface Props {
+	items: string[] | ItemDetail[];
+	variant?: "simple" | "detailed";
+	class?: string;
+}
+
+const { items, variant = "simple", class: className, ...rest } = Astro.props;
+const classes = cn("flex flex-col gap-3", className);
+---
+
+<ul class={classes} {...rest}>
+	{items.map((item) => (
+		<li>
+			{variant === 'simple' ? (
+				<article class="p-2">
+					<Typography variant="body">
+						{typeof item === 'string' ? item : item.title}
+					</Typography>
+				</article>
+			) : (
+				<article class="p-2">
+					{typeof item !== 'string' && (
+						<>
+							<header class="flex justify-between items-start mb-1">
+								<div class="flex-1">
+									<Typography as="h3" class="font-medium text-gray-900">
+										{item.url ? (
+											<Link href={item.url} variant="primary" external>
+												{item.title}
+											</Link>
+										) : (
+											item.title
+										)}
+									</Typography>
+								</div>
+								{item.date && (
+									<Typography as="time" variant="date">
+										{item.date}
+									</Typography>
+								)}
+							</header>
+							{(item.content || item.organization) && (
+								<footer>
+									{item.organization && (
+										<Typography variant="body" class="font-medium">
+											{item.organization}
+										</Typography>
+									)}
+									{item.content && (
+										<Typography variant="body">
+											{item.content}
+										</Typography>
+									)}
+								</footer>
+							)}
+						</>
+					)}
+				</article>
+			)}
+		</li>
+	))}
+</ul>

@@ -1,5 +1,7 @@
 ---
+import Badge from "@atoms/Badge.astro";
 import Section from "@atoms/Section.astro";
+import Typography from "@atoms/Typography.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Interest from "@/resume/interest/interest.model";
 
@@ -13,21 +15,25 @@ const t = useTranslations(currentLocale);
 ---
 
 {interests.length > 0 && (
-  <Section title={t('interests')}>
-    <ul class="flex flex-col gap-3">
-      {interests.map((i) => (
-        <li>
-          <article>
-            <header>
-              <h3>{i.name}</h3>
-            </header>
-            <footer>
-              {i.keywords?.map(k => <span class="mr-1.5 text-xs">{k}</span>)}
-            </footer>
-          </article>
-        </li>
-      ))}
-    </ul>
-  </Section>
+	<Section title={t('interests')}>
+		<ul class="flex flex-col gap-3">
+			{interests.map((i) => (
+				<li>
+					<article class="p-2">
+						<Typography as="h3" class="font-medium text-gray-900 mb-1">
+							{i.name}
+						</Typography>
+						<div class="flex flex-wrap gap-1">
+							{i.keywords?.map((keyword) => (
+								<Badge size="sm" class="text-sm">
+									{keyword}
+								</Badge>
+							))}
+						</div>
+					</article>
+				</li>
+			))}
+		</ul>
+	</Section>
 )}
 

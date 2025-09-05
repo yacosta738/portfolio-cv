@@ -1,5 +1,7 @@
 ---
+import Link from "@atoms/Link.astro";
 import Section from "@atoms/Section.astro";
+import Typography from "@atoms/Typography.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Work from "@/resume/work/work.model";
 
@@ -11,14 +13,6 @@ interface Props {
 const { work } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
-
-// Small helper: normalize various date inputs into a valid Date or null
-const toSafeDate = (v: unknown): Date | null => {
-	if (!v) return null;
-	if (v instanceof Date) return Number.isFinite(v.getTime()) ? v : null;
-	const d = new Date(String(v));
-	return Number.isFinite(d.getTime()) ? d : null;
-};
 ---
 
 <Section title={t('experience')}>
@@ -27,53 +21,54 @@ const toSafeDate = (v: unknown): Date | null => {
       work.map(
         (workItem) => {
           const { name, startDate, endDate, position, summary, highlights, url } = workItem;
-
-          const sDate = toSafeDate(startDate as unknown);
-          const eDate = toSafeDate(endDate as unknown);
-
-          const startYear = sDate ? sDate.getFullYear() : "-";
-          const endYear = eDate ? eDate.getFullYear() : (endDate ? String(endDate) : "Actual");
-
-          // Convertir fechas a strings para datetime (only when valid)
-          const startDateStr = sDate ? sDate.toISOString().split('T')[0] : null;
-          const endDateStr = eDate ? eDate.toISOString().split('T')[0] : null;
+          
+          const startYear = startDate.getFullYear()
+          const endYear = endDate ? endDate.getFullYear() : "Actual"
+          
+      
+          const startDateStr = startDate.toISOString().split('T')[0]
+          const endDateStr = endDate ? endDate.toISOString().split('T')[0] : null
 
           return (
             <li>
-              <article>
+              <article class="py-2">
                 <header class="flex justify-between items-start mb-1">
-                  <div>
-                    <h3 class="font-medium text-gray-900">
+                  <div class="flex-1">
+                    <Typography as="h3" variant="subtitle" withMargin={false} class="font-medium text-gray-900 mb-0">
                       {url ? (
-                        <a href={url} title={`Ver ${name}`} target="_blank" rel="noopener noreferrer" class="text-gray-900 hover:underline focus:underline hover:text-gray-700">
+                        <Link href={url} variant="primary" external>
                           {name}
-                        </a>
+                        </Link>
                       ) : (
-                        <span>{name}</span>
+                        name
                       )}
-                    </h3>
-                    <h4 class="text-gray-700 font-normal">{position}</h4>
+                    </Typography>
+                    <Typography as="h4" variant="body" withMargin={false} class="text-gray-700 font-normal">
+                      {position}
+                    </Typography>
                   </div>
 
-                  <div>
+                  <div class="flex gap-1 text-gray-600 text-sm min-w-[102px] text-right max-sm:text-right">
                     <time 
+                      class="relative text-sm text-gray-600 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-gray-800 after:text-white after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-gray-700 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500"
                       datetime={startDateStr}
-                      data-title={startDateStr}
-                      class="text-gray-600 text-sm min-w-[102px] cursor-default sm:text-right relative tooltip-trigger">
+                      data-title={startDateStr}>
                         {startYear}
                     </time>
-                    {" - "}
+                    <span>-</span>
                     <time 
+                      class="relative text-sm text-gray-600 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-gray-800 after:text-white after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-gray-700 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500"
                       datetime={endDateStr}
-                      data-title={endDateStr}
-                      class="text-gray-600 text-sm min-w-[102px] cursor-default sm:text-right relative tooltip-trigger">
+                      data-title={endDateStr}>
                         {endYear}
                     </time>
                   </div>
                 </header>
 
                 <footer>
-                  <p>{summary}</p>
+                  <Typography variant="body" withMargin={false} class="text-pretty">
+                    {summary}
+                  </Typography>
                 </footer>
               </article>
             </li>
@@ -83,4 +78,3 @@ const toSafeDate = (v: unknown): Date | null => {
     }
   </ul>
 </Section>
-

@@ -34,7 +34,7 @@ const title = t("title", { name, label });
 ---
 
 <Layout title={title}>
-  <main id="main-content" class="px-16 py-16 mx-auto w-full sm:px-8">
+  <main id="main-content">
     <Hero basics={resume.basics} />
     <About basics={resume.basics} />
     <Experience work={resume.work} />
@@ -98,4 +98,16 @@ const title = t("title", { name, label });
   <KeyboardManager />
 </Layout>
 
+<style>
+  main {
+    padding: 4rem;
+    margin: auto;
+    width: 100%;
+  }
 
+  @media (width <= 700px) {
+    main {
+      padding: 2rem;
+    }
+  }
+</style>

@@ -1,4 +1,5 @@
 ---
+import ItemList from "@atoms/ItemList.astro";
 import Section from "@atoms/Section.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Publication from "@/resume/publication/publication.model";
@@ -10,25 +11,18 @@ interface Props {
 const { publications = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+const mappedPublications = publications.map((p) => ({
+	title: p.name,
+	date: p.releaseDate.getFullYear().toString(),
+	organization: p.publisher,
+	content: p.summary,
+	url: p.url,
+}));
 ---
 
 {publications.length > 0 && (
-  <Section title={t('publications')}>
-    <ul class="flex flex-col gap-3">
-      {publications.map((p) => (
-        <li>
-          <article class="p-2">
-            <header>
-              <h3>{p.url ? <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a> : <span>{p.name}</span>}</h3>
-              <time datetime={p.releaseDate.toISOString().split('T')[0]}>{p.releaseDate.getFullYear()}</time>
-            </header>
-            <footer>
-              <p>{p.publisher}</p>
-              {p.summary && <p>{p.summary}</p>}
-            </footer>
-          </article>
-        </li>
-      ))}
-    </ul>
-  </Section>
+	<Section title={t('publications')}>
+		<ItemList items={mappedPublications} variant="detailed" />
+	</Section>
 )}

@@ -1,0 +1,66 @@
+---
+import { cn } from "@/lib/utils";
+import Link from "./Link.astro";
+import Typography from "./Typography.astro";
+
+export interface Props {
+	title: string;
+	organization?: string;
+	url?: string;
+	startDate: string;
+	endDate?: string;
+	description?: string;
+	position?: string;
+	class?: string;
+}
+
+const {
+	title,
+	organization,
+	url,
+	startDate,
+	endDate,
+	description,
+	position,
+	class: className,
+	...rest
+} = Astro.props;
+
+const classes = cn("p-2", className);
+---
+
+<article class={classes} {...rest}>
+	<header class="flex justify-between items-start mb-1">
+		<div class="flex-1">
+			<Typography as="h3" class="font-medium text-gray-900 mb-0">
+				{url ? (
+					<Link href={url} variant="primary" external>
+						{organization || title}
+					</Link>
+				) : (
+					organization || title
+				)}
+			</Typography>
+			{position && (
+				<Typography as="h4" class="text-gray-700 font-normal">
+					{position}
+				</Typography>
+			)}
+		</div>
+		<div class="flex gap-1 text-gray-600 text-sm min-w-[102px] text-right max-sm:text-right">
+			<Typography as="time" variant="date">
+				{startDate}
+			</Typography>
+			<span>-</span>
+			<Typography as="time" variant="date">
+				{endDate || 'Actual'}
+			</Typography>
+		</div>
+	</header>
+	{description && (
+		<Typography variant="body" class="text-pretty">
+			{description}
+		</Typography>
+	)}
+	<slot />
+</article>

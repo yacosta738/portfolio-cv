@@ -1,6 +1,7 @@
 ---
 import OptimizedPicture from "@atoms/OptimizedPicture.astro";
 import Section from "@atoms/Section.astro";
+import Typography from "@atoms/Typography.astro";
 import { Icon } from "astro-icon/components";
 import { type Lang, useTranslations } from "@/i18n";
 import type { Location, Profile } from "@/resume";
@@ -17,10 +18,9 @@ interface Props {
 		phone?: string;
 		email: string;
 	};
-	imagePosition?: "left" | "right";
 }
 
-const { basics, imagePosition = "right" } = Astro.props as Props;
+const { basics } = Astro.props as Props;
 const { name, label, image, location, profiles, phone, email } = basics;
 const { city, region } = location;
 
@@ -38,43 +38,31 @@ const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
 const linkedUrl = linkedInfo?.url;
 
 const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
-
-// Determine responsive layout classes based on image position
-// - Mobile (<sm): stack content centered (image on top via column-reverse)
-// - ≥sm: side-by-side row, image to the selected side (right by default)
-const containerClasses =
-	imagePosition === "left"
-		? "flex flex-col-reverse items-center gap-4 sm:flex-row-reverse sm:items-center sm:justify-between"
-		: "flex flex-col-reverse items-center gap-4 sm:flex-row sm:items-center sm:justify-between";
-
-const textContainerClasses =
-	imagePosition === "left"
-		? "flex flex-col gap-2 items-center text-center flex-1 min-w-0 sm:items-start sm:text-left sm:pl-8"
-		: "flex flex-col gap-2 items-center text-center flex-1 min-w-0 sm:items-start sm:text-left sm:pr-8";
 ---
 
 <Section>
-  <div class={containerClasses}>
-    <div class={textContainerClasses}>
-      <h1 class="text-4xl">{name}</h1>
-      <h2 class="text-gray-600 font-medium text-lg text-balance">{label}</h2>
-      <span class="text-gray-500 flex items-center gap-1 text-sm tracking-tight">
+  <div class="flex flex-row items-center justify-between gap-4 max-md:flex-col-reverse">
+    <div class="flex-1 min-w-0 flex flex-col gap-2 pr-8 max-md:pr-0 max-md:text-center max-md:items-center">
+      <Typography as="h1" variant="title" withMargin={false}>{name}</Typography>
+      <Typography as="h2" variant="subtitle" withMargin={false} class="text-lg font-bold text-gray-700 m-0">{label}</Typography>
+      <Typography as="span" variant="muted" withMargin={false} class="flex items-center gap-1 text-sm text-gray-600">
         <Icon name="lucide:map" class="size-4" aria-hidden="true" />
         {city}, {region}
-      </span>
-      <footer class="print text-gray-600 text-xs flex gap-1 mt-2">
-        {printInfo}
-      </footer>
-      <footer class="no-print text-gray-600 text-xs flex gap-1 mt-2">
+      </Typography>
+
+    <div class="print" aria-hidden="true" style="display:none!important;">
+      {printInfo}
+    </div>
+      <footer class="no-print mt-2 flex gap-1">
         {
           email && (
             <a
               href={`mailto:${email}`}
+              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
               title={`Enviar un correo electrónico a ${name} al correo ${email}`}
               aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-500 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-300"
             >
               <Icon name="lucide:mail" class="size-4" aria-hidden="true" />
             </a>
@@ -84,11 +72,11 @@ const textContainerClasses =
           phone && (
             <a
               href={`tel:${phone}`}
+              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
               title={`Llamar por teléfono a ${name} al número ${phone}`}
               aria-label={`Llamar por teléfono a ${name} al número ${phone}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-gray-500 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-300"
             >
               <Icon name="lucide:phone" class="size-4" aria-hidden="true" />
             </a>
@@ -100,11 +88,11 @@ const textContainerClasses =
             return (
               <a
                 href={url}
+                class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
                 title={`Visitar el perfil de ${name} en ${network}`}
                 aria-label={`Visitar el perfil de ${name} en ${network}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-gray-500 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-300"
               >
                 {SOCIAL_ICONS[network] &&<Icon name={SOCIAL_ICONS[network]} class="size-4" aria-hidden="true" />}
               </a>
@@ -113,7 +101,7 @@ const textContainerClasses =
         }
       </footer>
     </div>
-  <figure class="shrink-0 min-w-12 w-32 mx-auto sm:mx-0">
+    <figure class="flex-none w-32 min-w-12 max-md:flex max-md:justify-center max-md:items-center max-md:mx-auto">
       {image && (
 			<OptimizedPicture
 				src={image}
@@ -121,10 +109,9 @@ const textContainerClasses =
 				width={128}
 				height={128}
 				loading="eager"
-				class="aspect-square object-cover w-full h-auto rounded-2xl block"
+				class="w-32 h-32 object-cover rounded-2xl aspect-square"
 			/>
 		)}
     </figure>
   </div>
 </Section>
-

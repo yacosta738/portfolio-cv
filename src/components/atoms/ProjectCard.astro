@@ -1,0 +1,72 @@
+---
+import { Icon } from "astro-icon/components";
+import { cn } from "@/lib/utils";
+import Badge from "./Badge.astro";
+import Link from "./Link.astro";
+import Typography from "./Typography.astro";
+
+export interface Props {
+	name: string;
+	description: string;
+	highlights?: string[];
+	keywords?: string[];
+	url?: string;
+	github?: string;
+	isActive?: boolean;
+	class?: string;
+}
+
+const {
+	name,
+	description,
+	highlights = [],
+	keywords = [],
+	url,
+	github,
+	isActive = false,
+	class: className,
+	...rest
+} = Astro.props;
+
+const classes = cn(
+	"rounded-lg border border-gray-200 gap-4 flex flex-col p-4 h-full max-sm:border-none max-sm:shadow-sm max-sm:p-0 max-sm:pb-4",
+	className
+);
+---
+
+<article class={classes} {...rest}>
+	<header class="flex-1">
+		<Typography as="h3" class="mb-1 font-medium text-gray-900">
+			{url ? (
+				<Link href={url} variant="primary" external>
+					{name}
+				</Link>
+			) : (
+				name
+			)}
+			{github && (
+				<Link href={github} variant="subtle" external class="ml-1.5 text-gray-500">
+					<Icon name="lucide:github" class="size-3" aria-hidden="true" />
+				</Link>
+			)}
+			{isActive && (
+				<Typography as="span" class="text-green-600 ml-1 animate-pulse">
+					●
+				</Typography>
+			)}
+		</Typography>
+		<Typography variant="small" class="leading-5 mb-1 text-pretty">
+			{description}
+		</Typography>
+	</header>
+	
+	{keywords.length > 0 && (
+		<footer class="flex flex-wrap gap-1 text-xs">
+			{keywords.map((keyword) => (
+				<Badge size="sm" class="text-xs font-medium">
+					{keyword}
+				</Badge>
+			))}
+		</footer>
+	)}
+</article>

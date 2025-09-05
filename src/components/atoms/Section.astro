@@ -1,14 +1,17 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { cn } from "@/lib/utils";
+import Typography from "./Typography.astro";
 
 interface Props extends HTMLAttributes<"section"> {
 	title?: string;
 }
 
-const { title } = Astro.props;
+const { title, class: className, ...rest } = Astro.props;
+const classes = cn("max-w-2xl mx-auto mb-12", className);
 ---
 
-<section class="max-w-[700px] mx-auto mb-12 sm:mb-[38px]">
-  {title && <h2 class="mb-2 font-bold leading-normal text-2xl">{title}</h2>}
-  <slot />
+<section class={classes} {...rest}>
+	{title && <Typography as="h2" variant="subtitle" class="my-6 font-bold text-2xl">{title}</Typography>}
+	<slot />
 </section>

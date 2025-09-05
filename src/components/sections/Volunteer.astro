@@ -1,4 +1,5 @@
 ---
+import ItemList from "@atoms/ItemList.astro";
 import Section from "@atoms/Section.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Volunteer from "@/resume/volunteer/volunteer.model";
@@ -10,30 +11,16 @@ interface Props {
 const { volunteer = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+const mappedVolunteer = volunteer.map((v) => ({
+	title: v.organization,
+	content: v.summary,
+	url: v.url,
+}));
 ---
 
 {volunteer.length > 0 && (
-  <Section title={t('volunteer')}>
-    <ul class="flex flex-col gap-3">
-      {volunteer.map((v) => (
-        <li>
-          <article class="p-2">
-            <header>
-              <h3>{v.organization}</h3>
-              <h4>{v.position}</h4>
-            </header>
-            <footer>
-              {v.summary && <p>{v.summary}</p>}
-              {v.url && <a href={v.url} target="_blank" rel="noopener noreferrer">{v.url}</a>}
-            </footer>
-          </article>
-        </li>
-      ))}
-    </ul>
-  </Section>
+	<Section title={t('volunteer')}>
+		<ItemList items={mappedVolunteer} variant="detailed" />
+	</Section>
 )}
-
-<style>
-  ul { display:flex; flex-direction:column; gap:12px }
-  article { padding:8px }
-</style>
