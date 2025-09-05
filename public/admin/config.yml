@@ -49,11 +49,19 @@ collections:
     fields:
       - { label: "Code", name: "code", widget: "string" }
       - { label: "Native Name", name: "nativeName", widget: "string" }
-      - { label: "Names", name: "names", widget: "object", fields: [
-          { label: "English", name: "en", widget: "string", required: false },
-          { label: "Spanish", name: "es", widget: "string", required: false }
+      - label: "Names"
+        name: "names"
+        widget: "object"
+        fields:
+          - label: "English"
+            name: "en"
+            widget: "string"
+            required: false
+          - label: "Spanish"
+            name: "es"
+            widget: "string"
+            required: false
           # Add more languages as needed
-        ] }
       - { label: "Flag", name: "flag", widget: "string", required: false }
       - { label: "Direction", name: "direction", widget: "select", options: ["ltr", "rtl"], default: "ltr" }
 
@@ -64,20 +72,21 @@ collections:
     folder: "src/data/resume"
     extension: "json"
     create: true
+    i18n: true
     fields:
       # Basics Section
       - label: "Basics"
         name: "basics"
         widget: "object"
         fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
+          - { label: "Label", name: "label", widget: "string", i18n: true }
           - { label: "Image", name: "image", widget: "image" }
           - { label: "Email", name: "email", widget: "string" }
-          - { label: "Phone", name: "phone", widget: "string", required: false }
-          - { label: "URL", name: "url", widget: "string", required: false }
-          - { label: "Summary", name: "summary", widget: "text" }
-          
+          - { label: "Phone", name: "phone", widget: "string", required: false}
+          - { label: "URL", name: "url", widget: "string", required: false, i18n: true }
+          - { label: "Summary", name: "summary", widget: "text", i18n: true }
+
           # Location
           - label: "Location"
             name: "location"
@@ -104,12 +113,12 @@ collections:
         widget: "list"
         fields:
           - { label: "Company Name", name: "name", widget: "string" }
-          - { label: "Position", name: "position", widget: "string" }
+          - { label: "Position", name: "position", widget: "string",i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
           - { label: "Start Date", name: "startDate", widget: "datetime" }
           - { label: "End Date", name: "endDate", widget: "datetime", required: false }
-          - { label: "Summary", name: "summary", widget: "text", required: false }
-          - { label: "Highlights", name: "highlights", widget: "list", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
+          - { label: "Highlights", name: "highlights", widget: "list", required: false, i18n: true }
 
       # Volunteer Experience
       - label: "Volunteer Experience"
@@ -117,27 +126,27 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Organization", name: "organization", widget: "string" }
-          - { label: "Position", name: "position", widget: "string" }
+          - { label: "Organization", name: "organization", widget: "string", i18n: true }
+          - { label: "Position", name: "position", widget: "string", i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
           - { label: "Start Date", name: "startDate", widget: "datetime" }
           - { label: "End Date", name: "endDate", widget: "datetime", required: false }
-          - { label: "Summary", name: "summary", widget: "text", required: false }
-          - { label: "Highlights", name: "highlights", widget: "list", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
+          - { label: "Highlights", name: "highlights", widget: "list", required: false, i18n: true }
 
       # Education
       - label: "Education"
         name: "education"
         widget: "list"
         fields:
-          - { label: "Institution", name: "institution", widget: "string" }
+          - { label: "Institution", name: "institution", widget: "string", i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
-          - { label: "Area of Study", name: "area", widget: "string" }
-          - { label: "Study Type", name: "studyType", widget: "string" }
+          - { label: "Area of Study", name: "area", widget: "string", i18n: true }
+          - { label: "Study Type", name: "studyType", widget: "string", i18n: true }
           - { label: "Start Date", name: "startDate", widget: "datetime" }
           - { label: "End Date", name: "endDate", widget: "datetime", required: false }
           - { label: "Score", name: "score", widget: "string", required: false }
-          - { label: "Courses", name: "courses", widget: "list", required: false }
+          - { label: "Courses", name: "courses", widget: "list", required: false, i18n: true }
 
       # Awards
       - label: "Awards"
@@ -145,10 +154,10 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Date", name: "date", widget: "datetime" }
-          - { label: "Awarder", name: "awarder", widget: "string" }
-          - { label: "Summary", name: "summary", widget: "text", required: false }
+          - { label: "Awarder", name: "awarder", widget: "string", i18n: true }
+          - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
 
       # Certificates
       - label: "Certificates"
@@ -156,9 +165,9 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
           - { label: "Date", name: "date", widget: "datetime" }
-          - { label: "Issuer", name: "issuer", widget: "string" }
+          - { label: "Issuer", name: "issuer", widget: "string", i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
 
       # Publications
@@ -167,20 +176,20 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Publisher", name: "publisher", widget: "string" }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
+          - { label: "Publisher", name: "publisher", widget: "string", i18n: true }
           - { label: "Release Date", name: "releaseDate", widget: "datetime" }
           - { label: "URL", name: "url", widget: "string", required: false }
-          - { label: "Summary", name: "summary", widget: "text", required: false }
+          - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
 
       # Skills
       - label: "Skills"
         name: "skills"
         widget: "list"
         fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Level", name: "level", widget: "string", required: false }
-          - { label: "Keywords", name: "keywords", widget: "list", required: false }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
+          - { label: "Level", name: "level", widget: "string", required: false, i18n: true }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false, i18n: true }
 
       # Languages
       - label: "Languages"
@@ -188,8 +197,8 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Language", name: "language", widget: "string" }
-          - { label: "Fluency", name: "fluency", widget: "string" }
+          - { label: "Language", name: "language", widget: "string", hint: "Use language code (e.g., 'en', 'es')", i18n: true }
+          - { label: "Fluency", name: "fluency", widget: "string", i18n: true }
 
       # Interests
       - label: "Interests"
@@ -197,8 +206,8 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Keywords", name: "keywords", widget: "list", required: false }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false, i18n: true }
 
       # References
       - label: "References"
@@ -206,8 +215,8 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Reference", name: "reference", widget: "text" }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
+          - { label: "Reference", name: "reference", widget: "text", i18n: true }
 
       # Projects
       - label: "Projects"
@@ -215,15 +224,15 @@ collections:
         widget: "list"
         required: false
         fields:
-          - { label: "Name", name: "name", widget: "string" }
-          - { label: "Description", name: "description", widget: "text" }
-          - { label: "Highlights", name: "highlights", widget: "list", required: false }
-          - { label: "Keywords", name: "keywords", widget: "list", required: false }
-          - { label: "Start Date", name: "startDate", widget: "datetime", required: false }
+          - { label: "Name", name: "name", widget: "string", i18n: true }
+          - { label: "Description", name: "description", widget: "text", i18n: true }
+          - { label: "Highlights", name: "highlights", widget: "list", required: false, i18n: true }
+          - { label: "Keywords", name: "keywords", widget: "list", required: false, i18n: true }
+          - { label: "Start Date", name: "startDate", widget: "datetime", required: false}
           - { label: "End Date", name: "endDate", widget: "datetime", required: false }
           - { label: "URL", name: "url", widget: "string", required: false }
-          - { label: "Roles", name: "roles", widget: "list", required: false }
-          - { label: "Entity", name: "entity", widget: "string", required: false }
-          - { label: "Type", name: "type", widget: "string", required: false }
-          - { label: "GitHub", name: "github", widget: "string", required: false }
+          - { label: "Roles", name: "roles", widget: "list", required: false, i18n: true }
+          - { label: "Entity", name: "entity", widget: "string", required: false, i18n: true }
+          - { label: "Type", name: "type", widget: "string", required: false, i18n: true }
+          - { label: "GitHub", name: "github", widget: "string", required: false, i18n: true }
           - { label: "Is Active", name: "isActive", widget: "boolean", required: false }

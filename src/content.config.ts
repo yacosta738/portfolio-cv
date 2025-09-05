@@ -62,8 +62,8 @@ const resume = defineCollection({
 				startDate: z.string().transform((str) => new Date(str)),
 				endDate: z
 					.string()
-					.transform((str) => new Date(str))
-					.nullable(),
+					.nullable()
+					.transform((str) => str ? new Date(str) : null),
 				summary: z.string().optional(),
 				highlights: z.array(z.string()).optional(),
 			}),
@@ -77,9 +77,9 @@ const resume = defineCollection({
 					startDate: z.string().transform((str) => new Date(str)),
 					endDate: z
 						.string()
-						.transform((str) => new Date(str))
 						.nullable()
-						.optional(),
+						.optional()
+						.transform((str) => str ? new Date(str) : null),
 					summary: z.string().optional(),
 					highlights: z.array(z.string()).optional(),
 				}),
@@ -94,9 +94,9 @@ const resume = defineCollection({
 				startDate: z.string().transform((str) => new Date(str)),
 				endDate: z
 					.string()
-					.transform((str) => new Date(str))
 					.nullable()
-					.optional(),
+					.optional()
+					.transform((str) => str ? new Date(str) : null),
 				score: z.string().optional(),
 				courses: z.array(z.string()).optional(),
 			}),
@@ -172,13 +172,13 @@ const resume = defineCollection({
 					keywords: z.array(z.string()).optional(),
 					startDate: z
 						.string()
-						.transform((str) => new Date(str))
-						.optional(),
+						.optional()
+						.transform((str) => str ? new Date(str) : undefined),
 					endDate: z
 						.string()
-						.transform((str) => new Date(str))
 						.nullable()
-						.optional(),
+						.optional()
+						.transform((str) => str ? new Date(str) : null),
 					url: z.string().url().optional(),
 					roles: z.array(z.string()).optional(),
 					entity: z.string().optional(),
