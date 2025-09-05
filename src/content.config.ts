@@ -59,11 +59,11 @@ const resume = defineCollection({
 				name: z.string(),
 				position: z.string(),
 				url: z.string().url().optional(),
-				startDate: z.string().transform((str) => new Date(str)),
-				endDate: z
-					.string()
-					.transform((str) => new Date(str))
-					.nullable(),
+				startDate: z.coerce.date(),
+				endDate: z.preprocess(
+					(v) => (v === "" || v === null || v === undefined ? null : v),
+					z.coerce.date().nullable(),
+				),
 				summary: z.string().optional(),
 				highlights: z.array(z.string()).optional(),
 			}),
@@ -74,12 +74,11 @@ const resume = defineCollection({
 					organization: z.string(),
 					position: z.string(),
 					url: z.string().url().optional(),
-					startDate: z.string().transform((str) => new Date(str)),
-					endDate: z
-						.string()
-						.transform((str) => new Date(str))
-						.nullable()
-						.optional(),
+					startDate: z.coerce.date(),
+					endDate: z.preprocess(
+						(v) => (v === "" || v === null || v === undefined ? null : v),
+						z.coerce.date().nullable(),
+					),
 					summary: z.string().optional(),
 					highlights: z.array(z.string()).optional(),
 				}),
@@ -91,12 +90,11 @@ const resume = defineCollection({
 				url: z.string().url().optional(),
 				area: z.string(),
 				studyType: z.string(),
-				startDate: z.string().transform((str) => new Date(str)),
-				endDate: z
-					.string()
-					.transform((str) => new Date(str))
-					.nullable()
-					.optional(),
+				startDate: z.coerce.date(),
+				endDate: z.preprocess(
+					(v) => (v === "" || v === null || v === undefined ? null : v),
+					z.coerce.date().nullable(),
+				),
 				score: z.string().optional(),
 				courses: z.array(z.string()).optional(),
 			}),
@@ -105,7 +103,7 @@ const resume = defineCollection({
 			.array(
 				z.object({
 					title: z.string(),
-					date: z.string().transform((str) => new Date(str)),
+					date: z.coerce.date(),
 					awarder: z.string(),
 					summary: z.string().optional(),
 				}),
@@ -115,7 +113,7 @@ const resume = defineCollection({
 			.array(
 				z.object({
 					name: z.string(),
-					date: z.string().transform((str) => new Date(str)),
+					date: z.coerce.date(),
 					issuer: z.string(),
 					url: z.string().url().optional(),
 				}),
@@ -126,7 +124,7 @@ const resume = defineCollection({
 				z.object({
 					name: z.string(),
 					publisher: z.string(),
-					releaseDate: z.string().transform((str) => new Date(str)),
+					releaseDate: z.coerce.date(),
 					url: z.string().url().optional(),
 					summary: z.string().optional(),
 				}),
@@ -170,15 +168,14 @@ const resume = defineCollection({
 					description: z.string(),
 					highlights: z.array(z.string()).optional(),
 					keywords: z.array(z.string()).optional(),
-					startDate: z
-						.string()
-						.transform((str) => new Date(str))
-						.optional(),
-					endDate: z
-						.string()
-						.transform((str) => new Date(str))
-						.nullable()
-						.optional(),
+					startDate: z.preprocess(
+						(v) => (v === "" || v === null || v === undefined ? undefined : v),
+						z.coerce.date().optional(),
+					),
+					endDate: z.preprocess(
+						(v) => (v === "" || v === null || v === undefined ? null : v),
+						z.coerce.date().nullable().optional(),
+					),
 					url: z.string().url().optional(),
 					roles: z.array(z.string()).optional(),
 					entity: z.string().optional(),

@@ -1,62 +1,126 @@
 {
-	"awards": [
-		{
-			"awarder": "Universidad de La Habana",
-			"date": "2015-06-01",
-			"summary": "Awarded for outstanding project in software engineering demonstrating innovation and technical excellence.",
-			"title": "Best Software Engineering Project"
-		}
-	],
 	"basics": {
-		"email": "yuniel.acosta@email.com",
-		"image": "/me.webp",
+		"name": "Yuniel Acosta",
 		"label": "Experienced software engineer skilled in front-end and back-end technologies. Proficient in software design principles, design patterns, and clean architectures.",
+		"image": "/me.webp",
+		"email": "yuniel.acosta@email.com",
+		"phone": "(+34) 600-000-000",
+		"url": "https://yunielacosta.com",
+		"summary": "Software engineer with approximately 7 years working in software development. Proficiency with front-end and back-end technologies. Technology and science enthusiast. I am experienced with Web Application Architecture, Software Design Principles, and Software Design Patterns. Interested in object-oriented programming, design patterns, functional programming, domain-driven design, and microservices. I am a versatile person with wide-ranging skills, eager to learn, and ready to face new and tough challenges in or out of my country.",
 		"location": {
 			"address": "Valencia",
+			"postalCode": "08001",
 			"city": "Valencia",
 			"countryCode": "ES",
-			"postalCode": "08001",
 			"region": "Valencia"
 		},
-		"name": "Yuniel Acosta",
-		"phone": "(+34) 600-000-000",
 		"profiles": [
 			{
 				"network": "GitHub",
-				"url": "https://github.com/yacosta738",
-				"username": "yacosta738"
+				"username": "yacosta738",
+				"url": "https://github.com/yacosta738"
 			},
 			{
 				"network": "LinkedIn",
-				"url": "https://linkedin.com/in/yacosta738",
-				"username": "yacosta738"
+				"username": "yacosta738",
+				"url": "https://linkedin.com/in/yacosta738"
 			},
 			{
 				"network": "X",
-				"url": "https://x.com/yacosta738",
-				"username": "yacosta738"
+				"username": "yacosta738",
+				"url": "https://x.com/yacosta738"
 			}
-		],
-		"summary": "Software engineer with approximately 7 years working in software development. Proficiency with front-end and back-end technologies. Technology and science enthusiast. I am experienced with Web Application Architecture, Software Design Principles, and Software Design Patterns. Interested in object-oriented programming, design patterns, functional programming, domain-driven design, and microservices. I am a versatile person with wide-ranging skills, eager to learn, and ready to face new and tough challenges in or out of my country.",
-		"url": "https://yunielacosta.com"
+		]
 	},
-	"certificates": [
+	"work": [
 		{
-			"date": "2022-03-15",
-			"issuer": "Amazon Web Services",
-			"name": "AWS Certified Developer",
-			"url": "https://aws.amazon.com/certification/"
+			"name": "GFT",
+			"position": "System Analyst | Senior Software Engineer",
+			"url": "https://gft.com",
+			"startDate": "2023-03-01",
+			"endDate": "",
+			"summary": "Translated business requirements into scalable solutions aligned with coding standards and best practices. Led testing and technical guidance to meet functional and performance requirements. Orchestrated stakeholder alignment on timelines, status, risks, and delivery milestones.",
+			"highlights": [
+				"Translated business requirements into scalable solutions aligned with coding standards and best practices.",
+				"Led testing and technical guidance to meet functional and performance requirements.",
+				"Orchestrated stakeholder alignment on timelines, status, risks, and delivery milestones.",
+				"Tech: Java, Spring Boot, Kafka, Oracle DB, Git, Docker"
+			],
+			"location": "Valencia, Spain"
 		},
 		{
-			"date": "2021-08-20",
-			"issuer": "Scrum Alliance",
-			"name": "Scrum Master",
-			"url": "https://www.scrumalliance.org/certifications"
+			"name": "Mercado Libre",
+			"position": "Software Engineer",
+			"url": "https://mercadolibre.com",
+			"startDate": "2022-11-01",
+			"endDate": "2023-03-01",
+			"summary": "Built and maintained internal APIs for the detection of malicious behavior to strengthen platform security. Implemented risk policies and scorers to harden the registration and login for MercadoLibre.com and MercadoPago.com. Partnered cross-functionally to design and deliver scalable, efficient security services. Performed thorough test and analysis to improve reliability and user experience.",
+			"highlights": [
+				"Built and maintained internal APIs for the detection of malicious behavior to strengthen platform security.",
+				"Implemented risk policies and scorers to harden the registration and login for MercadoLibre.com and MercadoPago.com.",
+				"Partnered cross-functionally to design and deliver scalable, efficient security services.",
+				"Performed thorough test and analysis to improve reliability and user experience.",
+				"Tech: Java, Kotlin, Spring Boot, Vert.x, BigQuery, Git, Docker"
+			],
+			"location": "Montevideo, Uruguay"
+		},
+		{
+			"name": "Scanntech",
+			"position": "Senior Software Engineer",
+			"url": "https://scanntech.com",
+			"startDate": "2021-09-01",
+			"endDate": "2022-11-01",
+			"summary": "Cut the API sync time with MMC from ~40 minutes to 6 minutes. Elevated code quality through automated tests and SOLID practices. Designed a centralized configuration pattern for all microservices on the platform. CI was implemented with GitLab CI for faster and more reliable delivery.",
+			"highlights": [
+				"Cut the API sync time with MMC from ~40 minutes to 6 minutes.",
+				"Elevated code quality through automated tests and SOLID practices.",
+				"Designed a centralized configuration pattern for all microservices on the platform.",
+				"CI was implemented with GitLab CI for faster and more reliable delivery.",
+				"Tech: Java, Spring Boot, Kafka, Zookeeper, PostgreSQL, Git, Docker"
+			],
+			"location": "Montevideo, Uruguay"
+		},
+		{
+			"name": "Desoft",
+			"position": "Senior Software Engineer | Software Architect",
+			"url": "https://www.desoft.cu",
+			"startDate": "2017-09-01",
+			"endDate": "2021-09-01",
+			"summary": "Designed and developed a microservices-based online reputation management system. Provided technical leadership and mentoring across the delivery lifecycle. Delivered web interfaces (Angular/Vue) and internal REST APIs. Fixed critical defects and shipped enhancements that improved web performance.",
+			"highlights": [
+				"Designed and developed a microservices-based online reputation management system.",
+				"Provided technical leadership and mentoring across the delivery lifecycle.",
+				"Delivered web interfaces (Angular/Vue) and internal REST APIs.",
+				"Fixed critical defects and shipped enhancements that improved web performance.",
+				"Tech: HTML, CSS, TypeScript, Angular, Vue.js, Java, Spring Boot, JUnit, REST, SQL, PostgreSQL, PHP (Laravel), Python (Flask), Kubernetes, Istio, Docker, JHipster, Linux"
+			],
+			"location": "Ciego de Ávila, Cuba"
+		}
+	],
+	"volunteer": [
+		{
+			"organization": "Various Projects",
+			"position": "Open Source Contributor",
+			"url": "https://codeforamerica.org",
+			"startDate": "2017-01-01",
+			"endDate": "2023-12-01",
+			"summary": "Contributed to open source automation tools and libraries supporting cloud-native applications.",
+			"highlights": [
+				"Implemented new features and bug fixes for automation frameworks",
+				"Collaborated with global community to improve documentation and usability",
+				"Reviewed pull requests and mentored new contributors"
+			]
 		}
 	],
 	"education": [
 		{
+			"institution": "Central University 'Marta Abreu' of Las Villas",
+			"url": "https://www.uclv.edu.cu",
 			"area": "Computer Science",
+			"studyType": "Bachelor",
+			"startDate": "2012-09-01",
+			"endDate": "2017-07-01",
+			"score": "",
 			"courses": [
 				"Java Programming",
 				"Software Engineering",
@@ -66,47 +130,29 @@
 				"Compilers",
 				"Databases"
 			],
-			"endDate": "2017-07-01",
-			"institution": "Central University 'Marta Abreu' of Las Villas",
-			"score": "",
-			"startDate": "2012-09-01",
-			"studyType": "Bachelor",
-			"thesis": "Manipulation of spatio-temporal data series using scientific and geographic data formats in R",
-			"url": "https://www.uclv.edu.cu"
+			"thesis": "Manipulation of spatio-temporal data series using scientific and geographic data formats in R"
 		}
 	],
-	"interests": [
+	"awards": [
 		{
-			"keywords": ["Startups", "Automation", "AI Tools"],
-			"name": "Technology Trends"
+			"title": "Best Software Engineering Project",
+			"date": "2015-06-01",
+			"awarder": "Universidad de La Habana",
+			"summary": "Awarded for outstanding project in software engineering demonstrating innovation and technical excellence."
+		}
+	],
+	"certificates": [
+		{
+			"name": "AWS Certified Developer",
+			"date": "2022-03-15",
+			"issuer": "Amazon Web Services",
+			"url": "https://aws.amazon.com/certification/"
 		},
 		{
-			"keywords": ["Cycling", "Photography", "Mountain Biking"],
-			"name": "Outdoor Activities"
-		}
-	],
-	"languages": [
-		{
-			"fluency": "Native speaker",
-			"language": "Spanish"
-		},
-		{
-			"fluency": "Intermediate B1",
-			"language": "English"
-		}
-	],
-	"projects": [
-		{
-			"description": "Automation and content distribution pipeline platform focused on scalable backend services and cloud-native architecture.",
-			"endDate": "2023-12-01",
-			"highlights": [
-				"Designed and implemented scalable REST APIs for content management",
-				"Automated deployment pipelines using Kubernetes and Docker",
-				"Improved system reliability and reduced downtime by 30%"
-			],
-			"name": "Hatchgrid",
-			"startDate": "2022-01-01",
-			"url": "https://hatchgrid.io"
+			"name": "Scrum Master",
+			"date": "2021-08-20",
+			"issuer": "Scrum Alliance",
+			"url": "https://www.scrumalliance.org/certifications"
 		}
 	],
 	"publications": [
@@ -114,22 +160,14 @@
 			"name": "Building Scalable Automation Platforms",
 			"publisher": "Yuniel Acosta Blog",
 			"releaseDate": "2023-01-15",
-			"summary": "Insights and best practices for designing and implementing scalable automation platforms using modern cloud-native technologies.",
-			"url": "https://yunielacosta.dev/blog/scalable-automation"
-		}
-	],
-	"references": [
-		{
-			"name": "Reference available upon request",
-			"reference": ""
-		},
-		{
-			"name": "Reference available upon request",
-			"reference": ""
+			"url": "https://yunielacosta.dev/blog/scalable-automation",
+			"summary": "Insights and best practices for designing and implementing scalable automation platforms using modern cloud-native technologies."
 		}
 	],
 	"skills": [
 		{
+			"name": "Backend Development",
+			"level": "Expert",
 			"keywords": [
 				"Java",
 				"Kotlin",
@@ -138,16 +176,16 @@
 				"REST APIs",
 				"Microservices",
 				"SOLID Principles"
-			],
-			"level": "Expert",
-			"name": "Backend Development"
+			]
 		},
 		{
-			"keywords": ["HTML", "CSS", "TypeScript", "Angular", "Vue.js"],
+			"name": "Frontend Development",
 			"level": "Advanced",
-			"name": "Frontend Development"
+			"keywords": ["HTML", "CSS", "TypeScript", "Angular", "Vue.js"]
 		},
 		{
+			"name": "Database Systems",
+			"level": "Expert",
 			"keywords": [
 				"PostgreSQL",
 				"Oracle DB",
@@ -156,11 +194,11 @@
 				"MongoDB",
 				"Query Optimization",
 				"SQL"
-			],
-			"level": "Expert",
-			"name": "Database Systems"
+			]
 		},
 		{
+			"name": "Cloud & DevOps",
+			"level": "Expert",
 			"keywords": [
 				"AWS",
 				"Docker",
@@ -170,11 +208,11 @@
 				"GitLab CI",
 				"Serverless",
 				"Infrastructure as Code"
-			],
-			"level": "Expert",
-			"name": "Cloud & DevOps"
+			]
 		},
 		{
+			"name": "System Architecture",
+			"level": "Expert",
 			"keywords": [
 				"Microservices",
 				"Event-Driven Architecture",
@@ -182,104 +220,66 @@
 				"High Availability",
 				"Centralized Configuration",
 				"API Design"
-			],
-			"level": "Expert",
-			"name": "System Architecture"
+			]
 		},
 		{
-			"keywords": ["API Security", "Risk Policies", "Scoring Systems"],
+			"name": "Security & Risk Management",
 			"level": "Advanced",
-			"name": "Security & Risk Management"
+			"keywords": ["API Security", "Risk Policies", "Scoring Systems"]
 		},
 		{
-			"keywords": ["JUnit", "Automated Testing", "Code Review"],
+			"name": "Testing & Quality Assurance",
 			"level": "Advanced",
-			"name": "Testing & Quality Assurance"
+			"keywords": ["JUnit", "Automated Testing", "Code Review"]
 		},
 		{
-			"keywords": ["Git", "Docker", "Linux", "JHipster", "Istio", "Zookeeper"],
+			"name": "Tools & Platforms",
 			"level": "Advanced",
-			"name": "Tools & Platforms"
+			"keywords": ["Git", "Docker", "Linux", "JHipster", "Istio", "Zookeeper"]
 		}
 	],
-	"volunteer": [
+	"languages": [
 		{
+			"language": "Spanish",
+			"fluency": "Native speaker"
+		},
+		{
+			"language": "English",
+			"fluency": "Intermediate B1"
+		}
+	],
+	"interests": [
+		{
+			"name": "Technology Trends",
+			"keywords": ["Startups", "Automation", "AI Tools"]
+		},
+		{
+			"name": "Outdoor Activities",
+			"keywords": ["Cycling", "Photography", "Mountain Biking"]
+		}
+	],
+	"references": [
+		{
+			"name": "Reference available upon request",
+			"reference": "some example"
+		},
+		{
+			"name": "Reference available upon request",
+			"reference": "some example"
+		}
+	],
+	"projects": [
+		{
+			"name": "Hatchgrid",
+			"description": "Automation and content distribution pipeline platform focused on scalable backend services and cloud-native architecture.",
+			"highlights": [
+				"Designed and implemented scalable REST APIs for content management",
+				"Automated deployment pipelines using Kubernetes and Docker",
+				"Improved system reliability and reduced downtime by 30%"
+			],
+			"startDate": "2022-01-01",
 			"endDate": "2023-12-01",
-			"highlights": [
-				"Implemented new features and bug fixes for automation frameworks",
-				"Collaborated with global community to improve documentation and usability",
-				"Reviewed pull requests and mentored new contributors"
-			],
-			"organization": "Various Projects",
-			"position": "Open Source Contributor",
-			"startDate": "2017-01-01",
-			"summary": "Contributed to open source automation tools and libraries supporting cloud-native applications.",
-			"url": "https://codeforamerica.org"
-		}
-	],
-	"work": [
-		{
-			"endDate": null,
-			"highlights": [
-				"Translated business requirements into scalable solutions aligned with coding standards and best practices.",
-				"Led testing and technical guidance to meet functional and performance requirements.",
-				"Orchestrated stakeholder alignment on timelines, status, risks, and delivery milestones.",
-				"Tech: Java, Spring Boot, Kafka, Oracle DB, Git, Docker"
-			],
-			"location": "Valencia, Spain",
-			"name": "GFT",
-			"position": "System Analyst | Senior Software Engineer",
-			"startDate": "2023-03-01",
-			"summary": "Translated business requirements into scalable solutions aligned with coding standards and best practices. Led testing and technical guidance to meet functional and performance requirements. Orchestrated stakeholder alignment on timelines, status, risks, and delivery milestones.",
-			"url": "https://gft.com"
-		},
-		{
-			"endDate": "2023-03-01",
-			"highlights": [
-				"Built and maintained internal APIs for the detection of malicious behavior to strengthen platform security.",
-				"Implemented risk policies and scorers to harden the registration and login for MercadoLibre.com and MercadoPago.com.",
-				"Partnered cross-functionally to design and deliver scalable, efficient security services.",
-				"Performed thorough test and analysis to improve reliability and user experience.",
-				"Tech: Java, Kotlin, Spring Boot, Vert.x, BigQuery, Git, Docker"
-			],
-			"location": "Montevideo, Uruguay",
-			"name": "Mercado Libre",
-			"position": "Software Engineer",
-			"startDate": "2022-11-01",
-			"summary": "Built and maintained internal APIs for the detection of malicious behavior to strengthen platform security. Implemented risk policies and scorers to harden the registration and login for MercadoLibre.com and MercadoPago.com. Partnered cross-functionally to design and deliver scalable, efficient security services. Performed thorough test and analysis to improve reliability and user experience.",
-			"url": "https://mercadolibre.com"
-		},
-		{
-			"endDate": "2022-11-01",
-			"highlights": [
-				"Cut the API sync time with MMC from ~40 minutes to 6 minutes.",
-				"Elevated code quality through automated tests and SOLID practices.",
-				"Designed a centralized configuration pattern for all microservices on the platform.",
-				"CI was implemented with GitLab CI for faster and more reliable delivery.",
-				"Tech: Java, Spring Boot, Kafka, Zookeeper, PostgreSQL, Git, Docker"
-			],
-			"location": "Montevideo, Uruguay",
-			"name": "Scanntech",
-			"position": "Senior Software Engineer",
-			"startDate": "2021-09-01",
-			"summary": "Cut the API sync time with MMC from ~40 minutes to 6 minutes. Elevated code quality through automated tests and SOLID practices. Designed a centralized configuration pattern for all microservices on the platform. CI was implemented with GitLab CI for faster and more reliable delivery.",
-			"url": "https://scanntech.com"
-		},
-		{
-			"endDate": "2021-09-01",
-			"highlights": [
-				"Designed and developed a microservices-based online reputation management system.",
-				"Provided technical leadership and mentoring across the delivery lifecycle.",
-				"Delivered web interfaces (Angular/Vue) and internal REST APIs.",
-				"Fixed critical defects and shipped enhancements that improved web performance.",
-				"Tech: HTML, CSS, TypeScript, Angular, Vue.js, Java, Spring Boot, JUnit, REST, SQL, PostgreSQL, PHP (Laravel), Python (Flask), Kubernetes, Istio, Docker, JHipster, Linux"
-			],
-			"location": "Ciego de Ávila, Cuba",
-			"name": "Desoft",
-			"position": "Senior Software Engineer | Software Architect",
-			"startDate": "2017-09-01",
-			"summary": "Designed and developed a microservices-based online reputation management system. Provided technical leadership and mentoring across the delivery lifecycle. Delivered web interfaces (Angular/Vue) and internal REST APIs. Fixed critical defects and shipped enhancements that improved web performance.",
-			"url": "https://www.desoft.cu"
+			"url": "https://hatchgrid.io"
 		}
 	]
 }
