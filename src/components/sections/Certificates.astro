@@ -14,10 +14,10 @@ const t = useTranslations(currentLocale);
 
 {certificates.length > 0 && (
   <Section title={t('certificates')}>
-    <ul>
+    <ul class="flex flex-col gap-3">
       {certificates.map((c) => (
         <li>
-          <article>
+          <article class="p-2">
             <header>
               <h3>
                 {c.url ? <a href={c.url} target="_blank" rel="noopener noreferrer">{c.name}</a> : <span>{c.name}</span>}
@@ -33,8 +33,3 @@ const t = useTranslations(currentLocale);
     </ul>
   </Section>
 )}
-
-<style>
-  ul { display:flex; flex-direction:column; gap:12px }
-  article { padding:8px }
-</style>

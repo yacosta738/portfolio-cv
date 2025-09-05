@@ -14,10 +14,10 @@ const t = useTranslations(currentLocale);
 
 {references.length > 0 && (
   <Section title={t('references')}>
-    <ul>
+    <ul class="flex flex-col gap-3">
       {references.map((r) => (
         <li>
-          <article>
+          <article class="p-2">
             <header>
               <h3>{r.name}</h3>
             </header>
@@ -31,7 +31,4 @@ const t = useTranslations(currentLocale);
   </Section>
 )}
 
-<style>
-  ul { display:flex; flex-direction:column; gap:12px }
-  article { padding:8px }
-</style>
+

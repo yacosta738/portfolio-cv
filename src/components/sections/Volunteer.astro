@@ -14,10 +14,10 @@ const t = useTranslations(currentLocale);
 
 {volunteer.length > 0 && (
   <Section title={t('volunteer')}>
-    <ul>
+    <ul class="flex flex-col gap-3">
       {volunteer.map((v) => (
         <li>
-          <article>
+          <article class="p-2">
             <header>
               <h3>{v.organization}</h3>
               <h4>{v.position}</h4>

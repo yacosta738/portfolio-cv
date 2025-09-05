@@ -17,9 +17,10 @@ interface Props {
 		phone?: string;
 		email: string;
 	};
+	imagePosition?: "left" | "right";
 }
 
-const { basics } = Astro.props as Props;
+const { basics, imagePosition = "right" } = Astro.props as Props;
 const { name, label, image, location, profiles, phone, email } = basics;
 const { city, region } = location;
 
@@ -37,11 +38,24 @@ const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
 const linkedUrl = linkedInfo?.url;
 
 const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
+
+// Determine responsive layout classes based on image position
+// - Mobile (<sm): stack content centered (image on top via column-reverse)
+// - ≥sm: side-by-side row, image to the selected side (right by default)
+const containerClasses =
+	imagePosition === "left"
+		? "flex flex-col-reverse items-center gap-4 sm:flex-row-reverse sm:items-center sm:justify-between"
+		: "flex flex-col-reverse items-center gap-4 sm:flex-row sm:items-center sm:justify-between";
+
+const textContainerClasses =
+	imagePosition === "left"
+		? "flex flex-col gap-2 items-center text-center flex-1 min-w-0 sm:items-start sm:text-left sm:pl-8"
+		: "flex flex-col gap-2 items-center text-center flex-1 min-w-0 sm:items-start sm:text-left sm:pr-8";
 ---
 
 <Section>
-  <div class="flex flex-row items-center justify-between gap-4 sm:flex-col-reverse">
-    <div class="flex flex-col gap-2 pr-8 flex-1 min-w-0 sm:justify-center sm:items-center sm:pr-0 sm:text-center">
+  <div class={containerClasses}>
+    <div class={textContainerClasses}>
       <h1 class="text-4xl">{name}</h1>
       <h2 class="text-gray-600 font-medium text-lg text-balance">{label}</h2>
       <span class="text-gray-500 flex items-center gap-1 text-sm tracking-tight">
@@ -99,7 +113,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         }
       </footer>
     </div>
-    <figure class="flex-shrink min-w-12 w-32 sm:flex sm:justify-center sm:items-center sm:mx-auto">
+  <figure class="shrink-0 min-w-12 w-32 mx-auto sm:mx-0">
       {image && (
 			<OptimizedPicture
 				src={image}

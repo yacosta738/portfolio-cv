@@ -14,7 +14,7 @@ const t = useTranslations(currentLocale);
 ---
 
 <Section title={t('education')}>
-  <ul>
+  <ul class="flex flex-col gap-8">
     {
       education.map(({ institution, startDate, endDate, area }) => {
         const startYear = startDate.getFullYear()
@@ -24,12 +24,11 @@ const t = useTranslations(currentLocale);
         return (
           <li>
             <article>
-              <header>
+              <header class="flex justify-between items-start mb-1">
                 <div>
-                  <h3>{institution}</h3>
+                  <h3 class="font-medium text-gray-900">{institution}</h3>
                 </div>
-
-                <time>{years}</time>
+                <time class="text-gray-600 text-sm min-w-[102px] sm:text-right">{years}</time>
               </header>
 
               <footer>
@@ -43,34 +42,4 @@ const t = useTranslations(currentLocale);
   </ul>
 </Section>
 
-<style>
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
 
-  article h3 {
-    font-weight: 500;
-    color: #1a202c;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
-  }
-
-  time {
-    color: #4a5568;
-    font-size: 0.85rem;
-    min-width: 102px;
-  }
-
-  @media (width <= 700px) {
-    time {
-      text-align: right;
-    }
-  }
-</style>

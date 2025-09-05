@@ -14,10 +14,10 @@ const t = useTranslations(currentLocale);
 
 {awards.length > 0 && (
   <Section title={t('awards')}>
-    <ul>
+    <ul class="flex flex-col gap-3">
       {awards.map((a) => (
         <li>
-          <article>
+          <article class="p-2">
             <header>
               <h3>{a.title}</h3>
               <time datetime={a.date.toISOString().split('T')[0]}>{a.date.getFullYear()}</time>
@@ -32,8 +32,3 @@ const t = useTranslations(currentLocale);
     </ul>
   </Section>
 )}
-
-<style>
-  ul { display:flex; flex-direction:column; gap:12px }
-  article { padding:8px }
-</style>
