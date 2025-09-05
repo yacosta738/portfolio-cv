@@ -115,8 +115,19 @@ collections:
           - { label: "Company Name", name: "name", widget: "string" }
           - { label: "Position", name: "position", widget: "string",i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
-          - { label: "Start Date", name: "startDate", widget: "datetime" }
-          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - label: "Start Date"
+            name: "startDate"
+            widget: "date"
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
+          - label: "End Date"
+            name: "endDate"
+            widget: "date"
+            required: false
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
           - { label: "Highlights", name: "highlights", widget: "list", required: false, i18n: true }
 
@@ -129,8 +140,19 @@ collections:
           - { label: "Organization", name: "organization", widget: "string", i18n: true }
           - { label: "Position", name: "position", widget: "string", i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
-          - { label: "Start Date", name: "startDate", widget: "datetime" }
-          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - label: "Start Date"
+            name: "startDate"
+            widget: "date"
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
+          - label: "End Date"
+            name: "endDate"
+            widget: "date"
+            required: false
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
           - { label: "Highlights", name: "highlights", widget: "list", required: false, i18n: true }
 
@@ -143,8 +165,19 @@ collections:
           - { label: "URL", name: "url", widget: "string", required: false }
           - { label: "Area of Study", name: "area", widget: "string", i18n: true }
           - { label: "Study Type", name: "studyType", widget: "string", i18n: true }
-          - { label: "Start Date", name: "startDate", widget: "datetime" }
-          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - label: "Start Date"
+            name: "startDate"
+            widget: "date"
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
+          - label: "End Date"
+            name: "endDate"
+            widget: "date"
+            required: false
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "Score", name: "score", widget: "string", required: false }
           - { label: "Courses", name: "courses", widget: "list", required: false, i18n: true }
 
@@ -155,7 +188,12 @@ collections:
         required: false
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
-          - { label: "Date", name: "date", widget: "datetime" }
+          - label: "Date"
+            name: "date"
+            widget: "date"
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "Awarder", name: "awarder", widget: "string", i18n: true }
           - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
 
@@ -166,7 +204,12 @@ collections:
         required: false
         fields:
           - { label: "Name", name: "name", widget: "string", i18n: true }
-          - { label: "Date", name: "date", widget: "datetime" }
+          - label: "Date"
+            name: "date"
+            widget: "date"
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "Issuer", name: "issuer", widget: "string", i18n: true }
           - { label: "URL", name: "url", widget: "string", required: false }
 
@@ -178,7 +221,12 @@ collections:
         fields:
           - { label: "Name", name: "name", widget: "string", i18n: true }
           - { label: "Publisher", name: "publisher", widget: "string", i18n: true }
-          - { label: "Release Date", name: "releaseDate", widget: "datetime" }
+          - label: "Release Date"
+            name: "releaseDate"
+            widget: "date"
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "URL", name: "url", widget: "string", required: false }
           - { label: "Summary", name: "summary", widget: "text", required: false, i18n: true }
 
@@ -228,8 +276,20 @@ collections:
           - { label: "Description", name: "description", widget: "text", i18n: true }
           - { label: "Highlights", name: "highlights", widget: "list", required: false, i18n: true }
           - { label: "Keywords", name: "keywords", widget: "list", required: false, i18n: true }
-          - { label: "Start Date", name: "startDate", widget: "datetime", required: false}
-          - { label: "End Date", name: "endDate", widget: "datetime", required: false }
+          - label: "Start Date"
+            name: "startDate"
+            widget: "date"
+            required: false
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
+          - label: "End Date"
+            name: "endDate"
+            widget: "date"
+            required: false
+            date_format: "YYYY-MM-DD"
+            pattern:
+              - "^\\d{4}-\\d{2}-\\d{2}$"
           - { label: "URL", name: "url", widget: "string", required: false }
           - { label: "Roles", name: "roles", widget: "list", required: false, i18n: true }
           - { label: "Entity", name: "entity", widget: "string", required: false, i18n: true }
