@@ -7,7 +7,7 @@ import { SITE_TITLE } from "@/site.consts";
 import "@/styles/global.css";
 
 interface Props {
-  title: string;
+	title: string;
 }
 const { title } = Astro.props;
 const locale = Astro.currentLocale as Lang;
@@ -16,7 +16,7 @@ const t = useTranslations(locale);
 // Obtener los datos del resume desde las colecciones de Astro
 const resume = await getMainResumeWithData();
 if (!resume) {
-  throw new Error("No se pudo obtener el resume principal");
+	throw new Error("No se pudo obtener el resume principal");
 }
 
 const localeTitle = title ? `${title} - ${t(SITE_TITLE)}` : t(SITE_TITLE);

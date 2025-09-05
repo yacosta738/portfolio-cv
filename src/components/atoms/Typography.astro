@@ -27,7 +27,11 @@ const variantStyles: Record<Variant, string> = {
 	date: "text-sm text-gray-600 min-w-[102px] cursor-default",
 };
 
-const classes = cn("my-2 last:mb-0", variantStyles[variant as Variant], className);
+const classes = cn(
+	"my-2 last:mb-0",
+	variantStyles[variant as Variant],
+	className,
+);
 ---
 
 <Element class={classes} {...rest}>
