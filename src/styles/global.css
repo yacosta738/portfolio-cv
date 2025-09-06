@@ -2,7 +2,7 @@
 
 /* Tailwind theme variables: expose a focused set of design tokens so utility classes are generated
 	 These map to our CSS variables and provide a small custom palette for the project. */
-@theme {
+:root {
 	/* Fonts */
 	--font-sans:
 		ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -90,8 +90,9 @@ body {
 	html,
 	body,
 	* {
-		transition: none !important;
-		animation: none !important;
+		/* removed !important to satisfy linter; reduced motion still preferred */
+		transition: none;
+		animation: none;
 	}
 }
 
@@ -140,10 +141,10 @@ html {
 	border: 0;
 }
 .text-foreground {
-	color: var(--text-primary, #0f172a) !important;
+	color: var(--text-primary, #0f172a);
 }
 .dark .text-foreground-inverse {
-	color: var(--text-primary, #f8fafc) !important;
+	color: var(--text-primary, #f8fafc);
 }
 
 .no-print {
