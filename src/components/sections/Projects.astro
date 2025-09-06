@@ -22,21 +22,21 @@ const t = useTranslations(currentLocale);
         ({ url, description, highlights, name, isActive, github }) => {
           return (
             <li>
-              <article class="rounded-lg border border-gray-200 gap-4 flex flex-col p-4 h-full">
+              <article class="rounded-lg border border-gray-200 dark:border-gray-700 gap-4 flex flex-col p-4 h-full">
                 <header class="flex-1">
                   <h3 class="mb-1">
                     <a 
                       href={url} 
                       target="_blank" 
                       title={`Ver el proyecto ${name}`}
-                      class="text-gray-900 hover:underline focus:underline hover:text-gray-700"
+                      class="text-gray-900 dark:text-gray-100 hover:underline focus:underline hover:text-gray-700 dark:hover:text-gray-300"
                     >
                       {name}
                     </a>
                     {isActive && <span class="text-green-600 animate-flicker ml-1">•</span>}
                     {github && (
                       <a
-                        class="ml-1.5 inline-block"
+                        class="ml-1.5 inline-block text-gray-600 dark:text-gray-400"
                         href={github}
                         target="_blank"
                         title={`Ver código fuente del proyecto ${name}`}
@@ -46,11 +46,11 @@ const t = useTranslations(currentLocale);
                       </a>
                     )}
                   </h3>
-                  <p class="text-xs leading-tight mb-1">{description}</p>
+                  <p class="text-xs leading-tight mb-1 text-gray-600 dark:text-gray-400">{description}</p>
                 </header>
                 <footer class="flex flex-wrap gap-1 text-[0.6rem]">
                   {highlights?.map((highlight) => {
-                    return <span class="rounded-md bg-gray-50 text-gray-700 text-[0.6rem] font-medium px-2.5 py-1 border border-gray-200">{highlight}</span>
+                    return <span class="rounded-md bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-[0.6rem] font-medium px-2.5 py-1 border border-gray-200 dark:border-gray-700">{highlight}</span>
                   })}
                 </footer>
               </article>

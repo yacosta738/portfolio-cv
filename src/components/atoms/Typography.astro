@@ -17,12 +17,12 @@ const {
 } = Astro.props as Props;
 
 const variantStyles: Record<Variant, string> = {
-	title: "text-4xl font-normal text-gray-900 my-4",
-	subtitle: "text-lg font-medium text-gray-700 my-6",
-	body: "text-sm leading-6 text-gray-600",
-	small: "text-xs leading-5 text-gray-600",
-	muted: "text-sm text-gray-500",
-	date: "text-sm text-gray-600 min-w-[102px] cursor-default",
+	title: "text-4xl font-normal text-gray-900 my-4 dark:text-gray-100",
+	subtitle: "text-lg font-medium text-gray-700 my-6 dark:text-gray-300",
+	body: "text-sm leading-6 text-gray-600 dark:text-gray-400",
+	small: "text-xs leading-5 text-gray-600 dark:text-gray-400",
+	muted: "text-sm text-gray-500 dark:text-gray-400",
+	date: "text-sm text-gray-600 min-w-[102px] cursor-default dark:text-gray-400",
 };
 
 const classes = cn(

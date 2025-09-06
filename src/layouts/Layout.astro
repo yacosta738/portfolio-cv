@@ -2,6 +2,7 @@
 import { getLocalePaths, type Lang, LOCALES, useTranslations } from "@/i18n";
 import LocaleHtmlHead from "@/i18n/components/LocaleHtmlHead.astro";
 import LocaleSuggest from "@/i18n/components/LocaleSuggest.astro";
+import ThemeToggleButton from "@/components/ThemeToggleButton.astro";
 import { getMainResumeWithData } from "@/resume/resume/resume.service";
 import { SITE_TITLE } from "@/site.consts";
 import "@/styles/global.css";
@@ -30,7 +31,27 @@ const { image, summary, url } = resume.basics;
     <title>{localeTitle}</title>
     <meta name="description" content={summary} />
     <meta name="viewport" content="width=device-width" />
-    <!-- <meta name="color-scheme" content="light dark" /> -->
+    <meta name="color-scheme" content="light dark" />
+
+    <script is:inline>
+      const getTheme = () => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      };
+
+      const theme = getTheme();
+
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -74,8 +95,9 @@ const { image, summary, url } = resume.basics;
 
     <LocaleHtmlHead />
   </head>
-  <body>
+  <body class="bg-light text-black dark:bg-dark dark:text-white">
     <LocaleSuggest />
     <slot />
+    <ThemeToggleButton />
   </body>
 </html>

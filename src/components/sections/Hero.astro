@@ -50,7 +50,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         {city}, {region}
       </Typography>
 
-      <div class="hidden print:block text-sm text-gray-600 mt-1">
+      <div class="hidden print:block text-sm text-gray-600 dark:text-gray-400 mt-1">
         {printInfo}
       </div>
       <footer class="no-print mt-2 flex gap-1">
@@ -58,7 +58,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
           email && (
             <a
               href={`mailto:${email}`}
-              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
+              class="text-gray-600 dark:text-gray-400 inline-flex items-center justify-center border border-gray-200 dark:border-gray-700 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
               title={`Enviar un correo electrónico a ${name} al correo ${email}`}
               aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
               target="_blank"
@@ -72,7 +72,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
           phone && (
             <a
               href={`tel:${phone}`}
-              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
+              class="text-gray-600 dark:text-gray-400 inline-flex items-center justify-center border border-gray-200 dark:border-gray-700 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
               title={`Llamar por teléfono a ${name} al número ${phone}`}
               aria-label={`Llamar por teléfono a ${name} al número ${phone}`}
               target="_blank"
@@ -88,7 +88,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
             return (
               <a
                 href={url}
-                class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
+                class="text-gray-600 dark:text-gray-400 inline-flex items-center justify-center border border-gray-200 dark:border-gray-700 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600"
                 title={`Visitar el perfil de ${name} en ${network}`}
                 aria-label={`Visitar el perfil de ${name} en ${network}`}
                 target="_blank"
