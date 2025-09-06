@@ -1,6 +1,25 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
+/* Theme variables */
+:root {
+	--bg-primary: #ffffff;
+	--bg-secondary: #f8fafc;
+	--text-primary: #0f172a;
+	--text-secondary: #475569;
+	--text-muted: #64748b;
+	--border-color: #e2e8f0;
+	--border-hover: #cbd5e1;
+}
+
+:root.dark {
+	--bg-primary: #0f172a;
+	--bg-secondary: #1e293b;
+	--text-primary: #f8fafc;
+	--text-secondary: #cbd5e1;
+	--text-muted: #94a3b8;
+	--border-color: #334155;
+	--border-hover: #475569;
+}
 
 /* Base styles for the portfolio */
 html {
@@ -11,8 +30,18 @@ html {
 		"Courier New",
 		Courier,
 		monospace;
-	background: #fff;
+	background: var(--bg-primary);
 	letter-spacing: -0.025rem;
+	color: var(--text-primary);
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: var(--bg-primary);
+	color: var(--text-primary);
+	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body,
