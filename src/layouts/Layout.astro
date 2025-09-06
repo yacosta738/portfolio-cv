@@ -1,8 +1,9 @@
 ---
+import Analytics from "@/components/atoms/Analytics.astro";
+import ThemeToggleButton from "@/components/atoms/ThemeToggleButton.astro";
 import { getLocalePaths, type Lang, LOCALES, useTranslations } from "@/i18n";
 import LocaleHtmlHead from "@/i18n/components/LocaleHtmlHead.astro";
 import LocaleSuggest from "@/i18n/components/LocaleSuggest.astro";
-import ThemeToggleButton from "@/components/ThemeToggleButton.astro";
 import { getMainResumeWithData } from "@/resume/resume/resume.service";
 import { SITE_TITLE } from "@/site.consts";
 import "@/styles/global.css";
@@ -94,6 +95,7 @@ const { image, summary, url } = resume.basics;
     />
 
     <LocaleHtmlHead />
+    <Analytics />
   </head>
   <body class="bg-light text-black dark:bg-dark dark:text-white">
     <LocaleSuggest />
