@@ -1,0 +1,85 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import { type Lang, useTranslations } from "@/i18n";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"button"> {
+	class?: string;
+}
+
+const currentLocale = Astro.params.lang as Lang;
+const t = useTranslations(currentLocale);
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<button
+  id="theme-toggle-button"
+  class={cn(
+    "fixed bottom-4 right-4 z-50 flex items-center p-2 text-slate-700 bg-white border border-slate-300 rounded-lg shadow-lg hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:hover:text-white dark:hover:bg-slate-700 focus:outline-none transition-all duration-200",
+    className,
+  )}
+  aria-label={t("theme.toggle.button")}
+  title={t("theme.toggle.tooltip")}
+  {...attrs}
+>
+  <Icon id="theme-toggle-dark-icon" class="w-5 h-5 hidden" name="lucide:moon" />
+  <Icon id="theme-toggle-light-icon" class="w-5 h-5 hidden" name="lucide:sun" />
+</button>
+
+<script>
+  const themeToggleButton = document.getElementById("theme-toggle-button");
+  const lightIcon = document.getElementById("theme-toggle-light-icon");
+  const darkIcon = document.getElementById("theme-toggle-dark-icon");
+
+  // Type guard to ensure elements exist
+  if (!themeToggleButton || !lightIcon || !darkIcon) {
+    console.error("Theme toggle elements not found");
+    throw new Error("Theme toggle elements not found");
+  }
+
+  // Function to set the icons visibility
+  const setIconVisibility = (theme: "light" | "dark"): void => {
+    if (theme === "dark") {
+      lightIcon.classList.remove("hidden");
+      darkIcon.classList.add("hidden");
+    } else {
+      darkIcon.classList.remove("hidden");
+      lightIcon.classList.add("hidden");
+    }
+  };
+
+  // Set initial icon visibility
+  const initialTheme: "light" | "dark" = document.documentElement.classList.contains("dark")
+    ? "dark"
+    : "light";
+  setIconVisibility(initialTheme);
+
+  themeToggleButton.addEventListener("click", (): void => {
+    // toggle icons inside button
+    darkIcon.classList.toggle("hidden");
+    lightIcon.classList.toggle("hidden");
+
+    // if set via local storage previously
+    if (localStorage.getItem("theme")) {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+
+      // if NOT set via local storage previously
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+    }
+  });
+</script>

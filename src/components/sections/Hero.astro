@@ -58,7 +58,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
           email && (
             <a
               href={`mailto:${email}`}
-              class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-300 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
+              class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
               title={`Enviar un correo electrónico a ${name} al correo ${email}`}
               aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
               target="_blank"
@@ -72,7 +72,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
           phone && (
             <a
               href={`tel:${phone}`}
-              class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-300 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
+              class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
               title={`Llamar por teléfono a ${name} al número ${phone}`}
               aria-label={`Llamar por teléfono a ${name} al número ${phone}`}
               target="_blank"
@@ -88,7 +88,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
             return (
               <a
                 href={url}
-                class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-300 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
+                class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
                 title={`Visitar el perfil de ${name} en ${network}`}
                 aria-label={`Visitar el perfil de ${name} en ${network}`}
                 target="_blank"

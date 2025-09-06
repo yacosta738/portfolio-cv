@@ -70,7 +70,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
   {t('footer.commandPaletteHint', { modKey: currentLocale === 'en' ? 'Cmd' : 'Cmd' })}
 </footer>
 
-<button id="footer-button" class="no-print" type="button" aria-label={t('footer.openCommandPalette')}>
+<button id="footer-button" class="no-print text-slate-600 dark:text-slate-400" type="button" aria-label={t('footer.openCommandPalette')}>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     class="icon icon-tabler icon-tabler-command"
@@ -78,7 +78,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
     height="32"
     viewBox="0 0 24 24"
     stroke-width="1.5"
-    stroke="#777"
+    stroke="currentColor"
     fill="none"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -280,11 +280,10 @@ const profilesInfo = profiles.map(({ network, url }) => {
       display: none;
     }
 
-    /* Footer command button is rendered as a semantic button in the DOM */
     #footer-button {
-      background: #fff;
+      background: var(--bg-primary);
       position: fixed;
-      border: 1px solid #eee;
+      border: 1px solid var(--border-color);
       right: 10px;
       bottom: 10px;
       width: 50px;
@@ -294,13 +293,13 @@ const profilesInfo = profiles.map(({ network, url }) => {
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      border: none; /* button default reset handled here */
     }
   }
 
   footer {
-    background: #fdfdfd;
-    border-top: 1px solid #eee;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -317,7 +316,9 @@ const profilesInfo = profiles.map(({ network, url }) => {
   }
 
   kbd {
-    background: #eee;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
