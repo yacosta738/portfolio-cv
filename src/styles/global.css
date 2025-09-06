@@ -36,17 +36,18 @@ h4 {
 }
 
 /* Print and no-print utilities */
+/* visually hidden on screen but available to print and screen readers
+   Use high-specificity selector to avoid needing !important */
 .print {
-	/* visually hidden on screen but available to print and screen readers */
-	position: absolute !important;
-	width: 1px !important;
-	height: 1px !important;
-	padding: 0 !important;
-	margin: -1px !important;
-	overflow: hidden !important;
-	clip: rect(0, 0, 0, 0) !important;
-	white-space: nowrap !important;
-	border: 0 !important;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
 }
 
 .no-print {
@@ -54,18 +55,29 @@ h4 {
 }
 
 @media print {
+	/* Print: restore normal flow for elements with .print */
 	.print {
-		position: static !important;
-		display: block !important;
-		width: auto !important;
-		height: auto !important;
-		margin: 0 !important;
-		clip: auto !important;
-		overflow: visible !important;
-		white-space: normal !important;
+		position: static;
+		display: block;
+		width: auto;
+		height: auto;
+		margin: 0;
+		clip: auto;
+		overflow: visible;
+		white-space: normal;
 	}
 
 	.no-print {
-		display: none !important;
+		/* Increase specificity to avoid being overridden by ID selectors in components */
+		display: none;
+	}
+
+	/* Some components (for example KeyboardManager) use an ID like #normal-footer
+	   with a display rule that can outrank the .no-print class. Add extra selectors
+	   so the print hide rule wins without using !important. */
+	#normal-footer.no-print,
+	footer.no-print,
+	.no-print {
+		display: none;
 	}
 }
