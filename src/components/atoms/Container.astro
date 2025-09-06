@@ -1,14 +1,15 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-export interface Props {
+export interface Props extends HTMLAttributes<"div"> {
 	class?: string;
 }
 
-const { class: className, ...rest } = Astro.props;
+const { class: className, ...attrs } = Astro.props;
 const classes = cn("flex", className);
 ---
 
-<div class={classes} {...rest}>
+<div class={classes} {...attrs}>
 	<slot />
 </div>

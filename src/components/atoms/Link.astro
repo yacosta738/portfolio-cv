@@ -13,7 +13,7 @@ const {
 	variant = "primary",
 	external = false,
 	class: className,
-	...rest
+	...attrs
 } = Astro.props;
 
 const baseStyles = {
@@ -30,11 +30,11 @@ const rel = external ? "noopener noreferrer" : undefined;
 ---
 
 {href ? (
-	<a href={href} class={classes} target={target} rel={rel} {...rest}>
+	<a href={href} class={classes} target={target} rel={rel} {...attrs}>
 		<slot />
 	</a>
 ) : (
-	<span class={classes} {...rest}>
+	<span class={classes} {...attrs}>
 		<slot />
 	</span>
 )}

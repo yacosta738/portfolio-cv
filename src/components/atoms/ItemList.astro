@@ -1,4 +1,5 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 import Link from "./Link.astro";
 import Typography from "./Typography.astro";
@@ -11,17 +12,17 @@ export interface ItemDetail {
 	url?: string;
 }
 
-export interface Props {
+export interface Props extends HTMLAttributes<"ul"> {
 	items: string[] | ItemDetail[];
 	variant?: "simple" | "detailed";
 	class?: string;
 }
 
-const { items, variant = "simple", class: className, ...rest } = Astro.props;
+const { items, variant = "simple", class: className, ...attrs } = Astro.props;
 const classes = cn("flex flex-col gap-3", className);
 ---
 
-<ul class={classes} {...rest}>
+<ul class={classes} {...attrs}>
 	{items.map((item) => (
 		<li>
 			{variant === 'simple' ? (

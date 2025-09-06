@@ -1,11 +1,12 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { Icon } from "astro-icon/components";
 import { cn } from "@/lib/utils";
 import Badge from "./Badge.astro";
 import Link from "./Link.astro";
 import Typography from "./Typography.astro";
 
-export interface Props {
+export interface Props extends HTMLAttributes<"article"> {
 	name: string;
 	description: string;
 	highlights?: string[];
@@ -25,7 +26,7 @@ const {
 	github,
 	isActive = false,
 	class: className,
-	...rest
+	...attrs
 } = Astro.props;
 
 const classes = cn(
@@ -34,7 +35,7 @@ const classes = cn(
 );
 ---
 
-<article class={classes} {...rest}>
+<article class={classes} {...attrs}>
 	<header class="flex-1">
 		<Typography as="h3" class="mb-1 font-medium text-gray-900">
 			{url ? (

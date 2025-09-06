@@ -1,9 +1,10 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 import Link from "./Link.astro";
 import Typography from "./Typography.astro";
 
-export interface Props {
+export interface Props extends HTMLAttributes<"article"> {
 	title: string;
 	organization?: string;
 	url?: string;
@@ -23,13 +24,13 @@ const {
 	description,
 	position,
 	class: className,
-	...rest
+	...attrs
 } = Astro.props;
 
 const classes = cn("p-2", className);
 ---
 
-<article class={classes} {...rest}>
+<article class={classes} {...attrs}>
 	<header class="flex justify-between items-start mb-1">
 		<div class="flex-1">
 			<Typography as="h3" class="font-medium text-gray-900 mb-0">
