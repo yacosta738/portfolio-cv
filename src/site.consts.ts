@@ -29,4 +29,4 @@ const BASE_URL_LOCAL =
 	import.meta.env.BASE_URL_LOCAL || "http://localhost:4321";
 const BASE_URL_PROD =
 	import.meta.env.BASE_URL_PROD || "https://portfolio-cv-three-psi.vercel.app";
-export const BASE_URL = import.meta.env.DEV ? BASE_URL_LOCAL : BASE_URL_PROD;
+export const BASE_URL = import.meta.env.PROD ? BASE_URL_PROD : BASE_URL_LOCAL;
