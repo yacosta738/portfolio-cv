@@ -32,7 +32,9 @@ const { image, summary, url } = resume.basics;
     <title>{localeTitle}</title>
     <meta name="description" content={summary} />
     <meta name="viewport" content="width=device-width" />
-    <meta name="color-scheme" content="light dark" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1016" />
 
     <script is:inline>
       const getTheme = () => {

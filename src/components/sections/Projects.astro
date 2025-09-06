@@ -29,8 +29,8 @@ const t = useTranslations(currentLocale);
                       href={url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      title={`Ver el proyecto ${name}`}
-                      class="text-gray-900 dark:text-gray-100 hover:underline focus:underline hover:text-gray-700 dark:hover:text-gray-300"
+                      title={t('viewProject', { name }) || `View project ${name}`}
+                      class="text-gray-900 dark:text-gray-100 hover:underline focus:underline hover:text-gray-700 dark:hover:text-gray-100"
                     >
                       {name}
                     </a>
@@ -38,11 +38,11 @@ const t = useTranslations(currentLocale);
                     {github && (
                       <a
                         class="ml-1.5 inline-block text-gray-600 dark:text-gray-400"
-                          href={github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={`Ver código fuente del proyecto ${name}`}
-                          aria-label={`Ver código fuente del proyecto ${name} en GitHub`}
+                              href={github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={t('viewProject', { name }) || `View source of ${name}`}
+                              aria-label={t('viewProject', { name }) ? `${t('viewProject', { name })} on GitHub` : `View source of ${name} on GitHub`}
                       >
                         <Icon name="lucide:github" class="size-4" aria-hidden="true" />
                       </a>

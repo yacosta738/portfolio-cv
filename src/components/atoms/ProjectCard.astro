@@ -51,9 +51,10 @@ const classes = cn(
 				</Link>
 			)}
 			{isActive && (
-				<Typography as="span" class="text-green-600 dark:text-green-400 ml-1 animate-pulse">
-					●
-				</Typography>
+				<span class="ml-1 inline-flex items-center">
+					<span aria-hidden="true" class="h-2 w-2 rounded-full bg-green-600 dark:bg-green-400 motion-safe:animate-pulse"></span>
+					<span class="sr-only">Active</span>
+				</span>
 			)}
 		</Typography>
 		<Typography variant="small" class="leading-5 mb-1 text-pretty">

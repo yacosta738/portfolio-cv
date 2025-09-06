@@ -43,25 +43,31 @@ const t = useTranslations(currentLocale);
                         name
                       )}
                     </Typography>
-                    <Typography as="h4" variant="body"  class="text-gray-700 dark:text-gray-300 font-normal">
+                    <Typography as="h4" variant="body"  class="text-slate-700 dark:text-slate-300 font-normal">
                       {position}
                     </Typography>
                   </div>
 
-                  <div class="flex gap-1 text-gray-600 dark:text-gray-400 text-sm min-w-[102px] text-right max-sm:text-right">
+                  <div class="flex gap-1 text-gray-600 dark:text-gray-400 text-sm min-w-0 text-right tabular-nums">
                     <time
-                      class="relative text-sm text-gray-600 dark:text-gray-400 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-slate-100 after:text-slate-800 after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-slate-300 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500 dark:after:bg-gray-800 dark:after:text-white dark:after:border-gray-700"
+                      tabindex="0"
+                      aria-describedby={`start-${startDateStr}`}
+                      class="relative text-sm text-gray-600 dark:text-gray-400 cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-slate-100 after:text-slate-800 after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-slate-300 after:rounded-md after:z-[99999] after:transition-opacity after:duration-100 after:delay-500 dark:after:bg-gray-800 dark:after:text-white dark:after:border-gray-700"
                       datetime={startDateStr}
                       data-title={startDateStr}>
                         {startYear}
                     </time>
+                    <span id={`start-${startDateStr}`} class="sr-only">{startDateStr}</span>
                     <span class="text-gray-600 dark:text-gray-400">-</span>
                     <time
-                      class="relative text-sm text-gray-600 dark:text-gray-400 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-slate-100 after:text-slate-800 after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-slate-300 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500 dark:after:bg-gray-800 dark:after:text-white dark:after:border-gray-700"
+                      tabindex="0"
+                      aria-describedby={`end-${endDateStr}`}
+                      class="relative text-sm text-gray-600 dark:text-gray-400 cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-slate-100 after:text-slate-800 after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-slate-300 after:rounded-md after:z-[99999] after:transition-opacity after:duration-100 after:delay-500 dark:after:bg-gray-800 dark:after:text-white dark:after:border-gray-700"
                       datetime={endDateStr}
                       data-title={endDateStr}>
                         {endYear}
                     </time>
+                    <span id={`end-${endDateStr}`} class="sr-only">{endDateStr}</span>
                   </div>
                 </header>
 

@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<"button"> {
 	class?: string;
 }
 
-const currentLocale = Astro.params.lang as Lang;
+const currentLocale = (Astro.params.lang as Lang) || 'en'; // fallback to default locale
 const t = useTranslations(currentLocale);
 
 const { class: className, ...attrs } = Astro.props;
@@ -33,11 +33,19 @@ const { class: className, ...attrs } = Astro.props;
   const lightIcon = document.getElementById("theme-toggle-light-icon");
   const darkIcon = document.getElementById("theme-toggle-dark-icon");
 
-  // Type guard to ensure elements exist
+  // Type guard to ensure elements exist — degrade gracefully if not
   if (!themeToggleButton || !lightIcon || !darkIcon) {
-    console.error("Theme toggle elements not found");
-    throw new Error("Theme toggle elements not found");
-  }
+    console.warn("Theme toggle: some elements are missing. Toggle will be disabled or skipped.");
+
+    // If the button exists but icons are missing, disable/hide the button to avoid broken interactions
+    if (themeToggleButton && (!lightIcon || !darkIcon)) {
+      themeToggleButton.setAttribute("aria-hidden", "true");
+      themeToggleButton.setAttribute("disabled", "true");
+      themeToggleButton.classList.add("opacity-50", "pointer-events-none");
+    }
+
+    // Do not proceed with the theme toggle setup if required elements are missing
+  } else {
 
   // Function to set the icons visibility
   const setIconVisibility = (theme: "light" | "dark"): void => {
@@ -50,36 +58,34 @@ const { class: className, ...attrs } = Astro.props;
     }
   };
 
-  // Set initial icon visibility
-  const initialTheme: "light" | "dark" = document.documentElement.classList.contains("dark")
-    ? "dark"
-    : "light";
-  setIconVisibility(initialTheme);
+    // Set initial icon visibility
+    const initialTheme: "light" | "dark" = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+    setIconVisibility(initialTheme);
 
-  themeToggleButton.addEventListener("click", (): void => {
-    // toggle icons inside button
-    darkIcon.classList.toggle("hidden");
-    lightIcon.classList.toggle("hidden");
+    themeToggleButton.addEventListener("click", (): void => {
+      // Read current theme once: prefer localStorage if present, otherwise infer from document
+      const stored = localStorage.getItem("theme");
+      const currentTheme: "light" | "dark" = stored
+        ? (stored as "light" | "dark")
+        : document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
 
-    // if set via local storage previously
-    if (localStorage.getItem("theme")) {
-      if (localStorage.getItem("theme") === "light") {
+      // Compute the inverse theme
+      const newTheme: "light" | "dark" = currentTheme === "dark" ? "light" : "dark";
+
+      // Apply the new theme to the document and persist
+      if (newTheme === "dark") {
         document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
       } else {
         document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
       }
+      localStorage.setItem("theme", newTheme);
 
-      // if NOT set via local storage previously
-    } else {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      }
-    }
-  });
+      // Update icons centrally
+      setIconVisibility(newTheme);
+    });
+  }
 </script>

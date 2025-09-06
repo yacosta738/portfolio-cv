@@ -20,6 +20,7 @@ export const main: {
 		references: "References",
 		interests: "Interests",
 		contact: "Contact",
+		viewProject: "View project {name}",
 	},
 	es: {
 		title: "Portafolio de {name} - {label}",
@@ -37,5 +38,6 @@ export const main: {
 		references: "Referencias",
 		interests: "Intereses",
 		contact: "Contacto",
+		viewProject: "Ver el proyecto {name}",
 	},
 };
