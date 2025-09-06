@@ -26,13 +26,13 @@ const t = useTranslations(currentLocale);
             <article>
               <header class="flex justify-between items-start mb-1">
                 <div>
-                  <h3 class="font-medium text-gray-900">{institution}</h3>
+                  <h3 class="font-medium text-gray-900 dark:text-gray-100">{institution}</h3>
                 </div>
-                <time class="text-gray-600 text-sm min-w-[102px] sm:text-right">{years}</time>
+                <time class="text-gray-600 dark:text-gray-400 text-sm min-w-[102px] sm:text-right">{years}</time>
               </header>
 
               <footer>
-                <p>{area}</p>
+                <p class="text-gray-800 dark:text-gray-200">{area}</p>
               </footer>
             </article>
           </li>

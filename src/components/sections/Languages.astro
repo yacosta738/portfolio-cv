@@ -25,9 +25,9 @@ await languageMapper.initialize();
 				const key = languageMapper.findLocaleCode(l.language);
 				const content = (
 					<>
-						<strong>{l.language}</strong>
+						<strong class="text-gray-900 dark:text-gray-100">{l.language}</strong>
 						{l.fluency && (
-							<span class="text-gray-600 font-normal text-sm">
+							<span class="text-gray-600 dark:text-gray-400 font-normal text-sm">
 								{' '}— {l.fluency}
 							</span>
 						)}
@@ -35,7 +35,7 @@ await languageMapper.initialize();
 				);
 				
 				return (
-					<li class="bg-gray-50 p-2 rounded-md text-sm">
+					<li class="bg-gray-50 dark:bg-gray-800 p-2 rounded-md text-sm">
 						{key ? (
 							<Link 
 								href={`/${key}/`} 
