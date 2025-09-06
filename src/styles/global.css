@@ -4,7 +4,9 @@
 	 These map to our CSS variables and provide a small custom palette for the project. */
 @theme {
 	/* Fonts */
-	--font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Color Emoji";
+	--font-sans:
+		ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, "Noto Color Emoji";
 
 	/* Core colors (map to CSS variables we also define below) */
 	--color-primary-50: #f8fafc;
@@ -118,7 +120,10 @@ html {
 	background-color: var(--bg-primary);
 	/* Use defined token for text color */
 	color: var(--text-primary);
-	transition: background-color 200ms linear, color 200ms linear, border-color 200ms linear;
+	transition:
+		background-color 200ms linear,
+		color 200ms linear,
+		border-color 200ms linear;
 }
 
 /* Utility for screen-reader only content */
@@ -134,12 +139,12 @@ html {
 	white-space: nowrap;
 	border: 0;
 }
-	.text-foreground {
-		color: var(--text-primary, #0f172a) !important;
-	}
-	.dark .text-foreground-inverse {
-		color: var(--text-primary, #f8fafc) !important;
-	}
+.text-foreground {
+	color: var(--text-primary, #0f172a) !important;
+}
+.dark .text-foreground-inverse {
+	color: var(--text-primary, #f8fafc) !important;
+}
 
 .no-print {
 	display: flex;

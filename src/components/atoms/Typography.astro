@@ -20,19 +20,17 @@ const variantStyles: Record<Variant, string> = {
 	// Use a centralized design token for foreground text so callers don't need
 	// to repeat light/dark color utilities. If the project wants a different
 	// token name, update these entries and the Tailwind theme accordingly.
-	title: "text-4xl font-normal text-foreground my-4 dark:text-foreground-inverse",
-	subtitle: "text-lg font-medium text-foreground my-6 dark:text-foreground-inverse",
+	title:
+		"text-4xl font-normal text-foreground my-4 dark:text-foreground-inverse",
+	subtitle:
+		"text-lg font-medium text-foreground my-6 dark:text-foreground-inverse",
 	body: "text-sm leading-6 text-foreground my-2",
 	small: "text-xs leading-5 text-foreground my-2",
 	muted: "text-sm text-foreground/70 dark:text-foreground-inverse/70 my-2",
 	date: "text-sm text-foreground cursor-default dark:text-foreground-inverse my-2 tabular-nums text-right",
 };
 
-const classes = cn(
-	"last:mb-0",
-	variantStyles[variant as Variant],
-	className,
-);
+const classes = cn("last:mb-0", variantStyles[variant as Variant], className);
 ---
 
 <Element class={classes} {...rest}>
