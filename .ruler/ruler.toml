@@ -70,9 +70,8 @@ output_path = ".windsurf/rules/ruler_windsurf_instructions.md"
 
 [agents.codex]
 enabled = true
-output_path = "AGENTS.md"
+output_path = "AGENTS_CODEX.md"
 output_path_config = ".codex/config.toml"
-
 [agents.amp]
 enabled = true
 
