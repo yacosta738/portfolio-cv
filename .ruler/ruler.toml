@@ -4,7 +4,7 @@
 default_agents = [
     "copilot", "claude", "cursor", "aider", "gemini-cli", "goose", "opencode", 
     "kilocode", "augmentcode", "junie", "jules", "openhands", "firebase", 
-    "cline", "windsurf", "codex", "amp", "crush"
+    "cline", "windsurf", "codex", "amp"
 ]
 
 # --- Agent Specific Configurations ---
@@ -76,9 +76,7 @@ output_path_config = ".codex/config.toml"
 [agents.amp]
 enabled = true
 
-[agents.crush]
-enabled = true
-output_path = "CRUSH.md"
+
 
 # --- MCP Servers (recommended in ruler.toml) ---
 [mcp]
