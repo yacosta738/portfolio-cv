@@ -1,4 +1,5 @@
 ---
+import ItemList from "@atoms/ItemList.astro";
 import Section from "@atoms/Section.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Certificate from "@/resume/certificate/certificate.model";
@@ -10,31 +11,17 @@ interface Props {
 const { certificates = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+const mappedCertificates = certificates.map((c) => ({
+	title: c.name,
+	date: c.date.getFullYear().toString(),
+	organization: c.issuer,
+	url: c.url,
+}));
 ---
 
 {certificates.length > 0 && (
-  <Section title={t('certificates')}>
-    <ul>
-      {certificates.map((c) => (
-        <li>
-          <article>
-            <header>
-              <h3>
-                {c.url ? <a href={c.url} target="_blank" rel="noopener noreferrer">{c.name}</a> : <span>{c.name}</span>}
-              </h3>
-              <time datetime={c.date.toISOString().split('T')[0]}>{c.date.getFullYear()}</time>
-            </header>
-            <footer>
-              <p>{c.issuer}</p>
-            </footer>
-          </article>
-        </li>
-      ))}
-    </ul>
-  </Section>
+	<Section title={t('certificates')}>
+		<ItemList items={mappedCertificates} variant="detailed" />
+	</Section>
 )}
-
-<style>
-  ul { display:flex; flex-direction:column; gap:12px }
-  article { padding:8px }
-</style>

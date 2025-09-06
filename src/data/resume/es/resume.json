@@ -279,11 +279,51 @@
 			"endDate": "2023-12-01",
 			"description": "Plataforma de automatización y distribución de contenido enfocada en servicios backend escalables y arquitectura cloud-native.",
 			"highlights": [
-				"Diseño e implementación de APIs REST escalables para gestión de contenido",
-				"Automatización de pipelines de despliegue usando Kubernetes y Docker",
-				"Mejora de la fiabilidad del sistema y reducción del downtime en un 30%"
+				"APIs de contenido",
+				"Kubernetes & CI/CD",
+				"+30% fiabilidad"
 			],
 			"url": "https://hatchgrid.io"
+		},
+		{
+			"name": "EdgeMonitor",
+			"startDate": "2023-06-01",
+			"endDate": "2024-02-01",
+			"description": "Plataforma de observabilidad distribuida para recopilar, procesar y visualizar la telemetría de edge con ingestión y almacenamiento de baja latencia.",
+			"highlights": [
+				"Ingestión baja latencia",
+				"Muestreo adaptativo",
+				"UI en tiempo real"
+			],
+			"url": "https://github.com/yacosta738/edgemonitor"
+		},
+		{
+			"name": "OpenResume",
+			"startDate": "2021-05-01",
+			"endDate": "2021-12-01",
+			"description": "Proyecto open-source: esquema compacto de CV y herramienta para generar PDFs y sitios estáticos desde un único JSON.",
+			"highlights": ["Esquema JSON", "CLI (PDF/sitio)", "Validación en CI"],
+			"url": "https://github.com/yacosta738/openresume"
+		},
+		{
+			"name": "PhotoFlow",
+			"startDate": "2020-03-01",
+			"endDate": "2020-11-01",
+			"description": "Pipeline de procesamiento de imágenes de alto rendimiento que realiza redimensionado, compresión y recorte con detección de contenido para entrega web.",
+			"highlights": [
+				"Procesamiento paralelo",
+				"Recorte inteligente",
+				"-70% tamaño"
+			],
+			"url": "https://github.com/yacosta738/photoflow"
+		},
+		{
+			"name": "Invoiceify",
+			"startDate": "2019-07-01",
+			"endDate": "2020-02-01",
+			"description": "Suite de microservicios de facturación para pymes que genera facturas, calcula impuestos y entrega PDFs.",
+			"highlights": ["Microservicios", "Facturas PDF", "Multi-divisa"],
+			"url": "https://github.com/yacosta738/invoiceify"
 		}
 	]
 }

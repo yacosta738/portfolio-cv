@@ -1,0 +1,40 @@
+---
+import { cn } from "@/lib/utils";
+
+export interface Props {
+	href?: string;
+	variant?: "primary" | "social" | "subtle";
+	external?: boolean;
+	class?: string;
+}
+
+const {
+	href,
+	variant = "primary",
+	external = false,
+	class: className,
+	...attrs
+} = Astro.props;
+
+const baseStyles = {
+	primary:
+		"text-gray-900 no-underline hover:underline hover:text-gray-700 focus:underline focus:text-gray-700",
+	social:
+		"text-gray-500 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-200 hover:border-gray-300",
+	subtle: "text-gray-900 no-underline hover:underline focus:underline",
+};
+
+const classes = cn(baseStyles[variant], className);
+const target = external ? "_blank" : undefined;
+const rel = external ? "noopener noreferrer" : undefined;
+---
+
+{href ? (
+	<a href={href} class={classes} target={target} rel={rel} {...attrs}>
+		<slot />
+	</a>
+) : (
+	<span class={classes} {...attrs}>
+		<slot />
+	</span>
+)}

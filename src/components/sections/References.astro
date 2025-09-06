@@ -1,4 +1,5 @@
 ---
+import ItemList from "@atoms/ItemList.astro";
 import Section from "@atoms/Section.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Reference from "@/resume/reference/reference.model";
@@ -10,28 +11,17 @@ interface Props {
 const { references = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+const mappedReferences = references.map((r) => ({
+	title: r.name,
+	content: r.reference,
+}));
 ---
 
 {references.length > 0 && (
-  <Section title={t('references')}>
-    <ul>
-      {references.map((r) => (
-        <li>
-          <article>
-            <header>
-              <h3>{r.name}</h3>
-            </header>
-            <footer>
-              <p>{r.reference}</p>
-            </footer>
-          </article>
-        </li>
-      ))}
-    </ul>
-  </Section>
+	<Section title={t('references')}>
+		<ItemList items={mappedReferences} variant="detailed" />
+	</Section>
 )}
 
-<style>
-  ul { display:flex; flex-direction:column; gap:12px }
-  article { padding:8px }
-</style>
+

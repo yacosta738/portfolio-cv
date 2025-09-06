@@ -1,5 +1,7 @@
 ---
+import Link from "@atoms/Link.astro";
 import Section from "@atoms/Section.astro";
+import Typography from "@atoms/Typography.astro";
 import { type Lang, useTranslations } from "@/i18n";
 import type Work from "@/resume/work/work.model";
 
@@ -14,7 +16,7 @@ const t = useTranslations(currentLocale);
 ---
 
 <Section title={t('experience')}>
-  <ul>
+  <ul class="flex flex-col gap-8">
     {
       work.map(
         (workItem) => {
@@ -23,35 +25,39 @@ const t = useTranslations(currentLocale);
           const startYear = startDate.getFullYear()
           const endYear = endDate ? endDate.getFullYear() : "Actual"
           
-          // Convertir fechas a strings para datetime
+      
           const startDateStr = startDate.toISOString().split('T')[0]
           const endDateStr = endDate ? endDate.toISOString().split('T')[0] : null
 
           return (
             <li>
-              <article>
-                <header>
-                  <div>
-                    <h3>
+              <article class="py-2">
+                <header class="flex justify-between items-start mb-1">
+                  <div class="flex-1">
+                    <Typography as="h3" variant="subtitle"  class="font-medium text-gray-900 mb-0">
                       {url ? (
-                        <a href={url} title={`Ver ${name}`} target="_blank" rel="noopener noreferrer">
+                        <Link href={url} variant="primary" external>
                           {name}
-                        </a>
+                        </Link>
                       ) : (
-                        <span>{name}</span>
+                        name
                       )}
-                    </h3>
-                    <h4>{position}</h4>
+                    </Typography>
+                    <Typography as="h4" variant="body"  class="text-gray-700 font-normal">
+                      {position}
+                    </Typography>
                   </div>
 
-                  <div>
+                  <div class="flex gap-1 text-gray-600 text-sm min-w-[102px] text-right max-sm:text-right">
                     <time 
+                      class="relative text-sm text-gray-600 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-gray-800 after:text-white after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-gray-700 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500"
                       datetime={startDateStr}
                       data-title={startDateStr}>
                         {startYear}
                     </time>
-                    {" - "}
+                    <span>-</span>
                     <time 
+                      class="relative text-sm text-gray-600 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-gray-800 after:text-white after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-gray-700 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500"
                       datetime={endDateStr}
                       data-title={endDateStr}>
                         {endYear}
@@ -60,7 +66,9 @@ const t = useTranslations(currentLocale);
                 </header>
 
                 <footer>
-                  <p>{summary}</p>
+                  <Typography variant="body"  class="text-pretty">
+                    {summary}
+                  </Typography>
                 </footer>
               </article>
             </li>
@@ -70,80 +78,3 @@ const t = useTranslations(currentLocale);
     }
   </ul>
 </Section>
-
-<style>
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  article h3 {
-    font-weight: 500;
-    color: #1a202c;
-  }
-
-  article a {
-    color: #1a202c;
-  }
-
-  article a:hover,
-  article a:focus {
-    text-decoration: underline;
-    color: #2d3748;
-  }
-
-  article h4 {
-    color: #2d3748;
-    font-weight: 400;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
-  }
-
-  time {
-    color: #4a5568;
-    font-size: 0.85rem;
-    min-width: 102px;
-    cursor: default;
-  }
-
-  [data-title]:hover:after {
-    opacity: 1;
-    transition: all 0.1s ease-in-out 0.5s;
-    visibility: visible;
-  }
-
-  [data-title]:after {
-    content: attr(data-title);
-    background-color: #333;
-    color: #fff;
-    font-size: .75rem;
-    font-family: Menlo, Monaco, Lucida Console, "Courier New", monospace;;
-    position: absolute;
-    padding: .2rem .5rem;
-    bottom: -1.4rem;
-    left: 50%;
-    white-space: nowrap;
-    box-shadow: 1px 1px 1px #222222;
-    opacity: 0;
-    border: 1px solid #111111;
-    z-index: 99999;
-    visibility: hidden;
-    border-radius: 6px;
-  }
-
-  [data-title] {
-    position: relative;
-  }
-
-  @media (width <= 700px) {
-    time {
-      text-align: right;
-    }
-  }
-</style>

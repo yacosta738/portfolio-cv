@@ -1,6 +1,7 @@
 ---
 import OptimizedPicture from "@atoms/OptimizedPicture.astro";
 import Section from "@atoms/Section.astro";
+import Typography from "@atoms/Typography.astro";
 import { Icon } from "astro-icon/components";
 import { type Lang, useTranslations } from "@/i18n";
 import type { Location, Profile } from "@/resume";
@@ -40,22 +41,24 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
 ---
 
 <Section>
-  <div class="container">
-    <div class="info">
-      <h1>{name}</h1>
-      <h2>{label}</h2>
-      <span>
+  <div class="flex flex-row items-center justify-between gap-4 max-sm:flex-col-reverse print:flex-row">
+    <div class="flex-1 min-w-0 flex flex-col gap-2 pr-8 max-sm:pr-0 max-sm:text-center max-sm:items-center print:pr-8 print:text-left print:items-start">
+      <Typography as="h1" variant="title" class="text-balance font-medium">{name}</Typography>
+      <Typography as="h2" variant="subtitle"  class="text-lg font-bold text-gray-700 m-0">{label}</Typography>
+      <Typography as="span" variant="muted"  class="flex items-center gap-1 text-sm text-gray-600">
         <Icon name="lucide:map" class="size-4" aria-hidden="true" />
         {city}, {region}
-      </span>
-      <footer class="print">
+      </Typography>
+
+      <div class="hidden print:block text-sm text-gray-600 mt-1">
         {printInfo}
-      </footer>
-      <footer class="no-print">
+      </div>
+      <footer class="no-print mt-2 flex gap-1">
         {
           email && (
             <a
               href={`mailto:${email}`}
+              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
               title={`Enviar un correo electrónico a ${name} al correo ${email}`}
               aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
               target="_blank"
@@ -69,6 +72,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
           phone && (
             <a
               href={`tel:${phone}`}
+              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
               title={`Llamar por teléfono a ${name} al número ${phone}`}
               aria-label={`Llamar por teléfono a ${name} al número ${phone}`}
               target="_blank"
@@ -84,6 +88,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
             return (
               <a
                 href={url}
+                class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
                 title={`Visitar el perfil de ${name} en ${network}`}
                 aria-label={`Visitar el perfil de ${name} en ${network}`}
                 target="_blank"
@@ -96,128 +101,17 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         }
       </footer>
     </div>
-    <figure>
+    <figure class="flex-none w-32 min-w-12 max-sm:flex max-sm:justify-center max-sm:items-center max-sm:mx-auto print:flex-none print:w-32">
       {image && (
-				<OptimizedPicture
-					src={image}
-					alt={name}
-					width={128}
-					height={128}
-					loading="eager"
-					class="h-full w-full object-cover"
-				/>
-			)}
+			<OptimizedPicture
+				src={image}
+				alt={name}
+				width={128}
+				height={128}
+				loading="eager"
+				class="w-32 h-32 object-cover rounded-2xl aspect-square"
+			/>
+		)}
     </figure>
   </div>
 </Section>
-
-<style>
-  .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-right: 32px;
-  /* allow the text block to shrink properly inside a flex container */
-  flex: 1 1 0%;
-  min-width: 0;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    color: #444;
-    font-weight: 500;
-    font-size: 1.1rem;
-    text-wrap: balance;
-  }
-
-  /* Avatar image: use a flexible box so content can push and shrink the image
-     when necessary. Initial size is 128px but it can shrink to a sensible
-     minimum to accommodate long text. */
-  figure {
-    flex: 0 1 128px; /* don't grow, but allow shrinking from 128px */
-    min-width: 48px; /* reduced minimum avatar size */
-    width: 128px;
-  }
-
-  img {
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-    display: block;
-  }
-
-  span {
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.85rem;
-    letter-spacing: -0.05rem;
-  }
-
-  footer {
-    color: #555;
-    font-size: 0.65rem;
-    display: flex;
-    gap: 4px;
-    margin-top: 8px;
-  }
-
-  footer a {
-    color: #777;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #eee;
-    padding: 4px;
-    height: 32px;
-    width: 32px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-  }
-
-  footer a:hover {
-    background: #eee;
-    border: 1px solid #ddd;
-  }
-
-  @media (width <= 700px) {
-    .container {
-      flex-direction: column-reverse;
-    }
-
-    .info {
-      justify-content: center;
-      align-items: center;
-      padding-right: 0;
-      text-align: center;
-    }
-
-    figure {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    h2 {
-      text-wrap: balance;
-    }
-
-    figure {
-      margin: 0 auto;
-    }
-  }
-</style>
