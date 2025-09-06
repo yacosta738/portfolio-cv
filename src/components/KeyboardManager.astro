@@ -317,9 +317,10 @@ const profilesInfo = profiles.map(({ network, url }) => {
   }
 
   kbd {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
+    /* Prefer theme tokens but keep readable fallbacks */
+    background: var(--bg-secondary, #eeeeee);
+    border: 1px solid var(--border-color, #eeeeee);
+    color: var(--text-secondary, #333333);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;

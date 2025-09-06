@@ -8,7 +8,7 @@ import { BASE_URL } from "./src/site.consts.ts";
 // https://astro.build/config
 export default defineConfig({
 	site: BASE_URL,
-	compressHTML: true,
+
 	env: {
 		schema: {
 			AHREFS_KEY: envField.string({

@@ -28,7 +28,15 @@ const t = useTranslations(currentLocale);
                 <div>
                   <h3 class="font-medium text-gray-900 dark:text-gray-100">{institution}</h3>
                 </div>
-                <time class="text-gray-600 dark:text-gray-400 text-sm min-w-[102px] sm:text-right">{years}</time>
+                <div class="sm:text-right">
+                  <time datetime={startDate.toISOString()} class="text-gray-600 dark:text-gray-300 text-sm tabular-nums whitespace-nowrap">{startYear}</time>
+                  <span aria-hidden="true" class="mx-1">–</span>
+                  {endDate ? (
+                    <time datetime={endDate.toISOString()} class="text-gray-600 dark:text-gray-300 text-sm tabular-nums whitespace-nowrap">{endYear}</time>
+                  ) : (
+                    <time class="text-gray-600 dark:text-gray-300 text-sm tabular-nums whitespace-nowrap">{t('present') ?? 'Present'}</time>
+                  )}
+                </div>
               </header>
 
               <footer>

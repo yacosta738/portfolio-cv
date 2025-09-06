@@ -17,12 +17,15 @@ const {
 } = Astro.props as Props;
 
 const variantStyles: Record<Variant, string> = {
-	title: "text-4xl font-normal text-slate-900 my-4 dark:text-slate-100",
-	subtitle: "text-lg font-medium text-slate-800 my-6 dark:text-slate-200",
-	body: "text-sm leading-6 text-slate-700 dark:text-slate-300 my-2",
-	small: "text-xs leading-5 text-slate-600 dark:text-slate-400 my-2",
-	muted: "text-sm text-slate-500 dark:text-slate-400 my-2",
-	date: "text-sm text-slate-600 cursor-default dark:text-slate-400 my-2 tabular-nums text-right",
+	// Use a centralized design token for foreground text so callers don't need
+	// to repeat light/dark color utilities. If the project wants a different
+	// token name, update these entries and the Tailwind theme accordingly.
+	title: "text-4xl font-normal text-foreground my-4 dark:text-foreground-inverse",
+	subtitle: "text-lg font-medium text-foreground my-6 dark:text-foreground-inverse",
+	body: "text-sm leading-6 text-foreground my-2",
+	small: "text-xs leading-5 text-foreground my-2",
+	muted: "text-sm text-foreground/70 dark:text-foreground-inverse/70 my-2",
+	date: "text-sm text-foreground cursor-default dark:text-foreground-inverse my-2 tabular-nums text-right",
 };
 
 const classes = cn(

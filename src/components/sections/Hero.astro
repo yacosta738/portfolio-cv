@@ -44,13 +44,13 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
   <div class="flex flex-row items-center justify-between gap-4 max-sm:flex-col-reverse print:flex-row">
     <div class="flex-1 min-w-0 flex flex-col gap-2 pr-8 max-sm:pr-0 max-sm:text-center max-sm:items-center print:pr-8 print:text-left print:items-start">
       <Typography as="h1" variant="title" class="text-balance font-medium">{name}</Typography>
-      <Typography as="h2" variant="subtitle" class="text-lg font-bold m-0">{label}</Typography>
+  <Typography as="h2" variant="subtitle" class="m-0">{label}</Typography>
       <Typography as="span" variant="muted" class="flex items-center gap-1 text-sm">
         <Icon name="lucide:map" class="size-4" aria-hidden="true" />
         {city}, {region}
       </Typography>
 
-      <div class="hidden print:block text-sm text-slate-600 dark:text-slate-400 mt-1">
+  <div class="hidden print:block text-sm text-slate-600 print:text-slate-600 mt-1">
         {printInfo}
       </div>
       <footer class="no-print mt-2 flex gap-1">

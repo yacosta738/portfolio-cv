@@ -7,7 +7,7 @@ default_agents = ["copilot", "claude", "cursor", "aider"]
 
 # --- Agent Specific Configurations ---
 # You can enable/disable agents and override their default output paths here.
-# Use lowercase agent identifiers: amp, copilot, claude, codex, cursor, windsurf, cline, aider, kilocode
+# Use lowercase agent identifiers. Configured here: copilot, claude, cursor, aider
 
 [agents.copilot]
 enabled = true
