@@ -31,15 +31,15 @@ const positionClasses = getPositionClasses();
 ---
 
 <div id="js-languageSuggest" class={cn("fixed hidden z-50 opacity-0 transition-all duration-300 ease-in-out", positionClasses, attr.class)}>
-  <div class="backdrop-blur-xl bg-white/20 dark:bg-gray-900/20 rounded-2xl shadow-2xl border border-white/30 dark:border-gray-700/30 flex items-center px-6 py-4 gap-4 w-auto max-w-md before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none relative overflow-hidden">
+  <div class="backdrop-blur-xl bg-white/20 dark:bg-gray-900/20 rounded-2xl shadow-2xl border border-white/30 dark:border-gray-700/30 flex items-center px-6 py-4 gap-4 w-auto max-w-md before:absolute before:inset-0 before:rounded-2xl before:bg-linear-to-br before:from-white/10 before:to-transparent before:pointer-events-none relative overflow-hidden">
     <!-- Glass reflection effect -->
-    <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent rounded-2xl"></div>
+    <div class="absolute inset-0 bg-linear-to-br from-white/5 via-transparent to-transparent rounded-2xl"></div>
     
-    <div class="flex-shrink-0 relative z-10">
+    <div class="shrink-0 relative z-10">
       <Icon name="tabler:language" class="size-6 text-indigo-500 dark:text-indigo-300" />
     </div>
 
-    <div class="flex-grow relative z-10">
+    <div class="grow relative z-10">
       <p class="text-sm text-gray-800 dark:text-gray-100 font-bold">
         <span class="font-semibold" id="js-suggestionText"></span>
         <a id="js-link" href="#" class="text-indigo-500 dark:text-indigo-300 hover:text-indigo-600 dark:hover:text-indigo-200 underline-offset-2 hover:underline font-semibold transition-colors duration-200" aria-label="Cambiar idioma">
@@ -48,7 +48,7 @@ const positionClasses = getPositionClasses();
       </p>
     </div>
 
-    <button id="js-close" class="flex-shrink-0 p-2 rounded-xl bg-white/20 dark:bg-gray-800/20 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-200 ease-in-out backdrop-blur-sm border border-white/20 dark:border-gray-600/20 relative z-10 group" aria-label="Close">
+    <button id="js-close" class="shrink-0 p-2 rounded-xl bg-white/20 dark:bg-gray-800/20 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-200 ease-in-out backdrop-blur-sm border border-white/20 dark:border-gray-600/20 relative z-10 group" aria-label="Close">
       <Icon name="tabler:x" class="size-4 text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-200 drop-shadow-sm" />
       <span class="sr-only" id="js-closeText"></span>
     </button>

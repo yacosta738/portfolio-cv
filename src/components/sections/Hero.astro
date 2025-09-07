@@ -71,7 +71,7 @@ const safeProfiles = (profiles || []).filter((p) => {
           email && (
             <a
               href={`mailto:${email}`}
-              class="text-foreground inline-flex items-center justify-center border border-[color:var(--border-color)] p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-[color:var(--bg-secondary)] hover:border-[color:var(--border-hover)]"
+              class="text-foreground inline-flex items-center justify-center border border-(--border-color) p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-(--bg-secondary) hover:border-(--border-hover)"
               title={t('hero.emailTitle', { name, email })}
               aria-label={t('hero.emailAria', { name, email })}
               target="_blank"
@@ -85,7 +85,7 @@ const safeProfiles = (profiles || []).filter((p) => {
           phone && (
             <a
               href={`tel:${phoneHref ?? phone}`}
-              class="text-foreground inline-flex items-center justify-center border border-[color:var(--border-color)] p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-[color:var(--bg-secondary)] hover:border-[color:var(--border-hover)]"
+              class="text-foreground inline-flex items-center justify-center border border-(--border-color) p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-(--bg-secondary) hover:border-(--border-hover)"
               title={t('hero.phoneTitle', { name, phone })}
               aria-label={t('hero.phoneAria', { name, phone })}
             >
@@ -99,7 +99,7 @@ const safeProfiles = (profiles || []).filter((p) => {
             return (
               <a
                 href={url}
-                class="text-foreground inline-flex items-center justify-center border border-[color:var(--border-color)] p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-[color:var(--bg-secondary)] hover:border-[color:var(--border-hover)]"
+                class="text-foreground inline-flex items-center justify-center border border-(--border-color) p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-(--bg-secondary) hover:border-(--border-hover)"
                 title={t('hero.profileTitle', { name, network, username })}
                 aria-label={t('hero.profileAria', { name, network, username })}
                 target="_blank"

@@ -63,7 +63,7 @@ const formatDateWithMonth = (date: Date, locale: Lang): string => {
                       tabindex="0"
                       title={startDateStr}
                       aria-describedby={`start-${startDateStr}-${idx}`}
-                      class="relative text-sm text-foreground-muted cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-[color:var(--bg-secondary)] after:text-[color:var(--text-primary)] after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-[color:var(--border-color)] after:rounded-md after:z-[99999] after:transition-opacity after:duration-100 after:delay-500"
+                      class="relative text-sm text-foreground-muted cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-(--bg-secondary) after:text-(--text-primary) after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-(--border-color) after:rounded-md after:z-99999 after:transition-opacity after:duration-100 after:delay-500"
                       datetime={startDateStr}
                       data-title={startDateStr}>
                         {startDateFormatted}
@@ -76,7 +76,7 @@ const formatDateWithMonth = (date: Date, locale: Lang): string => {
                           tabindex="0"
                           title={endDateStr}
                           aria-describedby={`end-${endDateStr}-${idx}`}
-                          class="relative text-sm text-foreground-muted cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-[color:var(--bg-secondary)] after:text-[color:var(--text-primary)] after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-[color:var(--border-color)] after:rounded-md after:z-[99999] after:transition-opacity after:duration-100 after:delay-500"
+                          class="relative text-sm text-foreground-muted cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-(--bg-secondary) after:text-(--text-primary) after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-(--border-color) after:rounded-md after:z-99999 after:transition-opacity after:duration-100 after:delay-500"
                           datetime={endDateStr}
                           data-title={endDateStr}>
                             {endDateFormatted}

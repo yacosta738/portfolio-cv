@@ -1,8 +1,5 @@
 @import "tailwindcss";
-@theme {
-	/* Configure dark mode to use class strategy */
-	--default-theme-dark-selector: .dark;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* Tailwind theme variables: expose a focused set of design tokens so utility classes are generated
 	 These map to our CSS variables and provide a small custom palette for the project. */
