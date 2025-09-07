@@ -59,14 +59,21 @@ const t = useTranslations(currentLocale);
                     </time>
                     <span id={`start-${startDateStr}`} class="sr-only">{startDateStr}</span>
                     <span class="text-gray-600 dark:text-gray-400">-</span>
-                    <time
-                      tabindex="0"
-                      aria-describedby={`end-${endDateStr}`}
-                      class="relative text-sm text-gray-600 dark:text-gray-400 cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-slate-100 after:text-slate-800 after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-slate-300 after:rounded-md after:z-[99999] after:transition-opacity after:duration-100 after:delay-500 dark:after:bg-gray-800 dark:after:text-white dark:after:border-gray-700"
-                      datetime={endDateStr}
-                      data-title={endDateStr}>
-                        {endYear}
-                    </time>
+                    {endDateStr ? (
+                      <>
+                        <time
+                          tabindex="0"
+                          aria-describedby={`end-${endDateStr}`}
+                          class="relative text-sm text-gray-600 dark:text-gray-400 cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-slate-100 after:text-slate-800 after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-slate-300 after:rounded-md after:z-[99999] after:transition-opacity after:duration-100 after:delay-500 dark:after:bg-gray-800 dark:after:text-white dark:after:border-gray-700"
+                          datetime={endDateStr}
+                          data-title={endDateStr}>
+                            {endYear}
+                        </time>
+                        <span id={`end-${endDateStr}`} class="sr-only">{endDateStr}</span>
+                      </>
+                    ) : (
+                      <span class="text-gray-600 dark:text-gray-400" aria-label="Actual">{endYear}</span>
+                    )}
                     <span id={`end-${endDateStr}`} class="sr-only">{endDateStr}</span>
                   </div>
                 </header>

@@ -59,8 +59,8 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
             <a
               href={`mailto:${email}`}
               class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
-              aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
+              title={t('hero.emailTitle', { name, email })}
+              aria-label={t('hero.emailAria', { name, email })}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -73,8 +73,8 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
             <a
               href={`tel:${phone}`}
               class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-              title={`Llamar por teléfono a ${name} al número ${phone}`}
-              aria-label={`Llamar por teléfono a ${name} al número ${phone}`}
+              title={t('hero.phoneTitle', { name, phone })}
+              aria-label={t('hero.phoneAria', { name, phone })}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -89,8 +89,8 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
               <a
                 href={url}
                 class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-                title={`Visitar el perfil de ${name} en ${network}`}
-                aria-label={`Visitar el perfil de ${name} en ${network}`}
+                title={t('hero.profileTitle', { name, network })}
+                aria-label={t('hero.profileAria', { name, network })}
                 target="_blank"
                 rel="noopener noreferrer"
               >

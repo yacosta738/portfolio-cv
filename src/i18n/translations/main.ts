@@ -21,6 +21,12 @@ export const main: {
 		interests: "Interests",
 		contact: "Contact",
 		viewProject: "View project {name}",
+		"hero.emailTitle": "Send an email to {name} at {email}",
+		"hero.emailAria": "Send an email to {name} at {email}",
+		"hero.phoneTitle": "Call {name} at {phone}",
+		"hero.phoneAria": "Call {name} at {phone}",
+		"hero.profileTitle": "Visit {name}'s profile on {network}",
+		"hero.profileAria": "Visit {name}'s profile on {network}",
 	},
 	es: {
 		title: "Portafolio de {name} - {label}",
@@ -39,5 +45,12 @@ export const main: {
 		interests: "Intereses",
 		contact: "Contacto",
 		viewProject: "Ver el proyecto {name}",
+		"hero.emailTitle":
+			"Enviar un correo electrónico a {name} al correo {email}",
+		"hero.emailAria": "Enviar un correo electrónico a {name} al correo {email}",
+		"hero.phoneTitle": "Llamar por teléfono a {name} al número {phone}",
+		"hero.phoneAria": "Llamar por teléfono a {name} al número {phone}",
+		"hero.profileTitle": "Visitar el perfil de {name} en {network}",
+		"hero.profileAria": "Visitar el perfil de {name} en {network}",
 	},
 };
