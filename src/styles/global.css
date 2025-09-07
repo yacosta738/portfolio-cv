@@ -139,10 +139,11 @@ html {
 	border: 0;
 }
 .text-foreground {
-	color: var(--text-primary, #0f172a);
+	color: var(--text-primary);
 }
-.dark .text-foreground-inverse {
-	color: var(--text-primary, #f8fafc);
+
+.text-foreground-muted {
+	color: var(--text-secondary);
 }
 
 .no-print {

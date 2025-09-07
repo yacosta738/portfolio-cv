@@ -64,39 +64,15 @@ const { class: className, ...attrs } = Astro.props;
       : "light";
     setIconVisibility(initialTheme);
 
-    // Listen for theme changes to update icons
-    document.documentElement.addEventListener('themechange', ((event: CustomEvent<{ theme: Theme; timestamp: number }>) => {
-      const { theme } = event.detail;
-      setIconVisibility(theme);
-    }) as EventListener);
-
     // Handle theme toggle button click
     themeToggleButton.addEventListener("click", (): void => {
-      // Use the global theme system API if available, otherwise fallback to manual toggle
+      // Use the global theme system API
       if (window.themeSystem) {
         window.themeSystem.toggle();
-      } else {
-        // Fallback manual toggle
-        const currentTheme: Theme = document.documentElement.classList.contains("dark")
-          ? "dark"
+        // Update icons immediately
+        const newTheme: Theme = document.documentElement.classList.contains("dark")
+          ? "dark" 
           : "light";
-        const newTheme: Theme = currentTheme === "dark" ? "light" : "dark";
-
-        // Apply theme
-        if (newTheme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-        
-        // Store preference
-        try {
-          localStorage.setItem("theme", newTheme);
-        } catch (error) {
-          console.warn("Failed to store theme preference:", error);
-        }
-
-        // Update icons
         setIconVisibility(newTheme);
       }
     });

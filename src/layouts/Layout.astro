@@ -29,7 +29,8 @@ const localeTitle = title ? `${title} - ${t(SITE_TITLE)}` : t(SITE_TITLE);
 const { image, summary, url } = resume.basics;
 
 // Función helper para hostname seguro
-const getHostname = (urlStr: string) => {
+const getHostname = (urlStr?: string) => {
+	if (!urlStr) return "";
 	try {
 		return new URL(urlStr).hostname;
 	} catch {
@@ -48,7 +49,56 @@ const getHostname = (urlStr: string) => {
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" id="theme-color" content={LIGHT_COLOR} />
 
-    <script src="./theme.ts" defer></script>
+    <script is:inline define:vars={{ STORAGE_KEY, LIGHT_COLOR, DARK_COLOR }}>
+      (() => {
+        function getTheme() {
+          try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored === "dark" || stored === "light") return stored;
+          } catch {}
+          return window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? "dark" : "light";
+        }
+        
+        function applyTheme(theme) {
+          const html = document.documentElement;
+          const meta = document.querySelector('meta[name="theme-color"]');
+          
+          if (theme === "dark") {
+            html.classList.add("dark");
+            if (meta) meta.setAttribute('content', DARK_COLOR);
+          } else {
+            html.classList.remove("dark");
+            if (meta) meta.setAttribute('content', LIGHT_COLOR);
+          }
+        }
+        
+        const theme = getTheme();
+        applyTheme(theme);
+        
+        try {
+          localStorage.setItem(STORAGE_KEY, theme);
+        } catch {}
+        
+        window.matchMedia?.('(prefers-color-scheme: dark)')?.addEventListener?.('change', (e) => {
+          try {
+            if (!localStorage.getItem(STORAGE_KEY)) {
+              const newTheme = e.matches ? "dark" : "light";
+              applyTheme(newTheme);
+              localStorage.setItem(STORAGE_KEY, newTheme);
+            }
+          } catch {}
+        });
+        
+        window.themeSystem = {
+          toggle() {
+            const current = document.documentElement.classList.contains("dark") ? "dark" : "light";
+            const newTheme = current === "dark" ? "light" : "dark";
+            applyTheme(newTheme);
+            try { localStorage.setItem(STORAGE_KEY, newTheme); } catch {}
+          }
+        };
+      })();
+    </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />

@@ -29,11 +29,11 @@ if (variant === "social" && !hasAria && !hasSlot) {
 
 const baseStyles = {
 	primary:
-		"text-slate-900 no-underline hover:underline hover:text-slate-700 focus-visible:underline focus-visible:text-slate-700 dark:text-slate-100 dark:hover:text-slate-300 dark:focus-visible:text-slate-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 	social:
-		"text-slate-600 inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:text-slate-400 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+		"text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 	subtle:
-		"text-slate-900 no-underline hover:underline hover:text-slate-700 focus-visible:underline focus-visible:text-slate-700 dark:text-slate-100 dark:hover:text-slate-300 dark:focus-visible:text-slate-300 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)] focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 };
 
 const classes = cn(baseStyles[variant], className);
