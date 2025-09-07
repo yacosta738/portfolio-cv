@@ -18,7 +18,7 @@ const {
 
 // For social variant ensure an accessible name is provided: either an aria-label attr or visible/default slot content
 const a = attrs as Record<string, unknown>;
-const hasAria = Boolean(a["aria-label"] || a["ariaLabel"]);
+const hasAria = Boolean(a["aria-label"] || a.ariaLabel);
 const hasSlot = Boolean(Astro.slots?.default);
 if (variant === "social" && !hasAria && !hasSlot) {
 	// Warn at runtime to help developers catch accessibility issues during dev/build
