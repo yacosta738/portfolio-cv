@@ -177,4 +177,110 @@ html {
 	.no-print {
 		display: none;
 	}
+
+	/* ============================================
+	   FORCE LIGHT MODE FOR PRINTING
+	   This ensures the CV always prints with light theme colors for better readability
+	   regardless of the current theme (light or dark) selected by the user
+	   ============================================ */
+	html,
+	html.dark {
+		color-scheme: light;
+		--bg-primary: #ffffff;
+		--bg-secondary: #f8fafc;
+		--text-primary: #0f172a;
+		--text-secondary: #475569;
+		--text-muted: #64748b;
+		--border-color: #e2e8f0;
+		--border-hover: #cbd5e1;
+		
+		/* Force white background and dark text for optimal print quality */
+		background-color: #ffffff !important;
+		color: #0f172a !important;
+	}
+
+	/* Force light mode colors for all elements */
+	*,
+	*::before,
+	*::after {
+		background-color: transparent !important;
+		color: inherit;
+	}
+
+	/* Override any dark mode specific background colors */
+	body,
+	main,
+	section,
+	article,
+	div,
+	header,
+	footer,
+	nav,
+	aside {
+		background-color: transparent !important;
+		border-color: #e2e8f0 !important;
+	}
+
+	/* Ensure text elements use dark text for readability in print */
+	h1, h2, h3, h4, h5, h6,
+	p, span, li, td, th,
+	.text-foreground,
+	.text-foreground-muted {
+		color: #0f172a !important;
+		background-color: transparent !important;
+	}
+
+	/* Ensure subtle text uses appropriate dark color for print */
+	.text-foreground-muted,
+	.text-muted,
+	small {
+		color: #475569 !important;
+	}
+
+	/* Force borders to be visible in print */
+	[class*="border"] {
+		border-color: #e2e8f0 !important;
+	}
+
+	/* Override any Tailwind dark mode utilities that might interfere */
+	.dark\:bg-slate-800,
+	.dark\:bg-slate-900,
+	.dark\:bg-gray-800,
+	.dark\:bg-gray-900,
+	.dark\:text-white,
+	.dark\:text-slate-100,
+	.dark\:text-gray-100 {
+		background-color: transparent !important;
+		color: #0f172a !important;
+	}
+
+	 a,
+	 a:link,
+	 a:visited {
+		color: var(--text-primary) !important;
+		text-decoration: none !important;
+	 }
+
+	/* Optimize spacing and layout for print */
+	@page {
+		margin: 0.75in;
+		size: A4;
+	}
+	
+	/* Better page breaks */
+	h1, h2, h3, h4, h5, h6 {
+		page-break-after: avoid;
+	}
+	
+	section,
+	.print-section {
+		page-break-inside: avoid;
+		break-inside: avoid;
+	}
+	
+	/* Prevent awkward breaks in lists and paragraphs */
+	p, li {
+		orphans: 3;
+		widows: 3;
+	}
 }
