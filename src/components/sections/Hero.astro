@@ -27,6 +27,9 @@ const { city, region } = location;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
 
+// Normalize phone for tel: hrefs (keep optional leading +)
+const phoneHref = phone?.replace(/[^\d+]/g, "");
+
 const SOCIAL_ICONS: SocialIcon = {
 	GitHub: "lucide:github",
 	LinkedIn: "lucide:linkedin",
@@ -38,6 +41,16 @@ const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
 const linkedUrl = linkedInfo?.url;
 
 const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
+
+// Filter profiles to only include entries with a valid http(s) URL
+const safeProfiles = (profiles || []).filter((p) => {
+	try {
+		const parsed = new URL(p.url);
+		return parsed.protocol === "http:" || parsed.protocol === "https:";
+	} catch (e) {
+		return false;
+	}
+});
 ---
 
 <Section>
@@ -50,7 +63,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         {city}, {region}
       </Typography>
 
-  <div class="hidden print:block text-sm text-slate-600 print:text-slate-600 mt-1">
+  <div class="hidden print:block text-sm print:text-slate-600 mt-1">
         {printInfo}
       </div>
       <footer class="no-print mt-2 flex gap-1">
@@ -71,26 +84,24 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         {
           phone && (
             <a
-              href={`tel:${phone}`}
+              href={`tel:${phoneHref ?? phone}`}
               class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
               title={t('hero.phoneTitle', { name, phone })}
               aria-label={t('hero.phoneAria', { name, phone })}
-              target="_blank"
-              rel="noopener noreferrer"
             >
               <Icon name="lucide:phone" class="size-4" aria-hidden="true" />
             </a>
           )
         }
         {
-          profiles.map(({ network, url, username }) => {
+          safeProfiles.map(({ network, url, username }) => {
 
             return (
               <a
                 href={url}
                 class="text-slate-700 dark:text-slate-300 inline-flex items-center justify-center border border-slate-400 dark:border-slate-600 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:border-slate-400 dark:hover:border-slate-500"
-                title={t('hero.profileTitle', { name, network })}
-                aria-label={t('hero.profileAria', { name, network })}
+                title={t('hero.profileTitle', { name, network, username })}
+                aria-label={t('hero.profileAria', { name, network, username })}
                 target="_blank"
                 rel="noopener noreferrer"
               >

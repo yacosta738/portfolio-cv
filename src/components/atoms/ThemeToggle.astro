@@ -30,6 +30,8 @@ const { class: className, ...attrs } = Astro.props;
 </button>
 
 <script>
+  import type { Theme } from "@/types";
+
   const themeToggleButton = document.getElementById("theme-toggle-button");
   const lightIcon = document.getElementById("theme-toggle-light-icon");
   const darkIcon = document.getElementById("theme-toggle-dark-icon");
@@ -44,49 +46,59 @@ const { class: className, ...attrs } = Astro.props;
       themeToggleButton.setAttribute("disabled", "true");
       themeToggleButton.classList.add("opacity-50", "pointer-events-none");
     }
-
-    // Do not proceed with the theme toggle setup if required elements are missing
   } else {
+    // Function to set the icons visibility
+    const setIconVisibility = (theme: Theme): void => {
+      if (theme === "dark") {
+        lightIcon.classList.remove("hidden");
+        darkIcon.classList.add("hidden");
+      } else {
+        darkIcon.classList.remove("hidden");
+        lightIcon.classList.add("hidden");
+      }
+    };
 
-  // Function to set the icons visibility
-  const setIconVisibility = (theme: "light" | "dark"): void => {
-    if (theme === "dark") {
-      lightIcon.classList.remove("hidden");
-      darkIcon.classList.add("hidden");
-    } else {
-      darkIcon.classList.remove("hidden");
-      lightIcon.classList.add("hidden");
-    }
-  };
-
-    // Set initial icon visibility
-    const initialTheme: "light" | "dark" = document.documentElement.classList.contains("dark")
+    // Set initial icon visibility based on current theme
+    const initialTheme: Theme = document.documentElement.classList.contains("dark")
       ? "dark"
       : "light";
     setIconVisibility(initialTheme);
 
+    // Listen for theme changes to update icons
+    document.documentElement.addEventListener('themechange', ((event: CustomEvent<{ theme: Theme; timestamp: number }>) => {
+      const { theme } = event.detail;
+      setIconVisibility(theme);
+    }) as EventListener);
+
+    // Handle theme toggle button click
     themeToggleButton.addEventListener("click", (): void => {
-      // Read current theme once: prefer localStorage if present, otherwise infer from document
-      const stored = localStorage.getItem("theme");
-      const currentTheme: "light" | "dark" = stored
-        ? (stored as "light" | "dark")
-        : document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
-
-      // Compute the inverse theme
-      const newTheme: "light" | "dark" = currentTheme === "dark" ? "light" : "dark";
-
-      // Apply the new theme to the document and persist
-      if (newTheme === "dark") {
-        document.documentElement.classList.add("dark");
+      // Use the global theme system API if available, otherwise fallback to manual toggle
+      if (window.themeSystem) {
+        window.themeSystem.toggle();
       } else {
-        document.documentElement.classList.remove("dark");
-      }
-      localStorage.setItem("theme", newTheme);
+        // Fallback manual toggle
+        const currentTheme: Theme = document.documentElement.classList.contains("dark")
+          ? "dark"
+          : "light";
+        const newTheme: Theme = currentTheme === "dark" ? "light" : "dark";
 
-      // Update icons centrally
-      setIconVisibility(newTheme);
+        // Apply theme
+        if (newTheme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        
+        // Store preference
+        try {
+          localStorage.setItem("theme", newTheme);
+        } catch (error) {
+          console.warn("Failed to store theme preference:", error);
+        }
+
+        // Update icons
+        setIconVisibility(newTheme);
+      }
     });
   }
 </script>

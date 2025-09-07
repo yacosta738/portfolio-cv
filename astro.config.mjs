@@ -2,8 +2,8 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
 import icon from "astro-icon";
+import { BASE_URL } from "./src/configs/site.consts.ts";
 import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from "./src/i18n/locales";
-import { BASE_URL } from "./src/site.consts.ts";
 
 // https://astro.build/config
 export default defineConfig({

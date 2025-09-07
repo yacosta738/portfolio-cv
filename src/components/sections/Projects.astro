@@ -12,6 +12,20 @@ interface Props {
 const { projects = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+// Robust translation helper: if t returns the key or empty string, treat as missing and use fallback
+const tr = (
+	key: string,
+	params: Record<string, unknown> = {},
+	fallback = "",
+) => {
+	// `t` is typed by the i18n layer; cast through unknown to satisfy strict TS rules without using `any`
+	const s = t(
+		key as unknown as Parameters<typeof t>[0],
+		params as unknown as Parameters<typeof t>[1],
+	) as unknown as string | undefined;
+	return s && s !== key ? s : fallback;
+};
 ---
 
 {projects.length > 0 && (
@@ -29,24 +43,29 @@ const t = useTranslations(currentLocale);
                       href={url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      title={t('viewProject', { name }) || `View project ${name}`}
-                      class="text-gray-900 dark:text-gray-100 hover:underline focus:underline hover:text-gray-700 dark:hover:text-gray-100"
+                      title={tr('viewProject', { name }, `View project ${name}`)}
+                      class="text-gray-900 dark:text-gray-100 hover:underline focus:underline hover:text-gray-700"
                     >
                       {name}
                     </a>
                     {isActive && <span class="text-green-600 animate-flicker ml-1">•</span>}
-                    {github && (
-                      <a
-                        class="ml-1.5 inline-block text-gray-600 dark:text-gray-400"
-                              href={github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              title={t('viewProject', { name }) || `View source of ${name}`}
-                              aria-label={t('viewProject', { name }) ? `${t('viewProject', { name })} on GitHub` : `View source of ${name} on GitHub`}
-                      >
-                        <Icon name="lucide:github" class="size-4" aria-hidden="true" />
-                      </a>
-                    )}
+                    {github && (() => {
+                      const linkTitle = tr('viewSource', {}, `View source`);
+                      const ariaLabel = tr('viewSourceOnGitHub', {}, `View source on GitHub`);
+
+                      return (
+                        <a
+                          class="ml-1.5 inline-block text-gray-600 dark:text-gray-400"
+                          href={github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={linkTitle}
+                          aria-label={`${ariaLabel}: ${name}`}
+                        >
+                          <Icon name="lucide:github" class="size-4" aria-hidden="true" />
+                        </a>
+                      )
+                    })()}
                   </h3>
                   <p class="text-xs leading-tight mb-1 text-gray-600 dark:text-gray-400">{description}</p>
                 </header>

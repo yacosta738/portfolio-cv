@@ -108,9 +108,6 @@ figure {
 	box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
 html {
 	color-scheme: light;
 	-webkit-font-smoothing: antialiased;
@@ -121,6 +118,7 @@ html {
 	background-color: var(--bg-primary);
 	/* Use defined token for text color */
 	color: var(--text-primary);
+	font-family: var(--font-sans);
 	transition:
 		background-color 200ms linear,
 		color 200ms linear,
