@@ -16,8 +16,7 @@ const {
 } = Astro.props;
 
 const baseStyles = {
-	primary:
-		"bg-slate-100 text-slate-800 border border-slate-400 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600",
+	primary: "badge-primary",
 	secondary:
 		"bg-blue-50 text-blue-900 border border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-600",
 	accent:
@@ -25,9 +24,9 @@ const baseStyles = {
 };
 
 const sizeStyles = {
-	sm: "px-2 py-1 text-xs",
-	md: "px-2.5 py-1 text-xs",
-	lg: "px-3 py-1.5 text-sm",
+	sm: "px-2 py-0.5 text-xs",
+	md: "px-3 py-1 text-xs",
+	lg: "px-4 py-1.5 text-sm",
 };
 
 const classes = cn(
@@ -41,3 +40,17 @@ const classes = cn(
 <span class={classes} {...attrs}>
 	<slot />
 </span>
+
+<style>
+	.badge-primary {
+		background-color: #f1f5f9; /* slate-100 equivalent */
+		color: #1e293b; /* slate-800 equivalent */
+		border: 1px solid #94a3b8; /* slate-400 equivalent */
+	}
+	
+	:global(.dark) .badge-primary {
+		background-color: var(--bg-secondary);
+		color: var(--text-primary);
+		border-color: var(--border-color);
+	}
+</style>

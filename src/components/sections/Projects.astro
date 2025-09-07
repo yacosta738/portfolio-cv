@@ -36,7 +36,7 @@ const tr = (
         ({ url, description, highlights, name, isActive, github }) => {
           return (
             <li>
-              <article class="rounded-lg border border-gray-200 dark:border-gray-700 gap-4 flex flex-col p-4 h-full">
+              <article class="rounded-lg border border-[color:var(--border-color)] dark:border-[color:var(--border-color)] gap-4 flex flex-col p-4 h-full">
                 <header class="flex-1">
                   <h3 class="mb-1">
                     <a 
@@ -44,7 +44,7 @@ const tr = (
                       target="_blank" 
                       rel="noopener noreferrer"
                       title={tr('viewProject', { name }, `View project ${name}`)}
-                      class="text-gray-900 dark:text-gray-100 hover:underline focus:underline hover:text-gray-700"
+                      class="text-foreground hover:underline focus:underline hover:text-foreground-muted"
                     >
                       {name}
                     </a>
@@ -55,7 +55,7 @@ const tr = (
 
                       return (
                         <a
-                          class="ml-1.5 inline-block text-gray-600 dark:text-gray-400"
+                          class="ml-1.5 inline-block text-foreground-muted"
                           href={github}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -67,11 +67,11 @@ const tr = (
                       )
                     })()}
                   </h3>
-                  <p class="text-xs leading-tight mb-1 text-gray-600 dark:text-gray-400">{description}</p>
+                  <p class="text-xs leading-tight mb-1 text-foreground-muted">{description}</p>
                 </header>
                 <footer class="flex flex-wrap gap-1 text-[0.6rem]">
                   {highlights?.map((highlight) => {
-                    return <span class="rounded-md bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-[0.6rem] font-medium px-2.5 py-1 border border-gray-200 dark:border-gray-700">{highlight}</span>
+                    return <span class="rounded-md bg-[color:var(--bg-secondary)] dark:bg-[color:var(--bg-primary)] text-foreground-muted text-[0.6rem] font-medium px-2.5 py-1 border border-[color:var(--border-color)]">{highlight}</span>
                   })}
                 </footer>
               </article>
