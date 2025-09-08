@@ -79,3 +79,32 @@ const { class: className, ...attrs } = Astro.props;
     });
   }
 </script>
+
+<style>
+  /* Make theme toggle circular on all screen sizes and center the icon */
+  #theme-toggle-button {
+    width: 50px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    z-index: 60 !important; /* ensure it's above footer floating button */
+  }
+
+  /* Ensure icons size fit inside the circular button */
+  #theme-toggle-button .w-5 {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* Mobile: adjust offset so it sits above the KeyboardManager floating button */
+  @media (max-width: 600px) {
+    #theme-toggle-button {
+      right: 10px !important; /* align with KeyboardManager on small screens */
+      bottom: 70px !important; /* sit above the footer floating button */
+    }
+  }
+</style>
