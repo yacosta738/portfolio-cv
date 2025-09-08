@@ -4,7 +4,8 @@
 /* Tailwind theme variables: expose a focused set of design tokens so utility classes are generated
 	 These map to our CSS variables and provide a small custom palette for the project. */
 :root {
-	--font-sans: Menlo, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+	--font-sans:
+		Menlo, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, "Noto Color Emoji";
 
 	/* Core colors (map to CSS variables we also define below) */
@@ -65,14 +66,14 @@ html {
 	background: var(--bg-primary);
 	color: var(--text-primary);
 	letter-spacing: -0.025rem;
-	
+
 	/* Browser optimizations */
 	color-scheme: light;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
-	
+
 	/* Smooth transitions */
 	transition:
 		background-color 200ms linear,
@@ -113,9 +114,14 @@ figure {
 }
 
 /* Headings: use system UI stack for a neutral sans-serif look */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
 	margin: 0;
-	font-family: system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-family:
+		system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI", Roboto, Oxygen,
+		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 /* Utility for screen-reader only content */
@@ -185,7 +191,7 @@ h1, h2, h3, h4 {
 		--text-muted: #64748b;
 		--border-color: #e2e8f0;
 		--border-hover: #cbd5e1;
-		
+
 		/* Force white background and dark text for optimal print quality */
 		background-color: #ffffff !important;
 		color: #0f172a !important;
@@ -214,8 +220,17 @@ h1, h2, h3, h4 {
 	}
 
 	/* Ensure text elements use dark text for readability in print */
-	h1, h2, h3, h4, h5, h6,
-	p, span, li, td, th,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	span,
+	li,
+	td,
+	th,
 	.text-foreground,
 	.text-foreground-muted {
 		color: #0f172a !important;
@@ -246,32 +261,38 @@ h1, h2, h3, h4 {
 		color: #0f172a !important;
 	}
 
-	 a,
-	 a:link,
-	 a:visited {
+	a,
+	a:link,
+	a:visited {
 		color: var(--text-primary) !important;
 		text-decoration: none !important;
-	 }
+	}
 
 	/* Optimize spacing and layout for print */
 	@page {
 		margin: 0.75in;
 		size: A4;
 	}
-	
+
 	/* Better page breaks */
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		page-break-after: avoid;
 	}
-	
+
 	section,
 	.print-section {
 		page-break-inside: avoid;
 		break-inside: avoid;
 	}
-	
+
 	/* Prevent awkward breaks in lists and paragraphs */
-	p, li {
+	p,
+	li {
 		orphans: 3;
 		widows: 3;
 	}
