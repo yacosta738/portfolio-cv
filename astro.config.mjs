@@ -1,10 +1,10 @@
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
 import icon from "astro-icon";
 import { BASE_URL } from "./src/configs/site.consts.ts";
 import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from "./src/i18n/locales";
-import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
@@ -90,7 +90,7 @@ export default defineConfig({
 			},
 		}),
 		(await import("astro-compress")).default({
-			CCSS: true,
+			CSS: true,
 			HTML: {
 				"html-minifier-terser": {
 					removeAttributeQuotes: false,

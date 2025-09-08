@@ -208,13 +208,19 @@ html {
 		display: none;
 	}
 
-	/* ============================================
+	/* ====================================================
 	   FORCE LIGHT MODE FOR PRINTING
-	   This ensures the CV always prints with light theme colors for better readability
-	   regardless of the current theme (light or dark) selected by the user
-	   ============================================ */
+	   Note: this block intentionally overrides runtime theme colors to guarantee
+	   a readable light print. Most uses of !important were removed by improving
+	   selector specificity and placing print rules later in the cascade. If a
+	   specific component later requires a targeted !important, annotate that
+	   selector with a single `biome-ignore` comment and a short rationale.
+	   ==================================================== */
+
+	/* Target root and body to prefer these print values over theme classes. */
 	html,
-	html.dark {
+	html.dark,
+	body {
 		color-scheme: light;
 		--bg-primary: #ffffff;
 		--bg-secondary: #f8fafc;
@@ -224,21 +230,25 @@ html {
 		--border-color: #e2e8f0;
 		--border-hover: #cbd5e1;
 
-		/* Force white background and dark text for optimal print quality */
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme in print */
-		background-color: #ffffff !important;
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme in print */
-		color: #0f172a !important;
-	} /* Force light mode colors for all elements */
-	*,
-	*::before,
-	*::after {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme backgrounds in print */
-		background-color: transparent !important;
+		/* Prefer explicit print background/text; these appear later in the cascade
+		   and should override normal theme classes. Leave without !important and
+		   fall back to targeted !important only when necessary. */
+		background-color: #ffffff;
+		color: #0f172a;
+	}
+
+	/* Force transparent backgrounds and inherit text color for children; avoid !important
+	   by targeting elements with classes (common with utility-generated markup). */
+	html *[class],
+	html *::before,
+	html *::after {
+		background-color: transparent;
 		color: inherit;
 	}
 
-	/* Override any dark mode specific background colors */
+	/* Override section-level backgrounds and borders (no !important). If a specific
+	   component declares inline styles or ID-based rules that still win, we'll
+	   add a targeted !important only for that selector later. */
 	body,
 	main,
 	section,
@@ -248,10 +258,8 @@ html {
 	footer,
 	nav,
 	aside {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme backgrounds in print */
-		background-color: transparent !important;
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme borders in print */
-		border-color: #e2e8f0 !important;
+		background-color: transparent;
+		border-color: #e2e8f0;
 	}
 
 	/* Ensure text elements use dark text for readability in print */
@@ -268,27 +276,25 @@ html {
 	th,
 	.text-foreground,
 	.text-foreground-muted {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme text colors in print */
-		color: #0f172a !important;
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme backgrounds in print */
-		background-color: transparent !important;
+		color: #0f172a;
+		background-color: transparent;
 	}
 
 	/* Ensure subtle text uses appropriate dark color for print */
 	.text-foreground-muted,
 	.text-muted,
 	small {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme subtle text colors in print */
-		color: #475569 !important;
+		color: #475569;
 	}
 
 	/* Force borders to be visible in print */
 	[class*="border"] {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override dark theme border colors in print */
-		border-color: #e2e8f0 !important;
+		border-color: #e2e8f0;
 	}
 
-	/* Override any Tailwind dark mode utilities that might interfere */
+	/* Override any Tailwind dark mode utilities that might interfere. These are
+	   class selectors so placing equivalent class selectors here (later in the file)
+	   will override them without !important. */
 	.dark\:bg-slate-800,
 	.dark\:bg-slate-900,
 	.dark\:bg-gray-800,
@@ -296,10 +302,8 @@ html {
 	.dark\:text-white,
 	.dark\:text-slate-100,
 	.dark\:text-gray-100 {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override Tailwind dark mode utilities in print */
-		background-color: transparent !important;
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override Tailwind dark mode utilities in print */
-		color: #0f172a !important;
+		background-color: transparent;
+		color: #0f172a;
 	}
 
 	/* Links in print: style to match on-screen 'primary' links (no underline, foreground color)
@@ -307,10 +311,8 @@ html {
 	a,
 	a:link,
 	a:visited {
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override link styles consistently in print */
-		color: var(--text-primary) !important;
-		/* biome-ignore lint/complexity/noImportantStyles: Required to override link decoration in print */
-		text-decoration: none !important;
+		color: var(--text-primary);
+		text-decoration: none;
 	}
 
 	/* Optimize spacing and layout for print */
@@ -346,7 +348,7 @@ html {
 	::-webkit-scrollbar {
 		display: none;
 	}
-	
+
 	html {
 		scrollbar-width: none;
 	}
