@@ -13,28 +13,38 @@ interface Props {
 const { work } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+// Helper function to format dates with month and year in the correct locale
+const formatDateWithMonth = (date: Date, locale: Lang): string => {
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "short",
+	};
+	return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", options);
+};
 ---
 
 <Section title={t('experience')}>
   <ul class="flex flex-col gap-8">
     {
       work.map(
-        (workItem) => {
+        (workItem, idx) => {
           const { name, startDate, endDate, position, summary, highlights, url } = workItem;
           
-          const startYear = startDate.getFullYear()
-          const endYear = endDate ? endDate.getFullYear() : "Actual"
+          // Format dates with month and year according to locale
+          const startDateFormatted = formatDateWithMonth(startDate, currentLocale);
+          const endDateFormatted = endDate ? formatDateWithMonth(endDate, currentLocale) : null;
           
-      
-          const startDateStr = startDate.toISOString().split('T')[0]
-          const endDateStr = endDate ? endDate.toISOString().split('T')[0] : null
+          // Keep ISO format for datetime attributes and titles
+          const startDateStr = startDate.toISOString().split('T')[0];
+          const endDateStr = endDate ? endDate.toISOString().split('T')[0] : null;
 
           return (
             <li>
               <article class="py-2">
                 <header class="flex justify-between items-start mb-1">
                   <div class="flex-1">
-                    <Typography as="h3" variant="subtitle"  class="font-medium text-gray-900 mb-0">
+                    <Typography as="h3" variant="subtitle" class="font-medium mb-0">
                       {url ? (
                         <Link href={url} variant="primary" external>
                           {name}
@@ -43,25 +53,42 @@ const t = useTranslations(currentLocale);
                         name
                       )}
                     </Typography>
-                    <Typography as="h4" variant="body"  class="text-gray-700 font-normal">
+                    <Typography as="h4" variant="body" class="font-normal">
                       {position}
                     </Typography>
                   </div>
 
-                  <div class="flex gap-1 text-gray-600 text-sm min-w-[102px] text-right max-sm:text-right">
-                    <time 
-                      class="relative text-sm text-gray-600 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-gray-800 after:text-white after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-gray-700 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500"
+                  <div class="flex gap-1 text-foreground-muted text-sm min-w-0 text-right tabular-nums">
+                    <time
+                      tabindex="0"
+                      title={startDateStr}
+                      aria-describedby={`start-${startDateStr}-${idx}`}
+                      class="relative text-sm text-foreground-muted cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-(--bg-secondary) after:text-(--text-primary) after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-(--border-color) after:rounded-md after:z-99999 after:transition-opacity after:duration-100 after:delay-500"
                       datetime={startDateStr}
                       data-title={startDateStr}>
-                        {startYear}
+                        {startDateFormatted}
                     </time>
-                    <span>-</span>
-                    <time 
-                      class="relative text-sm text-gray-600 cursor-default hover:after:opacity-100 hover:after:visible after:content-[attr(data-title)] after:absolute after:bg-gray-800 after:text-white after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-gray-700 after:rounded-md after:z-[99999] after:transition-all after:duration-100 after:delay-500"
-                      datetime={endDateStr}
-                      data-title={endDateStr}>
-                        {endYear}
-                    </time>
+                    <span id={`start-${startDateStr}-${idx}`} class="sr-only">{startDateStr}</span>
+                    <span class="text-foreground-muted">-</span>
+                    {endDateStr ? (
+                      <>
+                        <time
+                          tabindex="0"
+                          title={endDateStr}
+                          aria-describedby={`end-${endDateStr}-${idx}`}
+                          class="relative text-sm text-foreground-muted cursor-default hover:after:opacity-100 hover:after:visible focus:after:opacity-100 focus:after:visible after:content-[attr(data-title)] after:absolute after:bg-(--bg-secondary) after:text-(--text-primary) after:text-xs after:font-mono after:px-2 after:py-1 after:bottom-[-1.4rem] after:left-1/2 after:-translate-x-1/2 after:whitespace-nowrap after:shadow-md after:opacity-0 after:invisible after:border after:border-(--border-color) after:rounded-md after:z-99999 after:transition-opacity after:duration-100 after:delay-500"
+                          datetime={endDateStr}
+                          data-title={endDateStr}>
+                            {endDateFormatted}
+                        </time>
+                        <span id={`end-${endDateStr}-${idx}`} class="sr-only">{endDateStr}</span>
+                      </>
+                    ) : (
+                      <span class="text-foreground-muted" aria-label={t('present')}>
+                        {t('present')}
+                      </span>
+                    )}
+                    
                   </div>
                 </header>
 

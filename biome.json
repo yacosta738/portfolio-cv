@@ -12,19 +12,18 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
-			"!**/node_modules",
-			"!**/coverage",
-			"!**/.astro",
-			"!**/.cache",
-			"!**/.git",
-			"!**/.vscode",
-			"!**/.idea",
-			"!**/.pnpm",
-			"!**/.yarn",
-			"!**/dist",
-			"!**/out",
-			"!**/public",
-			"!**/.vscode"
+			"!node_modules",
+			"!coverage",
+			"!.astro",
+			"!.cache",
+			"!.git",
+			"!.vscode",
+			"!.idea",
+			"!.pnpm",
+			"!.yarn",
+			"!dist",
+			"!out",
+			"!public"
 		]
 	},
 	"formatter": {
@@ -40,7 +39,10 @@
 		"enabled": true,
 		"rules": {
 			"a11y": "error",
-			"recommended": true
+			"recommended": true,
+			"suspicious": {
+				"noUnknownAtRules": "off"
+			}
 		}
 	},
 	"overrides": [

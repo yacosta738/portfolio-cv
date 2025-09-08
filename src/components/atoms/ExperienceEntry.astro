@@ -33,7 +33,7 @@ const classes = cn("p-2", className);
 <article class={classes} {...attrs}>
 	<header class="flex justify-between items-start mb-1">
 		<div class="flex-1">
-			<Typography as="h3" class="font-medium text-gray-900 mb-0">
+			<Typography as="h3" class="font-medium text-slate-900 dark:text-slate-100 mb-0">
 				{url ? (
 					<Link href={url} variant="primary" external>
 						{organization || title}
@@ -43,12 +43,12 @@ const classes = cn("p-2", className);
 				)}
 			</Typography>
 			{position && (
-				<Typography as="h4" class="text-gray-700 font-normal">
+				<Typography as="h4" class="text-slate-800 dark:text-slate-200 font-normal">
 					{position}
 				</Typography>
 			)}
 		</div>
-		<div class="flex gap-1 text-gray-600 text-sm min-w-[102px] text-right max-sm:text-right">
+		<div class="flex gap-1 text-slate-600 dark:text-slate-400 text-sm min-w-[102px] text-right max-sm:text-right">
 			<Typography as="time" variant="date">
 				{startDate}
 			</Typography>

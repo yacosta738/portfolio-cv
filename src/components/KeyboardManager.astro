@@ -35,20 +35,27 @@ const SOCIAL_ICONS: SocialIcon = {
   ><title>LinkedIn</title><path
     fill="currentColor"
     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-  ></path></svg
->`,
+  ></path></svg>`,
 	X: `<svg
-  width="16"
   height="16"
+  width="16"
   viewBox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
   style="margin-right: 8px"
   ><title>X</title><path
     fill="currentColor"
     d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
-  ></path></svg
->
-`,
+  ></path></svg>`,
+	twitter: `<svg
+  height="16"
+  width="16"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  style="margin-right: 8px"
+  ><title>Twitter</title><path
+    fill="currentColor"
+    d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"
+  ></path></svg>`,
 };
 
 const profilesInfo = profiles.map(({ network, url }) => {
@@ -67,10 +74,19 @@ const profilesInfo = profiles.map(({ network, url }) => {
 ---
 
 <footer id="normal-footer" class="no-print">
-  {t('footer.commandPaletteHint', { modKey: currentLocale === 'en' ? 'Cmd' : 'Cmd' })}
+  {
+    t("footer.commandPaletteHint", {
+      modKey: currentLocale === "en" ? "Cmd" : "Cmd",
+    })
+  }
 </footer>
 
-<button id="footer-button" class="no-print" type="button" aria-label={t('footer.openCommandPalette')}>
+<button
+  id="footer-button"
+  class="no-print"
+  type="button"
+  aria-label={t("footer.openCommandPalette")}
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     class="icon icon-tabler icon-tabler-command"
@@ -78,7 +94,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
     height="32"
     viewBox="0 0 24 24"
     stroke-width="1.5"
-    stroke="#777"
+    stroke="currentColor"
     fill="none"
     stroke-linecap="round"
     stroke-linejoin="round"
@@ -90,50 +106,50 @@ const profilesInfo = profiles.map(({ network, url }) => {
   </svg>
 </button>
 
-  <div
+<div
   id="hotkeypad"
-  data-placeholder={t('footer.hotkeypad.placeholder')}
+  data-placeholder={t("footer.hotkeypad.placeholder")}
   data-info={JSON.stringify(profilesInfo)}
-  data-print-title={t('footer.commands.print')}
-  data-actions-section={t('footer.sections.actions')}
+  data-print-title={t("footer.commands.print")}
+  data-actions-section={t("footer.sections.actions")}
 >
 </div>
 
 <script>
   interface Info {
-    id: string
-    section: string
-    title: string
-    url: string
-    icon: string
-    hotkey: string
-    handler?: () => void
+    id: string;
+    section: string;
+    title: string;
+    url: string;
+    icon: string;
+    hotkey: string;
+    handler?: () => void;
   }
 
-  import HotKeyPad from "hotkeypad"
+  import HotKeyPad from "hotkeypad";
 
-  const hotkeypad = new HotKeyPad()
-  const info = hotkeypad.instance.getAttribute("data-info") ?? "[]"
-  const parsedInfo = JSON.parse(info) as Info[]
-  
+  const hotkeypad = new HotKeyPad();
+  const info = hotkeypad.instance.getAttribute("data-info") ?? "[]";
+  const parsedInfo = JSON.parse(info) as Info[];
+
   // Get translations from data attributes
-  const printTitle = hotkeypad.instance.getAttribute("data-print-title") ?? "Imprimir"
-  const actionsSection = hotkeypad.instance.getAttribute("data-actions-section") ?? "Acciones"
+  const printTitle =
+    hotkeypad.instance.getAttribute("data-print-title") ?? "Imprimir";
+  const actionsSection =
+    hotkeypad.instance.getAttribute("data-actions-section") ?? "Acciones";
 
-  const data = parsedInfo.map(
-    ({ url, hotkey, icon, id, section, title }) => {
-      return {
-        id,
-        title,
-        icon,
-        hotkey,
-        section,
-        handler: () => {
-          window.open(url, "_blank")
-        }
-      }
-    }
-  )
+  const data = parsedInfo.map(({ url, hotkey, icon, id, section, title }) => {
+    return {
+      id,
+      title,
+      icon,
+      hotkey,
+      section,
+      handler: () => {
+        window.open(url, "_blank");
+      },
+    };
+  });
   hotkeypad.setCommands([
     {
       id: "print",
@@ -144,11 +160,11 @@ const profilesInfo = profiles.map(({ network, url }) => {
       hotkey: "ctrl+P",
       section: actionsSection,
       handler: () => {
-        window.print()
-      }
+        window.print();
+      },
     },
-    ...data
-  ])
+    ...data,
+  ]);
 
   // Ensure generated list items are accessible: if the library creates
   // <li tabindex="0"> elements, make them focusable but don't add interactive roles
@@ -232,14 +248,14 @@ const profilesInfo = profiles.map(({ network, url }) => {
       // Finally remove tabindex from the li so lint/axe rules don't flag it
       li.removeAttribute("tabindex");
     });
-  }
+  };
 
   // Run after a short delay to allow the hotkeypad to render its DOM.
   // requestAnimationFrame is used for a quick, reliable timing.
   requestAnimationFrame(() => setTimeout(ensureListItemsAccessible, 0));
 
-  const footerButton = document.getElementById("footer-button")
-    footerButton?.addEventListener("click", () => {
+  const footerButton = document.getElementById("footer-button");
+  footerButton?.addEventListener("click", () => {
     var event = new KeyboardEvent("keydown", {
       key: "K",
       code: "KeyK",
@@ -248,11 +264,11 @@ const profilesInfo = profiles.map(({ network, url }) => {
       ctrlKey: true,
       altKey: false,
       shiftKey: false,
-      metaKey: false
-    })
+      metaKey: false,
+    });
 
-    document.dispatchEvent(event)
-  })
+    document.dispatchEvent(event);
+  });
 </script>
 
 <style>
@@ -280,11 +296,10 @@ const profilesInfo = profiles.map(({ network, url }) => {
       display: none;
     }
 
-    /* Footer command button is rendered as a semantic button in the DOM */
     #footer-button {
-      background: #fff;
+      background: var(--bg-primary, #ffffff);
       position: fixed;
-      border: 1px solid #eee;
+      border: 1px solid var(--border-color, #d1d5db);
       right: 10px;
       bottom: 10px;
       width: 50px;
@@ -294,13 +309,13 @@ const profilesInfo = profiles.map(({ network, url }) => {
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      border: none; /* button default reset handled here */
     }
   }
 
   footer {
-    background: #fdfdfd;
-    border-top: 1px solid #eee;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -317,9 +332,58 @@ const profilesInfo = profiles.map(({ network, url }) => {
   }
 
   kbd {
-    background: #eee;
+    /* Prefer theme tokens but keep readable fallbacks */
+    background: var(--bg-secondary, #eeeeee);
+    border: 1px solid var(--border-color, #eeeeee);
+    color: var(--text-secondary, #333333);
     border-radius: 4px;
     padding: 2px 4px;
     font-size: 12px;
+  }
+</style>
+<style>
+  footer#normal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    /* Prefer theme tokens but fall back to sensible defaults */
+    background: var(--bg-secondary, #ffffff);
+    border-top: 1px solid var(--border-color, #e6e6e6);
+    color: var(--text-secondary, #6b7280);
+  }
+</style>
+
+<style>
+  /* Component-scoped button color and focus-visible ring using CSS tokens */
+  #footer-button {
+    color: var(--text-secondary, #475569);
+  }
+
+  #footer-button:focus-visible {
+    outline: 2px solid var(--focus-ring, #3b82f6);
+    outline-offset: 2px;
+  }
+</style>
+
+<style>
+  /* Print: explicitly hide footer, floating button and hotkeypad to avoid printing UI chrome */
+  @media print {
+    /* Use high specificity and !important to override any library or component rules */
+    footer#normal-footer.no-print,
+    #footer-button.no-print,
+    #hotkeypad {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+
+    /* Also hide any descendants the library might inject */
+    #hotkeypad * {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
   }
 </style>

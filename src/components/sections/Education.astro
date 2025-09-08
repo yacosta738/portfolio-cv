@@ -11,28 +11,47 @@ interface Props {
 const { education } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+// Helper: format month + year according to current locale (short month)
+const formatDateWithMonth = (date: Date, locale: Lang): string => {
+	const options: Intl.DateTimeFormatOptions = {
+		year: "numeric",
+		month: "short",
+	};
+	return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", options);
+};
 ---
 
 <Section title={t('education')}>
   <ul class="flex flex-col gap-8">
     {
       education.map(({ institution, startDate, endDate, area }) => {
-        const startYear = startDate.getFullYear()
-        const endYear = endDate ? endDate.getFullYear() : "Actual"
-        const years = `${startYear} - ${endYear}`
+        const startFormatted = formatDateWithMonth(startDate, currentLocale);
+        const endFormatted = endDate ? formatDateWithMonth(endDate, currentLocale) : null;
+        const startIso = startDate.toISOString().split('T')[0];
+        const endIso = endDate ? endDate.toISOString().split('T')[0] : null;
 
         return (
           <li>
             <article>
               <header class="flex justify-between items-start mb-1">
                 <div>
-                  <h3 class="font-medium text-gray-900">{institution}</h3>
+                  <h3 class="font-medium text-foreground dark:text-foreground-inverted">{institution}</h3>
                 </div>
-                <time class="text-gray-600 text-sm min-w-[102px] sm:text-right">{years}</time>
+                <div class="sm:text-right">
+                  <time datetime={startIso} class="text-foreground-muted text-sm tabular-nums whitespace-nowrap" title={startIso}>{startFormatted}</time>
+                  <span aria-hidden="true" class="mx-1">–</span>
+                  <span class="sr-only">{t('range.to')}</span>
+                  {endDate ? (
+                    <time datetime={endIso} class="text-foreground-muted text-sm tabular-nums whitespace-nowrap" title={endIso}>{endFormatted}</time>
+                  ) : (
+                    <span class="text-foreground-muted text-sm tabular-nums whitespace-nowrap">{t('present') ?? 'Present'}</span>
+                  )}
+                </div>
               </header>
 
               <footer>
-                <p>{area}</p>
+                <p class="text-foreground text-sm">{area}</p>
               </footer>
             </article>
           </li>

@@ -1,7 +1,8 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-export interface Props {
+export interface Props extends Omit<HTMLAttributes<"a">, "class"> {
 	href?: string;
 	variant?: "primary" | "social" | "subtle";
 	external?: boolean;
@@ -16,25 +17,37 @@ const {
 	...attrs
 } = Astro.props;
 
+if (import.meta.env.DEV && variant === "social") {
+	const hasContent = Astro.slots.has("default");
+	const hasAriaLabel = Boolean(attrs["aria-label"]);
+
+	if (!hasContent && !hasAriaLabel) {
+		console.warn(
+			'Link[variant="social"]: Accessible name required. Provide an `aria-label` attribute or visible/visually-hidden text in the slot.',
+		);
+	}
+}
+const isLink = Boolean(href);
+const Tag = isLink ? "a" : "span";
+
 const baseStyles = {
 	primary:
-		"text-gray-900 no-underline hover:underline hover:text-gray-700 focus:underline focus:text-gray-700",
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 	social:
-		"text-gray-500 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-200 hover:border-gray-300",
-	subtle: "text-gray-900 no-underline hover:underline focus:underline",
+		"text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+	subtle:
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 };
 
-const classes = cn(baseStyles[variant], className);
-const target = external ? "_blank" : undefined;
-const rel = external ? "noopener noreferrer" : undefined;
+const componentProps = {
+	class: cn(baseStyles[variant], className),
+	href: href,
+	target: external ? "_blank" : undefined,
+	rel: external ? "noopener noreferrer" : undefined,
+	...attrs,
+};
 ---
 
-{href ? (
-	<a href={href} class={classes} target={target} rel={rel} {...attrs}>
-		<slot />
-	</a>
-) : (
-	<span class={classes} {...attrs}>
-		<slot />
-	</span>
-)}
+<Tag {...componentProps}>
+    <slot />
+</Tag>

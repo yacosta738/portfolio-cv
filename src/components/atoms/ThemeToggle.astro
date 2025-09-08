@@ -1,0 +1,81 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import { type Lang, useTranslations } from "@/i18n";
+import { cn } from "@/lib/utils";
+
+interface Props extends HTMLAttributes<"button"> {
+	class?: string;
+}
+
+const currentLocale = (Astro.params.lang as Lang) || "en"; // fallback to default locale
+const t = useTranslations(currentLocale);
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<button
+  id="theme-toggle-button"
+  class={cn(
+    "fixed bottom-4 right-4 z-50 flex items-center p-2 text-slate-700 bg-white border border-slate-300 rounded-lg shadow-lg hover:text-slate-900 hover:bg-slate-50 dark:text-slate-300 dark:bg-slate-800 dark:border-slate-600 dark:hover:text-white dark:hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-500 dark:focus-visible:ring-slate-400 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-800 transition-all duration-200",
+    "print:hidden",
+    className,
+  )}
+  aria-label={t("theme.toggle.button")}
+  title={t("theme.toggle.tooltip")}
+  type="button"
+  {...attrs}
+>
+  <Icon id="theme-toggle-dark-icon" class="w-5 h-5 hidden" name="lucide:moon" />
+  <Icon id="theme-toggle-light-icon" class="w-5 h-5 hidden" name="lucide:sun" />
+</button>
+
+<script>
+  import type { Theme } from "@/types";
+
+  const themeToggleButton = document.getElementById("theme-toggle-button");
+  const lightIcon = document.getElementById("theme-toggle-light-icon");
+  const darkIcon = document.getElementById("theme-toggle-dark-icon");
+
+  // Type guard to ensure elements exist — degrade gracefully if not
+  if (!themeToggleButton || !lightIcon || !darkIcon) {
+    console.warn("Theme toggle: some elements are missing. Toggle will be disabled or skipped.");
+
+    // If the button exists but icons are missing, disable/hide the button to avoid broken interactions
+    if (themeToggleButton && (!lightIcon || !darkIcon)) {
+      themeToggleButton.setAttribute("aria-hidden", "true");
+      themeToggleButton.setAttribute("disabled", "true");
+      themeToggleButton.classList.add("opacity-50", "pointer-events-none");
+    }
+  } else {
+    // Function to set the icons visibility
+    const setIconVisibility = (theme: Theme): void => {
+      if (theme === "dark") {
+        lightIcon.classList.remove("hidden");
+        darkIcon.classList.add("hidden");
+      } else {
+        darkIcon.classList.remove("hidden");
+        lightIcon.classList.add("hidden");
+      }
+    };
+
+    // Set initial icon visibility based on current theme
+    const initialTheme: Theme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+    setIconVisibility(initialTheme);
+
+    // Handle theme toggle button click
+    themeToggleButton.addEventListener("click", (): void => {
+      // Use the global theme system API
+      if (window.themeSystem) {
+        window.themeSystem.toggle();
+        // Update icons immediately
+        const newTheme: Theme = document.documentElement.classList.contains("dark")
+          ? "dark" 
+          : "light";
+        setIconVisibility(newTheme);
+      }
+    });
+  }
+</script>

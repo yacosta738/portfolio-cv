@@ -12,6 +12,20 @@ interface Props {
 const { projects = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
+
+// Robust translation helper: if t returns the key or empty string, treat as missing and use fallback
+const tr = (
+	key: string,
+	params: Record<string, unknown> = {},
+	fallback = "",
+) => {
+	// `t` is typed by the i18n layer; cast through unknown to satisfy strict TS rules without using `any`
+	const s = t(
+		key as unknown as Parameters<typeof t>[0],
+		params as unknown as Parameters<typeof t>[1],
+	) as unknown as string | undefined;
+	return s && s !== key ? s : fallback;
+};
 ---
 
 {projects.length > 0 && (
@@ -22,35 +36,42 @@ const t = useTranslations(currentLocale);
         ({ url, description, highlights, name, isActive, github }) => {
           return (
             <li>
-              <article class="rounded-lg border border-gray-200 gap-4 flex flex-col p-4 h-full">
+              <article class="rounded-lg border border-(--border-color) dark:border-(--border-color) gap-4 flex flex-col p-4 h-full">
                 <header class="flex-1">
                   <h3 class="mb-1">
                     <a 
                       href={url} 
                       target="_blank" 
-                      title={`Ver el proyecto ${name}`}
-                      class="text-gray-900 hover:underline focus:underline hover:text-gray-700"
+                      rel="noopener noreferrer"
+                      title={tr('viewProject', { name }, `View project ${name}`)}
+                      class="text-foreground hover:underline focus:underline hover:text-foreground-muted"
                     >
                       {name}
                     </a>
                     {isActive && <span class="text-green-600 animate-flicker ml-1">•</span>}
-                    {github && (
-                      <a
-                        class="ml-1.5 inline-block"
-                        href={github}
-                        target="_blank"
-                        title={`Ver código fuente del proyecto ${name}`}
-                        aria-label={`Ver código fuente del proyecto ${name} en GitHub`}
-                      >
-                        <Icon name="lucide:github" class="size-4" aria-hidden="true" />
-                      </a>
-                    )}
+                    {github && (() => {
+                      const linkTitle = tr('viewSource', {}, `View source`);
+                      const ariaLabel = tr('viewSourceOnGitHub', {}, `View source on GitHub`);
+
+                      return (
+                        <a
+                          class="ml-1.5 inline-block text-foreground-muted"
+                          href={github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={linkTitle}
+                          aria-label={`${ariaLabel}: ${name}`}
+                        >
+                          <Icon name="lucide:github" class="size-4" aria-hidden="true" />
+                        </a>
+                      )
+                    })()}
                   </h3>
-                  <p class="text-xs leading-tight mb-1">{description}</p>
+                  <p class="text-xs leading-tight mb-1 text-foreground-muted">{description}</p>
                 </header>
                 <footer class="flex flex-wrap gap-1 text-[0.6rem]">
                   {highlights?.map((highlight) => {
-                    return <span class="rounded-md bg-gray-50 text-gray-700 text-[0.6rem] font-medium px-2.5 py-1 border border-gray-200">{highlight}</span>
+                    return <span class="rounded-md bg-(--bg-secondary) dark:bg-(--bg-primary) text-foreground-muted text-[0.6rem] font-medium px-2.5 py-1 border border-(--border-color)">{highlight}</span>
                   })}
                 </footer>
               </article>

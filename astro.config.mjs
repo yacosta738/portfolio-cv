@@ -1,9 +1,10 @@
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
 import icon from "astro-icon";
+import { BASE_URL } from "./src/configs/site.consts.ts";
 import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from "./src/i18n/locales";
-import { BASE_URL } from "./src/site.consts.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +12,11 @@ export default defineConfig({
 
 	env: {
 		schema: {
+			AHREFS_KEY: envField.string({
+				context: "client",
+				access: "public",
+				default: "",
+			}),
 			BRAND_NAME: envField.string({
 				context: "client",
 				access: "public",
@@ -81,6 +87,23 @@ export default defineConfig({
 						value.lang ?? key,
 					]),
 				),
+			},
+		}),
+		(await import("astro-compress")).default({
+			CSS: true,
+			HTML: {
+				"html-minifier-terser": {
+					removeAttributeQuotes: false,
+				},
+			},
+			Image: false,
+			JavaScript: true,
+			SVG: false,
+			Logger: 1,
+		}),
+		partytown({
+			config: {
+				forward: ["dataLayer.push", "gtag"],
 			},
 		}),
 	],

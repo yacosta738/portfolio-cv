@@ -27,6 +27,9 @@ const { city, region } = location;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
 
+// Normalize phone for tel: hrefs (keep optional leading +)
+const phoneHref = phone?.replace(/[^\d+]/g, "");
+
 const SOCIAL_ICONS: SocialIcon = {
 	GitHub: "lucide:github",
 	LinkedIn: "lucide:linkedin",
@@ -38,19 +41,29 @@ const linkedInfo = profiles.find(({ network }) => network === "LinkedIn");
 const linkedUrl = linkedInfo?.url;
 
 const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
+
+// Filter profiles to only include entries with a valid http(s) URL
+const safeProfiles = (profiles || []).filter((p) => {
+	try {
+		const parsed = new URL(p.url);
+		return parsed.protocol === "http:" || parsed.protocol === "https:";
+	} catch (e) {
+		return false;
+	}
+});
 ---
 
 <Section>
   <div class="flex flex-row items-center justify-between gap-4 max-sm:flex-col-reverse print:flex-row">
     <div class="flex-1 min-w-0 flex flex-col gap-2 pr-8 max-sm:pr-0 max-sm:text-center max-sm:items-center print:pr-8 print:text-left print:items-start">
       <Typography as="h1" variant="title" class="text-balance font-medium">{name}</Typography>
-      <Typography as="h2" variant="subtitle"  class="text-lg font-bold text-gray-700 m-0">{label}</Typography>
-      <Typography as="span" variant="muted"  class="flex items-center gap-1 text-sm text-gray-600">
+  <Typography as="h2" variant="subtitle" class="m-0">{label}</Typography>
+      <Typography as="span" variant="muted" class="flex items-center gap-1 text-sm">
         <Icon name="lucide:map" class="size-4" aria-hidden="true" />
         {city}, {region}
       </Typography>
 
-      <div class="hidden print:block text-sm text-gray-600 mt-1">
+  <div class="hidden print:block text-sm print:text-slate-600 mt-1">
         {printInfo}
       </div>
       <footer class="no-print mt-2 flex gap-1">
@@ -58,9 +71,9 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
           email && (
             <a
               href={`mailto:${email}`}
-              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
-              title={`Enviar un correo electrónico a ${name} al correo ${email}`}
-              aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
+              class="text-foreground inline-flex items-center justify-center border border-(--border-color) p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-(--bg-secondary) hover:border-(--border-hover)"
+              title={t('hero.emailTitle', { name, email })}
+              aria-label={t('hero.emailAria', { name, email })}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -71,26 +84,24 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" • ");
         {
           phone && (
             <a
-              href={`tel:${phone}`}
-              class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
-              title={`Llamar por teléfono a ${name} al número ${phone}`}
-              aria-label={`Llamar por teléfono a ${name} al número ${phone}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`tel:${phoneHref ?? phone}`}
+              class="text-foreground inline-flex items-center justify-center border border-(--border-color) p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-(--bg-secondary) hover:border-(--border-hover)"
+              title={t('hero.phoneTitle', { name, phone })}
+              aria-label={t('hero.phoneAria', { name, phone })}
             >
               <Icon name="lucide:phone" class="size-4" aria-hidden="true" />
             </a>
           )
         }
         {
-          profiles.map(({ network, url, username }) => {
+          safeProfiles.map(({ network, url, username }) => {
 
             return (
               <a
                 href={url}
-                class="text-gray-600 inline-flex items-center justify-center border border-gray-200 p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-gray-100 hover:border-gray-300"
-                title={`Visitar el perfil de ${name} en ${network}`}
-                aria-label={`Visitar el perfil de ${name} en ${network}`}
+                class="text-foreground inline-flex items-center justify-center border border-(--border-color) p-1 h-8 w-8 rounded-md transition-all duration-300 hover:bg-(--bg-secondary) hover:border-(--border-hover)"
+                title={t('hero.profileTitle', { name, network, username })}
+                aria-label={t('hero.profileAria', { name, network, username })}
                 target="_blank"
                 rel="noopener noreferrer"
               >

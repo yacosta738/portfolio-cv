@@ -14,21 +14,16 @@ interface Props {
 const { skills = [] } = Astro.props as Props;
 const currentLocale = Astro.params.lang as Lang;
 const t = useTranslations(currentLocale);
-const allSkills = await getSkills();
 ---
 
 {skills.length > 0 && (
 	<Section title={t('skills')}>
 		<ul class="inline-flex gap-2 flex-wrap">
 			{skills.map(({ name }) => {
-				const found = allSkills.find(
-					(skill) => skill.name.toLowerCase() === name.toLowerCase(),
-				);
 				return (
 					<li>
-						<Badge class="flex items-center gap-1 text-sm font-medium">
-							{found && <Icon name={found?.icon || 'mdi:code-tags'} class="size-4" />}
-							<span>{name}</span>
+						<Badge>
+							{name}
 						</Badge>
 					</li>
 				);

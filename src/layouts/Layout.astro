@@ -1,36 +1,118 @@
 ---
+import Analytics from "@/components/atoms/Analytics.astro";
+import ThemeToggle from "@/components/atoms/ThemeToggle.astro";
+import { SITE_TITLE } from "@/configs/site.consts";
 import { getLocalePaths, type Lang, LOCALES, useTranslations } from "@/i18n";
 import LocaleHtmlHead from "@/i18n/components/LocaleHtmlHead.astro";
 import LocaleSuggest from "@/i18n/components/LocaleSuggest.astro";
 import { getMainResumeWithData } from "@/resume/resume/resume.service";
-import { SITE_TITLE } from "@/site.consts";
 import "@/styles/global.css";
 
+import { DARK_COLOR, LIGHT_COLOR, STORAGE_KEY } from "@/configs/theme.consts";
+
 interface Props {
-	title: string;
+	title?: string;
 }
-const { title } = Astro.props;
+const { title = "" } = Astro.props;
 const locale = Astro.currentLocale as Lang;
 const t = useTranslations(locale);
 
-// Obtener los datos del resume desde las colecciones de Astro
-const resume = await getMainResumeWithData();
-if (!resume) {
-	throw new Error("No se pudo obtener el resume principal");
-}
+const resume = (await getMainResumeWithData()) ?? {
+	basics: {
+		image: "",
+		summary: t("default.summary"),
+		url: Astro.site?.href || "",
+	},
+};
 
 const localeTitle = title ? `${title} - ${t(SITE_TITLE)}` : t(SITE_TITLE);
 const { image, summary, url } = resume.basics;
+
+const getHostname = (urlStr?: string) => {
+	if (!urlStr) return "";
+	try {
+		return new URL(urlStr).hostname;
+	} catch {
+		return "";
+	}
+};
 ---
 
 <!doctype html>
-<html lang={LOCALES[locale].lang || locale} dir={LOCALES[locale].dir || null}>
+<html lang={LOCALES[locale].lang || locale} dir={LOCALES[locale].dir || "ltr"}>
   <head>
     <meta charset="UTF-8" />
     <title>{localeTitle}</title>
     <meta name="description" content={summary} />
-    <meta name="viewport" content="width=device-width" />
-    <!-- <meta name="color-scheme" content="light dark" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" id="theme-color" content={LIGHT_COLOR} />
+
+    <script is:inline define:vars={{ STORAGE_KEY, LIGHT_COLOR, DARK_COLOR }}>
+      (() => {
+        function getTheme() {
+          try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored === "dark" || stored === "light") return stored;
+          } catch {}
+          return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches
+            ? "dark"
+            : "light";
+        }
+
+        function applyTheme(theme) {
+          const html = document.documentElement;
+          const meta = document.querySelector('meta[name="theme-color"]');
+
+          if (theme === "dark") {
+            html.classList.add("dark");
+            if (meta) meta.setAttribute("content", DARK_COLOR);
+          } else {
+            html.classList.remove("dark");
+            if (meta) meta.setAttribute("content", LIGHT_COLOR);
+          }
+        }
+
+        const theme = getTheme();
+        applyTheme(theme);
+
+        window
+          .matchMedia?.("(prefers-color-scheme: dark)")
+          ?.addEventListener?.("change", (e) => {
+            try {
+              if (!localStorage.getItem(STORAGE_KEY)) {
+                const newTheme = e.matches ? "dark" : "light";
+                applyTheme(newTheme);
+              }
+            } catch {}
+          });
+
+        window.themeSystem = {
+          toggle() {
+            const current = document.documentElement.classList.contains("dark")
+              ? "dark"
+              : "light";
+            const newTheme = current === "dark" ? "light" : "dark";
+            applyTheme(newTheme);
+            try {
+              localStorage.setItem(STORAGE_KEY, newTheme);
+            } catch {}
+          },
+          clear() {
+            try {
+              localStorage.removeItem(STORAGE_KEY);
+            } catch {}
+            try {
+              const sys = window.matchMedia?.("(prefers-color-scheme: dark)")
+                ?.matches
+                ? "dark"
+                : "light";
+              applyTheme(sys);
+            } catch {}
+          },
+        };
+      })();
+    </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -38,9 +120,12 @@ const { image, summary, url } = resume.basics;
     <link rel="icon" sizes="512x512" href="/icon-512.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
 
-    <link rel="preload" as="image" href={image} />
+    {
+      image && (
+        <link rel="preload" as="image" href={image} fetchpriority="high" />
+      )
+    }
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     {
@@ -55,7 +140,7 @@ const { image, summary, url } = resume.basics;
 
     <meta property="og:url" content={url} />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={localeTitle} />
     <meta property="og:description" content={summary} />
     <meta
       property="og:image"
@@ -63,9 +148,9 @@ const { image, summary, url } = resume.basics;
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content={url?.split("//")[1] ?? ""} />
-    <meta property="twitter:url" content={url} />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:domain" content={getHostname(url)} />
+    <meta name="twitter:url" content={url} />
+    <meta name="twitter:title" content={localeTitle} />
     <meta name="twitter:description" content={summary} />
     <meta
       name="twitter:image"
@@ -77,5 +162,7 @@ const { image, summary, url } = resume.basics;
   <body>
     <LocaleSuggest />
     <slot />
+    <ThemeToggle />
+    <Analytics />
   </body>
 </html>
