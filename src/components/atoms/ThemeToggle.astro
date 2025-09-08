@@ -107,4 +107,13 @@ const { class: className, ...attrs } = Astro.props;
       bottom: 70px !important; /* sit above the footer floating button */
     }
   }
+
+  /* Print: hide the theme toggle to avoid printing UI chrome */
+  @media print {
+    #theme-toggle-button {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+  }
 </style>
