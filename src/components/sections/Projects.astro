@@ -36,7 +36,7 @@ const tr = (
         ({ url, description, highlights, name, isActive, github }) => {
           return (
             <li>
-              <article class="rounded-lg border border-(--border-color) dark:border-(--border-color) gap-4 flex flex-col p-4 h-full">
+              <article class="rounded-lg border border-base-300 gap-4 flex flex-col p-4 h-full">
                 <header class="flex-1">
                   <h3 class="mb-1">
                     <a 
@@ -71,7 +71,7 @@ const tr = (
                 </header>
                 <footer class="flex flex-wrap gap-1 text-[0.6rem]">
                   {highlights?.map((highlight) => {
-                    return <span class="rounded-md bg-(--bg-secondary) dark:bg-(--bg-primary) text-foreground-muted text-[0.6rem] font-medium px-2.5 py-1 border border-(--border-color)">{highlight}</span>
+                    return <span class="rounded-md bg-base-200 dark:bg-base-100 text-foreground-muted text-[0.6rem] font-medium px-2.5 py-1 border border-base-300">{highlight}</span>
                   })}
                 </footer>
               </article>
