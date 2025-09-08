@@ -38,6 +38,6 @@ pre-push:
   parallel: true
   commands:
     lychee_link_check:
-      run: lychee --no-progress --exclude-path node_modules --exclude-path public/admin ./**/*.md
+      run: lychee --no-progress --exclude-all-private --exclude-path node_modules --exclude-path public/admin ./**/*.md
     pnpm_check:
       run: pnpm run check
