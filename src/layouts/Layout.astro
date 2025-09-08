@@ -28,7 +28,6 @@ const resume = (await getMainResumeWithData()) ?? {
 const localeTitle = title ? `${title} - ${t(SITE_TITLE)}` : t(SITE_TITLE);
 const { image, summary, url } = resume.basics;
 
-// Función helper para hostname seguro
 const getHostname = (urlStr?: string) => {
 	if (!urlStr) return "";
 	try {
@@ -40,7 +39,7 @@ const getHostname = (urlStr?: string) => {
 ---
 
 <!doctype html>
-<html lang={LOCALES[locale].lang || locale} dir={LOCALES[locale].dir || 'ltr'}>
+<html lang={LOCALES[locale].lang || locale} dir={LOCALES[locale].dir || "ltr"}>
   <head>
     <meta charset="UTF-8" />
     <title>{localeTitle}</title>
@@ -56,46 +55,61 @@ const getHostname = (urlStr?: string) => {
             const stored = localStorage.getItem(STORAGE_KEY);
             if (stored === "dark" || stored === "light") return stored;
           } catch {}
-          return window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? "dark" : "light";
+          return window.matchMedia?.("(prefers-color-scheme: dark)")?.matches
+            ? "dark"
+            : "light";
         }
-        
+
         function applyTheme(theme) {
           const html = document.documentElement;
           const meta = document.querySelector('meta[name="theme-color"]');
-          
+
           if (theme === "dark") {
             html.classList.add("dark");
-            if (meta) meta.setAttribute('content', DARK_COLOR);
+            if (meta) meta.setAttribute("content", DARK_COLOR);
           } else {
             html.classList.remove("dark");
-            if (meta) meta.setAttribute('content', LIGHT_COLOR);
+            if (meta) meta.setAttribute("content", LIGHT_COLOR);
           }
         }
-        
+
         const theme = getTheme();
         applyTheme(theme);
-        
-        try {
-          localStorage.setItem(STORAGE_KEY, theme);
-        } catch {}
-        
-        window.matchMedia?.('(prefers-color-scheme: dark)')?.addEventListener?.('change', (e) => {
-          try {
-            if (!localStorage.getItem(STORAGE_KEY)) {
-              const newTheme = e.matches ? "dark" : "light";
-              applyTheme(newTheme);
-              localStorage.setItem(STORAGE_KEY, newTheme);
-            }
-          } catch {}
-        });
-        
+
+        window
+          .matchMedia?.("(prefers-color-scheme: dark)")
+          ?.addEventListener?.("change", (e) => {
+            try {
+              if (!localStorage.getItem(STORAGE_KEY)) {
+                const newTheme = e.matches ? "dark" : "light";
+                applyTheme(newTheme);
+              }
+            } catch {}
+          });
+
         window.themeSystem = {
           toggle() {
-            const current = document.documentElement.classList.contains("dark") ? "dark" : "light";
+            const current = document.documentElement.classList.contains("dark")
+              ? "dark"
+              : "light";
             const newTheme = current === "dark" ? "light" : "dark";
             applyTheme(newTheme);
-            try { localStorage.setItem(STORAGE_KEY, newTheme); } catch {}
-          }
+            try {
+              localStorage.setItem(STORAGE_KEY, newTheme);
+            } catch {}
+          },
+          clear() {
+            try {
+              localStorage.removeItem(STORAGE_KEY);
+            } catch {}
+            try {
+              const sys = window.matchMedia?.("(prefers-color-scheme: dark)")
+                ?.matches
+                ? "dark"
+                : "light";
+              applyTheme(sys);
+            } catch {}
+          },
         };
       })();
     </script>
@@ -107,7 +121,11 @@ const getHostname = (urlStr?: string) => {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    {image && <link rel="preload" as="image" href={image} fetchpriority="high" />}
+    {
+      image && (
+        <link rel="preload" as="image" href={image} fetchpriority="high" />
+      )
+    }
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     {
@@ -120,19 +138,24 @@ const getHostname = (urlStr?: string) => {
       ))
     }
 
-
     <meta property="og:url" content={url} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={localeTitle} />
     <meta property="og:description" content={summary} />
-    <meta property="og:image" content={image ? new URL(image, Astro.url).href : ''} />
+    <meta
+      property="og:image"
+      content={image ? new URL(image, Astro.url).href : ""}
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:domain" content={getHostname(url)} />
     <meta name="twitter:url" content={url} />
     <meta name="twitter:title" content={localeTitle} />
     <meta name="twitter:description" content={summary} />
-    <meta name="twitter:image" content={image ? new URL(image, Astro.url).href : ''} />
+    <meta
+      name="twitter:image"
+      content={image ? new URL(image, Astro.url).href : ""}
+    />
 
     <LocaleHtmlHead />
   </head>

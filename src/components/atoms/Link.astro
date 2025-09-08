@@ -2,48 +2,49 @@
 import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-export interface Props extends Omit<HTMLAttributes<'a'>, "class"> {
-    href?: string;
-    variant?: "primary" | "social" | "subtle";
-    external?: boolean;
-    class?: string;
+export interface Props extends Omit<HTMLAttributes<"a">, "class"> {
+	href?: string;
+	variant?: "primary" | "social" | "subtle";
+	external?: boolean;
+	class?: string;
 }
 
 const {
-    href,
-    variant = "primary",
-    external = false,
-    class: className,
-    ...attrs
+	href,
+	variant = "primary",
+	external = false,
+	class: className,
+	...attrs
 } = Astro.props;
 
 if (import.meta.env.DEV && variant === "social") {
-    const hasContent = Astro.slots.has("default");
-    const hasAriaLabel = Boolean(attrs["aria-label"]);
+	const hasContent = Astro.slots.has("default");
+	const hasAriaLabel = Boolean(attrs["aria-label"]);
 
-    if (!hasContent && !hasAriaLabel) {
-        console.warn(
-            'Link[variant="social"]: Accessible name required. Provide an `aria-label` attribute or visible/visually-hidden text in the slot.'
-        );
-    }
+	if (!hasContent && !hasAriaLabel) {
+		console.warn(
+			'Link[variant="social"]: Accessible name required. Provide an `aria-label` attribute or visible/visually-hidden text in the slot.',
+		);
+	}
 }
-const Tag = href ? "a" : "span";
+const isLink = Boolean(href);
+const Tag = isLink ? "a" : "span";
 
 const baseStyles = {
-    primary:
-        "text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
-    social:
-        "text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
-    subtle:
-        "text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+	primary:
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+	social:
+		"text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+	subtle:
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 };
 
 const componentProps = {
-    class: cn(baseStyles[variant], className),
-    href: href,
-    target: external ? "_blank" : undefined,
-    rel: external ? "noopener noreferrer" : undefined,
-    ...attrs,
+	class: cn(baseStyles[variant], className),
+	href: href,
+	target: external ? "_blank" : undefined,
+	rel: external ? "noopener noreferrer" : undefined,
+	...attrs,
 };
 ---
 
