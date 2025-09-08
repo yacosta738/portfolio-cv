@@ -1,52 +1,52 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { cn } from "@/lib/utils";
 
-export interface Props {
-	href?: string;
-	variant?: "primary" | "social" | "subtle";
-	external?: boolean;
-	class?: string;
+export interface Props extends Omit<HTMLAttributes<'a'>, "class"> {
+    href?: string;
+    variant?: "primary" | "social" | "subtle";
+    external?: boolean;
+    class?: string;
 }
 
 const {
-	href,
-	variant = "primary",
-	external = false,
-	class: className,
-	...attrs
+    href,
+    variant = "primary",
+    external = false,
+    class: className,
+    ...attrs
 } = Astro.props;
 
-// For social variant ensure an accessible name is provided: either an aria-label attr or visible/default slot content
-const a = attrs as Record<string, unknown>;
-const hasAria = Boolean(a["aria-label"] || a.ariaLabel);
-const hasSlot = Boolean(Astro.slots?.default);
-if (variant === "social" && !hasAria && !hasSlot) {
-	// Warn at runtime to help developers catch accessibility issues during dev/build
-	console.warn(
-		'Link[variant="social"]: accessible name required. Provide an `aria-label` attribute or visible/visually-hidden text in the slot.',
-	);
+if (import.meta.env.DEV && variant === "social") {
+    const hasContent = Astro.slots.has("default");
+    const hasAriaLabel = Boolean(attrs["aria-label"]);
+
+    if (!hasContent && !hasAriaLabel) {
+        console.warn(
+            'Link[variant="social"]: Accessible name required. Provide an `aria-label` attribute or visible/visually-hidden text in the slot.'
+        );
+    }
 }
+const Tag = href ? "a" : "span";
 
 const baseStyles = {
-	primary:
-		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
-	social:
-		"text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
-	subtle:
-		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+    primary:
+        "text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+    social:
+        "text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+    subtle:
+        "text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
 };
 
-const classes = cn(baseStyles[variant], className);
-const target = external ? "_blank" : undefined;
-const rel = external ? "noopener noreferrer" : undefined;
+const componentProps = {
+    class: cn(baseStyles[variant], className),
+    href: href,
+    target: external ? "_blank" : undefined,
+    rel: external ? "noopener noreferrer" : undefined,
+    ...attrs,
+};
 ---
 
-{href ? (
-	<a href={href} class={classes} target={target} rel={rel} {...attrs}>
-		<slot />
-	</a>
-) : (
-	<span class={classes} {...attrs}>
-		<slot />
-	</span>
-)}
+<Tag {...componentProps}>
+    <slot />
+</Tag>
