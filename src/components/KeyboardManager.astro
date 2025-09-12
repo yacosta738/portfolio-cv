@@ -233,7 +233,7 @@ const profilesInfo = profiles.map(({ network, url }) => {
 
       // Forward click and keyboard activation from the wrapper to the li so
       // the library's listeners (that may be attached to the li) still run.
-      wrapper.addEventListener("click", (e) => {
+      wrapper.addEventListener("click", (_) => {
         // Let native event propagation happen; also trigger click on li
         // to support libraries that attached handlers directly to the li.
         (li as HTMLElement).click();
