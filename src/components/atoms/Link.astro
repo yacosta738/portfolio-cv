@@ -32,11 +32,11 @@ const Tag = isLink ? "a" : "span";
 
 const baseStyles = {
 	primary:
-		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-base-100)] focus-visible:ring-[var(--color-primary)]",
 	social:
-		"text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+		"text-foreground-muted inline-flex items-center justify-center border border-slate-400 p-1 h-8 w-8 rounded-md transition-colors duration-200 hover:bg-slate-100 hover:border-slate-500 dark:border-slate-600 dark:hover:bg-slate-700 dark:hover:border-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-base-100)] focus-visible:ring-[var(--color-primary)]",
 	subtle:
-		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--bg-primary) focus-visible:ring-slate-600 dark:focus-visible:ring-offset-slate-900 dark:focus-visible:ring-slate-300",
+		"text-foreground no-underline hover:underline hover:text-foreground-muted focus-visible:underline focus-visible:text-foreground-muted transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-base-100)] focus-visible:ring-[var(--color-primary)]",
 };
 
 const componentProps = {
