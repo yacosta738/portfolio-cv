@@ -6,7 +6,7 @@
 		"@tailwindcss/vite": "^4.1.13",
 		"astro": "5.13.7",
 		"astro-compress": "2.3.8",
-		"hotkeypad": "0.1.0",
+		"hotkeypad": "1.0.2",
 		"tailwindcss": "^4.1.13",
 		"typescript": "5.3.3"
 	},
