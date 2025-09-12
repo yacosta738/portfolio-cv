@@ -19,7 +19,7 @@ importers:
         version: 3.5.1
       '@tailwindcss/vite':
         specifier: ^4.1.13
-        version: 4.1.13(vite@6.3.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1))
+        version: 4.1.13(vite@6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1))
       astro:
         specifier: 5.13.7
         version: 5.13.7(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(rollup@4.50.1)(terser@5.39.0)(typescript@5.3.3)(yaml@2.8.1)
@@ -27,8 +27,8 @@ importers:
         specifier: 2.3.8
         version: 2.3.8(@types/node@24.3.1)(jiti@2.5.1)(rollup@4.50.1)(typescript@5.3.3)(yaml@2.8.1)
       hotkeypad:
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: 1.0.2
+        version: 1.0.2
       tailwindcss:
         specifier: ^4.1.13
         version: 4.1.13
@@ -2147,8 +2147,8 @@ packages:
     resolution: {integrity: sha512-Rw/B2DNQaPBICNXEm8balFz9a6WpZrkCGpcWFpy7nCj+NyhSdqXipmfvtmWt9xGfp0wZnBxB+iVpLmQMYt47Tw==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  hotkeypad@0.1.0:
-    resolution: {integrity: sha512-e9R4mp2B0YtjV7Rm9KpMMyMSMwvEjb1gHxnvpnMQD0ussSOobl6+Tr6rFCq2aNLgExkcfHtShyd/DQqM4qqHTw==}
+  hotkeypad@1.0.2:
+    resolution: {integrity: sha512-vvhHZfhNx5LtRoO8+db2Y8Q4QKoaqVbeu2iGMZjV9NAYmHfWTFQNJMWkmqVyhYwoTPLoKDd7GgjaG3rOtTF5pA==}
 
   html-escaper@3.0.3:
     resolution: {integrity: sha512-RuMffC89BOWQoY0WKGpIhn5gX3iI54O6nRA0yC124NYVtzjmFWBIiFd8M0x+ZdX0P9R4lADg1mgP8C7PxGOWuQ==}
@@ -5199,12 +5199,12 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.13
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.13
 
-  '@tailwindcss/vite@4.1.13(vite@6.3.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1))':
+  '@tailwindcss/vite@4.1.13(vite@6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1))':
     dependencies:
       '@tailwindcss/node': 4.1.13
       '@tailwindcss/oxide': 4.1.13
       tailwindcss: 4.1.13
-      vite: 6.3.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1)
+      vite: 6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1)
 
   '@trysound/sax@0.2.0': {}
 
@@ -5556,7 +5556,7 @@ snapshots:
       unstorage: 1.17.1
       vfile: 6.0.3
       vite: 6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.29.3)(terser@5.39.0)(yaml@2.8.1)
-      vitefu: 1.1.1(vite@6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.29.3)(terser@5.39.0)(yaml@2.8.1))
+      vitefu: 1.1.1(vite@6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
@@ -6579,7 +6579,7 @@ snapshots:
     dependencies:
       lru-cache: 10.4.3
 
-  hotkeypad@0.1.0: {}
+  hotkeypad@1.0.2: {}
 
   html-escaper@3.0.3: {}
 
@@ -8470,10 +8470,6 @@ snapshots:
       lightningcss: 1.30.1
       terser: 5.39.0
       yaml: 2.8.1
-
-  vitefu@1.1.1(vite@6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.29.3)(terser@5.39.0)(yaml@2.8.1)):
-    optionalDependencies:
-      vite: 6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.29.3)(terser@5.39.0)(yaml@2.8.1)
 
   vitefu@1.1.1(vite@6.3.6(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.1)):
     optionalDependencies:
