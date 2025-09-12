@@ -19,20 +19,20 @@ export interface Props extends HTMLAttributes<"ul"> {
 }
 
 const { items, variant = "simple", class: className, ...attrs } = Astro.props;
-const classes = cn("flex flex-col gap-3", className);
+const classes = cn("flex flex-col gap-1", className);
 ---
 
 <ul class={classes} {...attrs}>
 	{items.map((item) => (
 		<li>
 			{variant === 'simple' ? (
-				<article class="p-2">
+				<article class="p-1">
 					<Typography variant="body">
 						{typeof item === 'string' ? item : item.title}
 					</Typography>
 				</article>
 			) : (
-				<article class="p-2">
+				<article class="p-1">
 					{typeof item !== 'string' && (
 						<>
 							<header class="flex justify-between items-start mb-1">
