@@ -2,9 +2,9 @@
 	"dependencies": {
 		"@astrojs/check": "0.9.4",
 		"@astrojs/partytown": "^2.1.4",
-		"@astrojs/sitemap": "^3.5.1",
+		"@astrojs/sitemap": "^3.6.0",
 		"@tailwindcss/vite": "^4.1.13",
-		"astro": "5.13.7",
+		"astro": "5.13.10",
 		"astro-compress": "2.3.8",
 		"hotkeypad": "1.0.2",
 		"tailwindcss": "^4.1.13",
