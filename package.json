@@ -8,14 +8,14 @@
 		"astro-compress": "2.3.8",
 		"hotkeypad": "1.0.2",
 		"tailwindcss": "^4.1.13",
-		"typescript": "5.9.2"
+		"typescript": "5.9.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.2.3",
-		"@iconify-json/lucide": "^1.2.66",
+		"@biomejs/biome": "2.2.6",
+		"@iconify-json/lucide": "^1.2.70",
 		"@iconify-json/mdi": "^1.2.3",
-		"@iconify-json/simple-icons": "^1.2.50",
-		"@iconify-json/tabler": "^1.2.22",
+		"@iconify-json/simple-icons": "^1.2.54",
+		"@iconify-json/tabler": "^1.2.23",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
 		"astro-icon": "^1.1.5",
