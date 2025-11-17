@@ -14,7 +14,7 @@
 		"@biomejs/biome": "2.2.3",
 		"@iconify-json/lucide": "^1.2.73",
 		"@iconify-json/mdi": "^1.2.3",
-		"@iconify-json/simple-icons": "^1.2.58",
+		"@iconify-json/simple-icons": "^1.2.59",
 		"@iconify-json/tabler": "^1.2.23",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
