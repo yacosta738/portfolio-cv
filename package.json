@@ -4,7 +4,7 @@
 		"@astrojs/partytown": "^2.1.4",
 		"@astrojs/sitemap": "^3.5.1",
 		"@tailwindcss/vite": "^4.1.17",
-		"astro": "5.15.6",
+		"astro": "5.15.9",
 		"astro-compress": "2.3.8",
 		"hotkeypad": "1.0.2",
 		"tailwindcss": "^4.1.17",
