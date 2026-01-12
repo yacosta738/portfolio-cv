@@ -1,11 +1,11 @@
 {
 	"dependencies": {
-		"@astrojs/check": "0.9.4",
+		"@astrojs/check": "0.9.6",
 		"@astrojs/partytown": "^2.1.4",
-		"@astrojs/sitemap": "^3.5.1",
+		"@astrojs/sitemap": "^3.6.1",
 		"@tailwindcss/vite": "^4.1.17",
-		"astro": "5.15.6",
-		"astro-compress": "2.3.8",
+		"astro": "5.16.8",
+		"astro-compress": "2.3.9",
 		"hotkeypad": "1.0.2",
 		"tailwindcss": "^4.1.17",
 		"typescript": "5.9.3"
