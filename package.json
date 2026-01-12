@@ -12,10 +12,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.3",
-		"@iconify-json/lucide": "^1.2.73",
+		"@iconify-json/lucide": "^1.2.84",
 		"@iconify-json/mdi": "^1.2.3",
-		"@iconify-json/simple-icons": "^1.2.58",
-		"@iconify-json/tabler": "^1.2.23",
+		"@iconify-json/simple-icons": "^1.2.66",
+		"@iconify-json/tabler": "^1.2.26",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
 		"astro-icon": "^1.1.5",
