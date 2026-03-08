@@ -12,6 +12,9 @@
   --color-base-200: var(--base-200);
   --color-base-300: var(--base-300);
   --color-base-content: var(--base-content);
+  /* Back-compat: support existing text-foreground classes */
+  --color-foreground: var(--color-base-content);
+  --color-foreground-muted: color-mix(in oklch, var(--color-base-content) 72%, var(--color-base-100) 28%);
 
   --color-primary: var(--primary);
   --color-primary-content: var(--primary-content);
@@ -38,7 +41,7 @@
   --color-error-content: var(--error-content);
 
   --color-highlight: var(--highlight);
-
+}
   --radius-selector: 1rem;
   --radius-field: 0.5rem;
   --radius-box: 1rem;
